@@ -1,0 +1,22 @@
+#activity {
+
+    .links {
+        li {
+            cursor: pointer;
+            &:hover{
+                color: var(--secondary-red);
+            }
+        }
+    }
+    .form-container {
+        display: block;
+        margin: 0 auto;
+
+        form {
+            display: inline-block;
+            input {
+                display:flex;
+            }
+        }
+    }
+}

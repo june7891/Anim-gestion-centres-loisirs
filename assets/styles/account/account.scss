@@ -1,0 +1,45 @@
+#account {
+
+
+    
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        margin-left: 200px;
+        margin-top: 200px;
+       
+        .card {
+            height: 314px;
+            width: 311px;
+            border: 2.5px solid var(--primary-blue);
+            border-radius: 4px;
+         
+            .icon-container {
+                width: 250px;
+                height: 180px;
+                background-color: rgba($color: #26619C, $alpha: 0.1);
+                margin: auto;
+                margin-top: 25px;
+                img {
+                    margin:  auto;
+                    display: flex;
+                   
+                }
+                .img-add {
+                    padding-top: 45px;
+                }
+            }
+
+            .title {
+                font-weight: bold;
+                font-size: 24px;
+                width: 200px;
+                text-align: center;
+               margin: auto;
+               margin-top: 20px;
+               color: var(--black);
+            }
+        }
+    }
+}

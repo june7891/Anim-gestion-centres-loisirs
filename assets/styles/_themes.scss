@@ -1,0 +1,24 @@
+.btn {
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s opacity;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    font-size: bold;
+    border: none;
+    height: 30px;
+    width: 115px;
+    font-size: 12px;
+    
+
+    &:hover {
+      border: 2px solid var(--primary-blue);
+      background-color: var(--white);
+      color: var(--primary-blue);
+    }
+}
+
+
+
+

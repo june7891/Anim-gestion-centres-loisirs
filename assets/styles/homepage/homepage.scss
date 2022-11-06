@@ -1,0 +1,82 @@
+
+@use '../base';
+
+@use '../variables';
+@use '../flex';
+@use '../utils.scss';
+@use '../themes.scss';
+
+#homepage {
+    .top-page {
+        position: relative;
+        background: url(../../images/wave-blue-top.png);
+        height: 700px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        text-align: center;
+
+        .links {
+            display: flex;
+            float: right;
+            margin-top: 30px;
+            li {
+                display: inline;
+                margin-right: 20px;
+                color: white;
+               
+                a {
+                    text-decoration: none;
+                    color: var(--white);
+                    &:hover {
+                        color: var(--secondary-red);
+                    }
+                }
+            }
+        }
+   
+
+        img{
+            margin-top: 100px;
+            margin-left: 400px;
+        }
+        
+        
+    }
+    .login-form {
+        position: absolute;
+        left: 40%;
+        top: 70%;
+        display: block;
+        margin: 0 auto;
+       
+        border-radius: 4px;
+        background-color: rgba($color:#26619C, $alpha: 0.4);
+
+        height: 311px;
+        width: 334px;
+        align-items: center;
+        text-align: center;
+      
+        form {
+            display: inline-block;
+            margin-top: 60px;
+            
+    
+        
+            input {
+                display: flex;
+                
+                
+            }
+        }
+        
+    }
+
+    .bottom-page {
+        background: url(../../images/wave-blue-bottom.png);
+        height: 400px;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+    }
+}

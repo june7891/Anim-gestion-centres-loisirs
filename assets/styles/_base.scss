@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+input, ::placeholder {
+    font-family: var(--font-family);
+    color: var(--primary-blue);
+   
+}
+
+input{
+    width: 214px;
+    height: 50px;
+    border: 2px solid var(--primary-blue);
+    border-radius: 4px;
+    outline-color: var(--secondary-red);
+
+   &:focus::placeholder {
+    color: var(--secondary-red);
+}
+}
+
