@@ -14,18 +14,21 @@ nav {
         margin-top: 40px;
         
         ul {
-            margin-left: 780px;
+            margin-left: 680px;
           li{
            display: inline;  
            color: var(--black);
            margin-right: 20px;
            font-weight: bold;
+           cursor: pointer;
           
+           &:hover {
+            color: var(--secondary-red);
+            border-bottom: 2px solid var(--secondary-red);
+           }
+           
            a {
             color: var(--black);
-            &:hover {
-                color: var(--secondary-red);
-               }
            }
         }  
         }

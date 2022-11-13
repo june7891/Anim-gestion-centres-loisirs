@@ -4,7 +4,7 @@ import logo from '../../images/Logo_blue.svg';
 import activityIcon from '../../images/activity-icon.svg';
 import addIcon from '../../images/add-icon.svg';
 import foldersIcon from '../../images/folders-icon.svg';
-
+import { Link } from "react-router-dom";
 
 const Account_page = () => {
   return (
@@ -14,13 +14,13 @@ const Account_page = () => {
         <div className="links">
             <ul>
             <li>Bonjour, user12345!</li>
-            <li><a href="">Se déconnecter</a></li>
+            <li><Link to="/">Se déconnecter</Link></li>
         </ul>
         </div>
         
     </nav>
        <div className='cards-container'>
-       <a href="">
+       <a href="/all-activities">
         <div className='card'>
           <div className='icon-container'>
             <img src={activityIcon} alt="" />
@@ -28,7 +28,7 @@ const Account_page = () => {
           <div className='title'>Accéder à mes activités</div>
         </div>
         </a>
-        <a href="/addNewActivity">
+        <a href="/add-activity">
         <div className='card'>
           <div className='icon-container'>
           <img className='img-add' src={addIcon} alt="" />
@@ -36,7 +36,7 @@ const Account_page = () => {
           <div className='title'>Créer une nouvelle activité</div>
         </div>
         </a>
-        <a href="">
+        <a href="all-participants">
         <div className='card'>
           <div className='icon-container'>
           <img src={foldersIcon} alt="" />

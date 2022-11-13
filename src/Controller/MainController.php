@@ -9,29 +9,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
    
-    #[Route('/homepage', name: 'app_homepage')]
+    #[Route('/{reactRouting}', name: 'home', requirements:['reactRouting' => "^(?!api).+"] , defaults: ['reactRouting' => null])]
     public function index(): Response
     {
 
         
-        return $this->render('main/homepage.html.twig');
+        return $this->render('main/index.html.twig');
     }
 
-
-    #[Route('/account/{id}', name: 'app_account_user')]
-    public function account(): Response
-    {
-
-        
-        return $this->render('main/account_page.html.twig');
-    }
-    #[Route('/addNewActivity', name: 'app_new-activity')]
-    public function addActivity(): Response
-    {
-
-        
-        return $this->render('main/activity_form.html.twig');
-    }
 
 
 }

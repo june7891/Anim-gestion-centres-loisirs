@@ -2,7 +2,7 @@ import React from 'react'
 import '../../styles/homepage/homepage.scss'
 import logo from '../../images/Logo_white.svg';
 
-const HomepageContent = () => {
+const Homepage = () => {
 
 
   return (
@@ -33,4 +33,4 @@ const HomepageContent = () => {
   )
 }
 
-export default HomepageContent
+export default Homepage
