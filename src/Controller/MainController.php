@@ -18,5 +18,16 @@ class MainController extends AbstractController
     }
 
 
+    
+   
+    // #[Route('/home', name: 'home')]
+    // public function index(): Response
+    // {
+
+        
+    //     return $this->render('main/index.html.twig');
+    // }
+
+
 
 }

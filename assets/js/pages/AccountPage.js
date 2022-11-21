@@ -25,23 +25,17 @@ const Account_page = () => {
           <div className='icon-container'>
             <img src={activityIcon} alt="" />
           </div>
-          <div className='title'>Accéder à mes activités</div>
+          <div className='title'>Mes activités</div>
         </div>
         </a>
-        <a href="/add-activity">
-        <div className='card'>
-          <div className='icon-container'>
-          <img className='img-add' src={addIcon} alt="" />
-          </div>
-          <div className='title'>Créer une nouvelle activité</div>
-        </div>
-        </a>
+   
+       
         <a href="all-participants">
         <div className='card'>
           <div className='icon-container'>
           <img src={foldersIcon} alt="" />
           </div>
-          <div className='title'>Gerer mes dossiers</div>
+          <div className='title'>Mes participants</div>
         </div>
         </a>
        </div> 

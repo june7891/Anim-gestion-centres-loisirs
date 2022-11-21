@@ -10,22 +10,46 @@ const Homepage = () => {
     <div className='top-page'>
     <div className='links'>
         <ul>
-        <li><a href="">Se connecter</a></li>
-        <li><a href="">Créer un compte</a></li>
+        <li><a href="/login">Se connecter</a></li>
+        <li><a href="/signup">Créer un compte</a></li>
     </ul> 
     </div>
    
-    <div className='img-container'><img src={logo} alt="Anim+" /></div>
+    <div className='img-container'><a href="/"><img src={logo} alt="Anim+" /></a></div>
     
 
     </div>
-    <div className='login-form'>
-        <form  action="">
-            <input className='mb-20' type="email" placeholder='email' />
-            <input className="mb-20" type="password" placeholder='mot de passe' />
-            <button className='btn'>Se connecter</button>
-        </form>
-    </div>
+    <div className='description'>
+    <h4>c’est une application qui permet au personnel de pointer les présences des participants et enregistrer les dossiers d'inscription. </h4>
+ 
+<p>Elle convient à tous types d’activités : </p> 
+ 
+ <ul>
+  <li> Accueil de Loisirs Sans Hébergement ;</li>
+  <li>Accueil Périscolaire ;</li>
+  <li> Ateliers.</li>
+ </ul>
+
+ 
+<p>Cette application s’adresse également aux différents types de structures : </p>
+ 
+<ul>
+  <li> ALSH ;</li>
+  <li> Restauration scolaire ;</li>
+  <li> Centre de loisirs ;</li>
+  <li> Centre social ;</li>
+  <li> Garderie périscolaire.</li>
+</ul>
+ 
+ 
+
+
+<p>Anim+ est une application simple qui permet de savoir à tout moment qui est présent dans la structure et consulter les dossiers d'inscription.</p>
+
+
+</div>
+  
+
     <div className='bottom-page'>
  
     </div>
