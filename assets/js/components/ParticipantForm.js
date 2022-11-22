@@ -1,25 +1,16 @@
 import React, {useState, useEffect} from 'react'
-
-import logo from '../../images/Logo_blue.svg';
-import ParticipantsList from '../components/ParticipantsList';
-import { Link } from "react-router-dom";
-
-import Modal from 'react-bootstrap/Modal';
-// import ParticipantForm from '../components/ParticipantForm';
-import '../../styles/participant/participant.scss'
+import axios from 'axios';
+import addIcon from '../../images/add-icon.svg';
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
-import axios from 'axios';
-
-const ParticipantsPage = () => {
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+import Modal from 'react-bootstrap/Modal';
 
 
-  
+
+
+const ParticipantForm = () => {
+
+
   const [schoolLevels, setSchoolLevels] = useState([]);
   const [schoolTypes, setSchoolTypes] = useState([]);
 
@@ -117,25 +108,14 @@ const validationSchema = Yup.object({
   
          }, [])
   
+        
+
 
   return (
     <>
-          <nav>
-              <a href="/"><img src={logo} alt="" /> </a>
-              <div className="links">
-                  <ul>
-                        <li onClick={handleShow}>Ajouter un participant </li>
-                      <li> <Link to="/all-activities">Mes activités</Link> </li>
-                    
-                      <li> <Link to="/">Se déconnecter</Link></li>
-                 </ul>
-             </div>
-      </nav>
-      <div><ParticipantsList /></div>
-
-
-      <Modal dialogClassName="participant-modal" show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+ 
+     
+ <Modal.Header closeButton>
           <Modal.Title>Ajouter un nouveau participant</Modal.Title>
         </Modal.Header>
         <Modal.Body> 
@@ -294,13 +274,9 @@ const validationSchema = Yup.object({
         <Modal.Footer>
     
         </Modal.Footer>
-      </Modal>
-     
-      </>
+    </>
     
-
-
   )
 }
 
-export default ParticipantsPage
+export default ParticipantForm

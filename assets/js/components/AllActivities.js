@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const AllActivities = () => {
   return (
     <>
-    <table class="table">
-<thead class="thead-dark">
+    <table className="table">
+<thead className="thead-dark">
   <tr>
     <th scope="col">#</th>
     <th scope="col">Nom d'activité</th>

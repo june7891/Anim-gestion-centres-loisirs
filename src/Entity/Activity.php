@@ -40,9 +40,35 @@ class Activity
      */
     private $participants;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $reference;
+
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $startedAt;
+
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $endedAt;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $price;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=WorkingDays::class, inversedBy="activities")
+     */
+    private $workingDays;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
+        $this->workingDays = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,6 +123,78 @@ class Activity
         if ($this->participants->removeElement($participant)) {
             $participant->removeActivity($this);
         }
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getStartedAt(): ?\DateTimeImmutable
+    {
+        return $this->startedAt;
+    }
+
+    public function setStartedAt(?\DateTimeImmutable $startedAt): self
+    {
+        $this->startedAt = $startedAt;
+
+        return $this;
+    }
+
+    public function getEndedAt(): ?\DateTimeImmutable
+    {
+        return $this->endedAt;
+    }
+
+    public function setEndedAt(?\DateTimeImmutable $endedAt): self
+    {
+        $this->endedAt = $endedAt;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?int $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, WorkingDays>
+     */
+    public function getWorkingDays(): Collection
+    {
+        return $this->workingDays;
+    }
+
+    public function addWorkingDay(WorkingDays $workingDay): self
+    {
+        if (!$this->workingDays->contains($workingDay)) {
+            $this->workingDays[] = $workingDay;
+        }
+
+        return $this;
+    }
+
+    public function removeWorkingDay(WorkingDays $workingDay): self
+    {
+        $this->workingDays->removeElement($workingDay);
 
         return $this;
     }

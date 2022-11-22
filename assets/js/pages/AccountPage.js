@@ -30,7 +30,7 @@ const Account_page = () => {
         </a>
    
        
-        <a href="all-participants">
+        <a href="/all-participants">
         <div className='card'>
           <div className='icon-container'>
           <img src={foldersIcon} alt="" />

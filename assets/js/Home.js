@@ -4,6 +4,8 @@ import { createRoot } from "react-dom/client";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import ActivityDetails from './components/ActivityDetails';
 import ActivityList from './components/ActivityList';
+import ParticipantDetails from './components/ParticipantDetails';
+import ParticipantModificationForm from './components/ParticipantModificationForm';
 
 import AccountPage from './pages/AccountPage';
 import ActivityDetailsPage from './pages/ActivityDetailsPage';
@@ -31,6 +33,8 @@ function Home() {
             <Route exact path="/all-participants" element={<AllParticipantsPage />} />
             <Route exact path="/activity/:id" element={<ActivityDetailsPage />} />
             <Route exact path="/activity/list/:id" element={<ActivityList/>} />
+            <Route exact path="/participant-modification-form/:id" element={<ParticipantModificationForm/>} />
+            <Route exact path="/participant-details/:id" element={<ParticipantDetails/>} />
         </Routes>
         
      

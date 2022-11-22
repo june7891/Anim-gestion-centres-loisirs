@@ -11,6 +11,17 @@ h1, h2, h3, h4 {
     margin: 0;
 }
 
+h3 {
+    margin-bottom: 50px;
+    text-align: center;
+}
+h5 {
+    margin-bottom: 30px;
+    margin-left: 20px;
+    color: var(--primary-blue);
+    font-size: bold;
+}
+
 ul {
     list-style: none;
     padding-left: 0;
@@ -37,9 +48,26 @@ input{
     border: 2px solid var(--primary-blue);
     border-radius: 4px;
     outline-color: var(--secondary-red);
+    margin-right: 40px;
 
    &:focus::placeholder {
     color: var(--secondary-red);
 }
 }
 
+select{
+    width: 214px;
+    height: 50px;
+    border: 2px solid var(--primary-blue);
+    border-radius: 4px;
+    outline-color: var(--secondary-red);
+    margin-right: 40px;
+
+   &:focus::placeholder {
+    color: var(--secondary-red);
+}
+}
+
+label {
+    margin-right: 20px;
+}

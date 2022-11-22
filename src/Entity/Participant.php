@@ -17,9 +17,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  */
 #[ApiResource(
-    normalizationContext: ['groups' => ['read:collection']],
+    normalizationContext: ['groups' => ['read:Participant']],
     denormalizationContext:['groups' => ['write:Participant']],
-    paginationItemsPerPage: 2,
     itemOperations: [
         'put',
         'delete',
@@ -36,33 +35,29 @@ class Participant
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    #[Groups(['read:collection'])]
+    #[Groups(['read:Participant'])]
     #[ApiProperty(identifier: true)]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:collection', 'write:Participant'])]
+    #[Groups(['read:Participant', 'write:Participant'])]
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:collection', 'write:Participant'])]
+    #[Groups(['read:Participant', 'write:Participant'])]
     private $lastname;
 
     /**
      * @ORM\Column(type="date")
      */
-    #[Groups(['read:item', 'write:Participant'])]
+    #[Groups(['read:Participant', 'write:Participant'])]
     private $dateOfBirth;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    #[Groups(['read:item','write:Participant'])]
-    private $schoolLevel;
+
 
     /**
      * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="participants", cascade={"persist"})
@@ -70,9 +65,98 @@ class Participant
     #[Groups(['read:item', 'write:Participant'])]
     private $activities;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $city;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $postalCode;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $schoolName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $cafNumber;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $ficheSanitaire;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $vaccination;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $insurance;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SchoolType::class, inversedBy="participants", cascade={"persist"})
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $schoolType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ParentOne::class, inversedBy="participants", cascade={"persist", "remove"})
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $ParentOne;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ParentTwo::class, inversedBy="participants", cascade={"persist", "remove"})
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $ParentTwo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SchoolLevel::class, inversedBy="participants", cascade={"persist"})
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $schoolLevel;
+
+    /**
+     * @ORM\OneToMany(targetEntity=EmergencyContact::class, mappedBy="participant")
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $emergencyContact;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
+        $this->emergencyContact = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,17 +200,7 @@ class Participant
         return $this;
     }
 
-    public function getSchoolLevel(): ?string
-    {
-        return $this->schoolLevel;
-    }
 
-    public function setSchoolLevel(string $schoolLevel): self
-    {
-        $this->schoolLevel = $schoolLevel;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Activity>
@@ -148,6 +222,203 @@ class Participant
     public function removeActivity(Activity $activity): self
     {
         $this->activities->removeElement($activity);
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(?string $postalCode): self
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getSchoolName(): ?string
+    {
+        return $this->schoolName;
+    }
+
+    public function setSchoolName(?string $schoolName): self
+    {
+        $this->schoolName = $schoolName;
+
+        return $this;
+    }
+
+    public function getCafNumber(): ?string
+    {
+        return $this->cafNumber;
+    }
+
+    public function setCafNumber(?string $cafNumber): self
+    {
+        $this->cafNumber = $cafNumber;
+
+        return $this;
+    }
+
+    public function getFicheSanitaire(): ?string
+    {
+        return $this->ficheSanitaire;
+    }
+
+    public function setFicheSanitaire(?string $ficheSanitaire): self
+    {
+        $this->ficheSanitaire = $ficheSanitaire;
+
+        return $this;
+    }
+
+    public function getVaccination(): ?string
+    {
+        return $this->vaccination;
+    }
+
+    public function setVaccination(?string $vaccination): self
+    {
+        $this->vaccination = $vaccination;
+
+        return $this;
+    }
+
+    public function getInsurance(): ?string
+    {
+        return $this->insurance;
+    }
+
+    public function setInsurance(?string $insurance): self
+    {
+        $this->insurance = $insurance;
+
+        return $this;
+    }
+
+    public function getSchoolType(): ?SchoolType
+    {
+        return $this->schoolType;
+    }
+
+    public function setSchoolType(?SchoolType $schoolType): self
+    {
+        $this->schoolType = $schoolType;
+
+        return $this;
+    }
+
+    public function getParentOne(): ?ParentOne
+    {
+        return $this->ParentOne;
+    }
+
+    public function setParentOne(?ParentOne $ParentOne): self
+    {
+        $this->ParentOne = $ParentOne;
+        return $this;
+    }
+
+    public function getParentTwo(): ?ParentTwo
+    {
+        return $this->ParentTwo;
+    }
+
+    public function setParentTwo(?ParentTwo $ParentTwo): self
+    {
+        $this->ParentTwo = $ParentTwo;
+
+        return $this;
+    }
+
+    public function getSchoolLevel(): ?SchoolLevel
+    {
+        return $this->schoolLevel;
+    }
+
+    public function setSchoolLevel(?SchoolLevel $schoolLevel): self
+    {
+        $this->schoolLevel = $schoolLevel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EmergencyContact>
+     */
+    public function getEmergencyContact(): Collection
+    {
+        return $this->emergencyContact;
+    }
+
+    public function addEmergencyContact(EmergencyContact $emergencyContact): self
+    {
+        if (!$this->emergencyContact->contains($emergencyContact)) {
+            $this->emergencyContact[] = $emergencyContact;
+            $emergencyContact->setParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmergencyContact(EmergencyContact $emergencyContact): self
+    {
+        if ($this->emergencyContact->removeElement($emergencyContact)) {
+            // set the owning side to null (unless already changed)
+            if ($emergencyContact->getParticipant() === $this) {
+                $emergencyContact->setParticipant(null);
+            }
+        }
 
         return $this;
     }
