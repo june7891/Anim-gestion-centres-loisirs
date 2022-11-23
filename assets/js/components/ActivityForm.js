@@ -4,6 +4,7 @@ import axios from 'axios';
 import addIcon from '../../images/add-icon.svg';
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
+import { FormFloating } from 'react-bootstrap';
 
 const ActivityForm = () => {
 
@@ -11,12 +12,13 @@ const ActivityForm = () => {
 
   const initialValues = {
     name:"",
-    capacity: "",
+    capacity: 0,
     reference: "",
     startedAt: "",
     endedAt: "",
-    price:"",
-    workingDays: []
+    price: 0,
+    startDate:"",
+    endDate:""
 }
   
   const onSubmit = values => {
@@ -25,14 +27,14 @@ const ActivityForm = () => {
   //   const refreshPage = ()=>{
   //     window.location.reload();
   //  }
-    //    axios.post("/api/activities", values)
-    //     .then(function (response) {
-    //     console.log(response)
-    //     refreshPage();
-    //     })
-    //     .catch(function (error) {
-    //     console.log(error);
-    // })
+       axios.post("/api/activities", values)
+        .then(function (response) {
+        console.log(response)
+        // refreshPage();
+        })
+        .catch(function (error) {
+        console.log(error);
+    })
   
     
   
@@ -58,14 +60,14 @@ const validationSchema = Yup.object({
 
 
 
-  useEffect(() => {
-    axios.get('/api/working_days')
-      .then((response) => {
-          console.log(response.data['hydra:member']);
-          setWorkingDays(response.data['hydra:member']);
-      })
+  // useEffect(() => {
+  //   axios.get('/api/working_days')
+  //     .then((response) => {
+  //         console.log(response.data['hydra:member']);
+  //         setWorkingDays(response.data['hydra:member']);
+  //     })
   
-         }, [])
+  //        }, [])
 
   return (
     <>
@@ -83,7 +85,7 @@ const validationSchema = Yup.object({
             {formik.touched.reference && formik.errors.reference ? <p className='error'>{formik.errors.reference}</p> : null}
 
             <label htmlFor="capacity"> Capacité d'accueil/Places disponibles</label>
-           <input type="text" name="capacity" id="capacity" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.capacity} />
+           <input type="number" name="capacity" id="capacity" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.capacity} />
            
             <label htmlFor="started_at"> Heure du début</label>
            <input type="time" name="startedAt" id="started_at" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.startedAt}/>
@@ -93,12 +95,16 @@ const validationSchema = Yup.object({
            <input type="time" name="endedAt" id="ending_at" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.endedAt}/>
            </div>
             <div className='right'>
-            <h3>Jours</h3>
+            <h3>Période d'ouverture</h3>
         
-            {workingDays.map((day) => (
-              <label key={day.id}><input className='checkbox' type="checkbox" name="workingDay" id="workingDay" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.workingDays} />{day.day}</label>
-            ))}
-             
+            <label htmlFor="startDate"> Date du début</label>
+           <input type="date" name="startDate" id="startDate" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.startDate}/>
+           
+
+            <label htmlFor="endDate"> Date de fin</label>
+           <input type="date" name="endDate" id="endDate" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.endDate}/>
+  
+
             </div>
             
 

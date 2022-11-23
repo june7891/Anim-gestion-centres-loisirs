@@ -12,7 +12,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
  */
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read:Activity']],
+    denormalizationContext:['groups' => ['write:Activity']],
+    itemOperations: [
+        'put',
+        'delete',
+        'get' => [
+            'normalization_context' => ['groups' => ['read:Activity', 'read:Activity']]
+        ]
+        ]
+)]
 class Activity
 {
     /**
@@ -20,19 +30,19 @@ class Activity
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    #[Groups(['read:Participant'])]
+    #[Groups(['read:Participant', 'read:Activity', 'write:Activity'])]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:Participant', 'write:Participant'])]
+    #[Groups(['read:Participant', 'write:Participant', 'read:Activity', 'write:Activity'])]
     private $name;
 
     /**
      * @ORM\Column(type="integer")
      */
-    #[Groups(['write:Participant'])]
+    #[Groups(['write:Participant', 'read:Activity', 'write:Activity'])]
     private $capacity;
 
     /**
@@ -43,32 +53,46 @@ class Activity
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['read:Activity', 'write:Activity'])]
     private $reference;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
+    #[Groups(['read:Activity', 'write:Activity'])]
     private $startedAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
+    #[Groups(['read:Activity', 'write:Activity'])]
     private $endedAt;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+    #[Groups(['read:Activity', 'write:Activity'])]
     private $price;
 
     /**
-     * @ORM\ManyToMany(targetEntity=WorkingDays::class, inversedBy="activities")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $workingDays;
+    #[Groups(['read:Activity', 'write:Activity'])]
+    private $startDate;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    #[Groups(['read:Activity', 'write:Activity'])]
+    private $endDate;
+
+
+ 
 
     public function __construct()
     {
         $this->participants = new ArrayCollection();
-        $this->workingDays = new ArrayCollection();
+   
     }
 
     public function getId(): ?int
@@ -175,27 +199,31 @@ class Activity
         return $this;
     }
 
-    /**
-     * @return Collection<int, WorkingDays>
-     */
-    public function getWorkingDays(): Collection
+    public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->workingDays;
+        return $this->startDate;
     }
 
-    public function addWorkingDay(WorkingDays $workingDay): self
+    public function setStartDate(?\DateTimeInterface $startDate): self
     {
-        if (!$this->workingDays->contains($workingDay)) {
-            $this->workingDays[] = $workingDay;
-        }
+        $this->startDate = $startDate;
 
         return $this;
     }
 
-    public function removeWorkingDay(WorkingDays $workingDay): self
+    public function getEndDate(): ?\DateTimeInterface
     {
-        $this->workingDays->removeElement($workingDay);
+        return $this->endDate;
+    }
+
+    public function setEndDate(?\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
 
         return $this;
     }
+
+
+
+  
 }
