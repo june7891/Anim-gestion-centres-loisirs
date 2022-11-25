@@ -33,6 +33,7 @@ function Home() {
             <Route exact path="/all-participants" element={<AllParticipantsPage />} />
             <Route exact path="/activity/:id" element={<ActivityDetailsPage />} />
             <Route exact path="/activity/list/:id" element={<ActivityList/>} />
+            <Route exact path="/activity-details/:id" element={<ActivityDetails/>} />
             <Route exact path="/participant-modification-form/:id" element={<ParticipantModificationForm/>} />
             <Route exact path="/participant-details/:id" element={<ParticipantDetails/>} />
         </Routes>

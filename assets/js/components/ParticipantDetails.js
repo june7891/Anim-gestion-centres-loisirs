@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import avatar from '../../images/avatar.svg';
 import '../../styles/participant/participant.scss'
+import {useFormik} from 'formik';
+import * as Yup from 'yup'
+
 
 
 const ParticipantDetails = () => {
@@ -15,6 +18,41 @@ const ParticipantDetails = () => {
 
     let params = useParams();
     const id = params.id;
+
+    const initialValues = {
+      image: ""
+  }
+
+  const config = {     
+    headers: { 'content-type': 'multipart/form-data' }
+}
+
+  const onSubmit = values => {
+    console.log(values.image);
+
+    const formData = new FormData();
+    formData.append('image', values.image);
+
+
+    axios({method: "post",
+            url: `/api/participants/${id}/image`,
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" }
+  })
+    .then(function (response) {
+    console.log(response.data)
+  
+    })
+    .catch(function (error) {
+    console.log(error);
+})
+
+  }
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit
+  });
 
     useEffect(() => {
         const getParticipant = async () => {
@@ -31,7 +69,8 @@ const ParticipantDetails = () => {
         getParticipant();
       }, [id]);
 
-      
+
+  
 
   return (
 <>
@@ -57,7 +96,7 @@ const ParticipantDetails = () => {
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src={avatar} alt="avatar"
+            <img src={participant.image} alt={participant.image}
               class="img-fluid" />
             <h5 class="my-3">{participant.lastname} {participant.firstname}</h5>
             <p class="text-muted mb-1">{participant.schoolLevel?.level}</p>
@@ -187,6 +226,29 @@ const ParticipantDetails = () => {
               </div>
             </div>
             <hr/>
+
+
+            <div className='row-9'>
+
+            <h3>Joindre les pièces complémentaires</h3>
+
+              <form onSubmit={formik.handleSubmit}>
+            <label htmlFor="photo">Photo</label>
+            <input type="file" id="photo" name="image" accept="image/png, image/jpeg" onChange={(e) => formik.setFieldValue('image', e.target.files[0])}/>
+
+            {/* <label htmlFor="fiche_sanitaire">Fiche sanitaire</label>
+            <input type="file" id="fiche_sanitaire" name="ficheSanitaire" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('ficheSanitaire', e.target.files[0])}/>
+
+            <label htmlFor="vaccination">Vaccins</label>
+            <input type="file" id="vaccination" name="vaccination" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('vaccination', e.target.files[0])}/>
+
+            <label htmlFor="insurance">Assurance</label>
+            <input type="file" id="insurance" name="insurance" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('insurance', e.target.files[0])}/> */}
+                
+                <button type="submit">Enregistrer</button>
+            </form>
+          </div>
+       
             
           </div>
         </div>

@@ -252,6 +252,9 @@ const validationSchema = Yup.object({
 
             <h3>Joindre les pièces complémentaires</h3>
 
+            <label htmlFor="fiche_sanitaire">Photo</label>
+            <input type="file" id="fiche_sanitaire" name="ficheSanitaire" accept="image/png, image/jpeg, .pdf" onChange={formik.handleChange} value={formik.values.name}/>
+
             <label htmlFor="fiche_sanitaire">Fiche sanitaire</label>
             <input type="file" id="fiche_sanitaire" name="ficheSanitaire" accept="image/png, image/jpeg, .pdf" onChange={formik.handleChange} value={formik.values.name}/>
 

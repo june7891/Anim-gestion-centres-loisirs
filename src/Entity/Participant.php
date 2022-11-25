@@ -6,16 +6,23 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
+use App\Controller\ParticipantImageController;
 use App\Repository\ParticipantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+// use Vich\UploaderBundle\Entity\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=ParticipantRepository::class)
- *
  */
+
 #[ApiResource(
     normalizationContext: ['groups' => ['read:Participant']],
     denormalizationContext:['groups' => ['write:Participant']],
@@ -24,10 +31,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
         'delete',
         'get' => [
             'normalization_context' => ['groups' => ['read:collection', 'read:item', 'read:Participant']]
+        ],
+        'image' => [
+            'method' => 'POST',
+            'path' => '/participants/{id}/image',
+            'deserialize' => false,
+            'controller' => ParticipantImageController::class
         ]
-        ])]
+        ])
+        ]
 #[ApiFilter(SearchFilter::class, properties: ['firstname' => 'partial'])]
-   
+#[Vich\Uploadable]
 class Participant
 {
     /**
@@ -65,14 +79,13 @@ class Participant
     #[Groups(['read:item', 'write:Participant'])]
     private $activities;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $photo;
+    
 
+   
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[Groups(['read:Participant', 'write:Participant'])]
     private $gender;
 
     /**
@@ -153,6 +166,31 @@ class Participant
     #[Groups(['read:Participant', 'write:Participant'])]
     private $emergencyContact;
 
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $image;
+
+      /**
+     * 
+     * @var UploadedFile $imageFile
+     */
+    #[Vich\UploadableField(mapping: 'participant_image', fileNameProperty: 'image')]
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTimeImmutable
+     */
+    private $updatedAt;
+
+
+
+   
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
@@ -226,17 +264,7 @@ class Participant
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
 
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
 
     public function getGender(): ?string
     {
@@ -358,6 +386,9 @@ class Participant
         return $this;
     }
 
+
+
+  
     public function getParentOne(): ?ParentOne
     {
         return $this->ParentOne;
@@ -422,4 +453,34 @@ class Participant
 
         return $this;
     }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTimeImmutable('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+  
 }

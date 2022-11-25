@@ -59,6 +59,8 @@ const ParticipantsPage = () => {
   
   const onSubmit = values => {
     console.log(values)
+
+    
  
     const refreshPage = ()=>{
       window.location.reload();
@@ -268,20 +270,7 @@ const validationSchema = Yup.object({
           </div>
           */}
 
-          <div className='row-9'>
-
-            <h3>Joindre les pièces complémentaires</h3>
-
-            <label htmlFor="fiche_sanitaire">Fiche sanitaire</label>
-            <input type="file" id="fiche_sanitaire" name="ficheSanitaire" accept="image/png, image/jpeg, .pdf" onChange={formik.handleChange} value={formik.values.name}/>
-
-            <label htmlFor="vaccination">Vaccins</label>
-            <input type="file" id="vaccination" name="vaccination" accept="image/png, image/jpeg, .pdf" onChange={formik.handleChange} value={formik.values.name}/>
-
-            <label htmlFor="insurance">Assurance</label>
-            <input type="file" id="insurance" name="insurance" accept="image/png, image/jpeg, .pdf" onChange={formik.handleChange} value={formik.values.name}/>
-          </div>
-       
+          
 
            <div className='save-button'><p>Enregistrer participant</p><button type="submit"></button></div>
         </form>
