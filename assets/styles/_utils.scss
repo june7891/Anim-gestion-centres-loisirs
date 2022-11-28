@@ -1,3 +1,5 @@
+@import 'functions';
+
 .p-5 {
     padding: 5px;
 }
@@ -5,10 +7,10 @@
     padding: 10px;
 }
 .p-20 {
-    padding: 20px;
+    padding:  pxToVw(20px, 1512px);
 }
 .p-30 {
-    padding: 30px;
+    padding: pxToVw(30px, 1512px);
 }
 
 
@@ -33,14 +35,14 @@
 }
 
 .m-20 {
-    margin: 20px;
+    margin: pxToVw(20px, 1512px);
 }
 
 .mb-20 {
-    margin-bottom: 20px;
+    margin-bottom: pxToVw(20px, 1512px);
 }
 .m-30 {
-    margin: 30px;
+    margin: pxToVw(30px, 1512px);
 }
 
 

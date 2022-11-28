@@ -1,30 +1,38 @@
-
+@import 'functions';
 
 nav {
 
     display: flex;
-    margin-top: 50px;
+    margin-top: pxToVw(50px, 1920px);
+    margin-bottom: pxToVw(50px, 1920px);
     
     img {
         margin-left: 30px;
+        height: pxToVw(137px, 1920px);
+        width: pxToVw(430px, 1920px);
+        transition: all .2s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
     }
 
     .links {
         
-        margin-top: 40px;
+        margin-top: pxToVw(40px, 1920px);
         
         ul {
-            margin-left: 680px;
+            margin-left: pxToVw(680px, 1920px);
           li{
            display: inline;  
            color: var(--black);
-           margin-right: 20px;
+           margin-right: pxToVw(20px, 1920px);
            font-weight: bold;
            cursor: pointer;
           
            &:hover {
             color: var(--secondary-red);
             border-bottom: 2px solid var(--secondary-red);
+           
            }
            
            a {

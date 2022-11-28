@@ -49,20 +49,20 @@ class Participant
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    #[Groups(['read:Participant'])]
+    #[Groups(['read:Participant', 'read:Activity'])]
     #[ApiProperty(identifier: true)]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:Participant', 'write:Participant'])]
+    #[Groups(['read:Participant', 'write:Participant', 'read:Activity',])]
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:Participant', 'write:Participant'])]
+    #[Groups(['read:Participant', 'write:Participant', 'read:Activity',])]
     private $lastname;
 
     /**

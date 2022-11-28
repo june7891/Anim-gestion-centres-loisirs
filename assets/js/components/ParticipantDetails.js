@@ -15,6 +15,7 @@ const ParticipantDetails = () => {
     const [participant, setParticipant] = useState([]);
     const [parentOne, setParentOne] = useState([]);
     const [parentTwo, setParentTwo] = useState([]);
+    const [activities, setActivities] = useState([]);
 
     let params = useParams();
     const id = params.id;
@@ -64,13 +65,14 @@ const ParticipantDetails = () => {
             console.log(data.ParentOne);
             setParentOne(data.ParentOne);
             setParentTwo(data.ParentTwo);
+            setActivities(data.activities);
           })
           };
         getParticipant();
       }, [id]);
 
 
-  
+  console.log(activities);
 
   return (
 <>
@@ -226,6 +228,22 @@ const ParticipantDetails = () => {
               </div>
             </div>
             <hr/>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Inscrit(e) aux activités suivantes</p>
+              </div>
+              
+              {activities?.map((activity) => (
+                <div class="col-sm-9">
+                <p class="text-muted mb-0">{activity.name}</p>
+                 </div>
+                ))}
+               
+             
+            </div>
+            <hr/>
+
+           
 
 
             <div className='row-9'>

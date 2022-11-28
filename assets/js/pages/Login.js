@@ -23,7 +23,7 @@ const Login = () => {
         <form  action="/account/2">
             <input className='mb-20' type="email" placeholder='email' />
             <input className="mb-20" type="password" placeholder='mot de passe' />
-            <button className='btn'>Se connecter</button>
+            <button className='login-btn'>Se connecter</button>
         </form>
     </div>
     <div className='bottom-page'>

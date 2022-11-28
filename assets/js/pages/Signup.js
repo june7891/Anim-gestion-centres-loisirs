@@ -19,12 +19,12 @@ const Signup = () => {
     
 
     </div>
-    <div className='login-form'>
+    <div className='signup-form'>
         <form  action="">
             <input className='mb-20' type="email" placeholder='email' />
             <input className="mb-20" type="password" placeholder='mot de passe' />
             <input className="mb-20" type="password" placeholder='répéter mot de passe' />
-            <button className='btn'>S'inscrire</button>
+            <button className='login-btn'>S'inscrire</button>
         </form>
     </div>
     <div className='bottom-page'>

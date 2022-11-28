@@ -8,6 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 // import ParticipantForm from '../components/ParticipantForm';
 import '../../styles/participant/participant.scss'
 import {useFormik} from 'formik';
+import { Formik, Form, Field, FieldArray } from 'formik';
 import * as Yup from 'yup'
 import axios from 'axios';
 
@@ -22,6 +23,7 @@ const ParticipantsPage = () => {
   
   const [schoolLevels, setSchoolLevels] = useState([]);
   const [schoolTypes, setSchoolTypes] = useState([]);
+  const [activities, setActivities] = useState([]);
 
 
   const initialValues = {
@@ -48,7 +50,8 @@ const ParticipantsPage = () => {
       lastName:"",
       phoneNumber:"",
       email:""
-    }
+    },
+    activities: []
   //   emergencyContact: {
   //     // particpantId: ,
   //     firstName:"",
@@ -112,6 +115,11 @@ const validationSchema = Yup.object({
       .then((response) => {
           // console.log(response.data);
           setSchoolTypes(response.data['hydra:member']); 
+      })
+   axios.get('/api/activities')
+      .then((response) => {
+          // console.log(response.data);
+          setActivities(response.data['hydra:member']); 
       })
   
   
@@ -254,6 +262,18 @@ const validationSchema = Yup.object({
           <input type="email" name="ParentTwo.email" id="email" onChange={formik.handleChange} value={formik.values.ParentTwo.email} />
 
       </div>
+
+                      <div className='checkbox-container'>
+                      <p>Choisissez vos activités</p>
+     
+                    {activities.map((activity, index) =>
+                      <>
+                    <input type="checkbox" name={`activities`} key={activity.id} onChange={formik.handleChange} value={activity['@id']} /> <label>{activity?.name}</label>
+                   </>
+                    )}
+        
+                </div>
+       
 
           
 

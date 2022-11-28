@@ -1,19 +1,24 @@
-.btn {
-    padding: 5px 15px;
-    border-radius: 4px;
+@import 'functions';
+
+
+
+.login-btn {
+    padding: pxToVw(5px, 1512px) pxToVw(15px, 1512px);
+    border-radius: pxToVw(4px, 1512px);
     cursor: pointer;
     transition: 0.2s opacity;
     background-color: var(--primary-blue);
     color: var(--white);
     font-size: bold;
     border: none;
-    height: 30px;
-    width: 115px;
-    font-size: 12px;
+    height: pxToVw(30px, 1512px);
+    width: pxToVw(115px, 1512px);
+    font-size: pxToVw(12px, 1512px);
+    margin-left: pxToVw(200px, 1512px);
     
 
     &:hover {
-      border: 2px solid var(--primary-blue);
+      border: pxToVw(2px, 1512px) solid var(--primary-blue);
       background-color: var(--white);
       color: var(--primary-blue);
     }

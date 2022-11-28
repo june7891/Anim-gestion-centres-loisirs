@@ -36,18 +36,19 @@ class Activity
     /**
      * @ORM\Column(type="string", length=255)
      */
-    #[Groups(['read:Participant', 'write:Participant', 'read:Activity', 'write:Activity'])]
+    #[Groups(['read:Participant', 'read:Activity', 'write:Activity'])]
     private $name;
 
     /**
      * @ORM\Column(type="integer")
      */
-    #[Groups(['write:Participant', 'read:Activity', 'write:Activity'])]
+    #[Groups(['read:Activity', 'write:Activity'])]
     private $capacity;
 
     /**
      * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="activities")
      */
+    #[Groups(['read:Activity', 'write:Activity'])]
     private $participants;
 
     /**

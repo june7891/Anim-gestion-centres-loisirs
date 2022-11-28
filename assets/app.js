@@ -8,9 +8,10 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 import './styles/homepage/homepage.scss';
-import './styles/account/account.scss'
-import './styles/navbar.scss'
-import './styles/activity/activity.scss'
+import './styles/account/account.scss';
+import './styles/navbar.scss';
+import './styles/activity/activity.scss';
+import "@fontsource/rubik-mono-one";
 
 require('./js/Home');
 

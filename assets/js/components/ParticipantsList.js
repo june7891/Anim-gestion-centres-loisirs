@@ -48,7 +48,7 @@ const ParticipantsList = () => {
       <th scope="row">{participant.id}</th>
       <td>{participant.lastname}</td>
       <td>{participant.firstname}</td>
-      <td>{participant.schoolLevel.level}</td>
+      <td>{participant.schoolLevel?.level}</td>
       <td><a href={`/participant-details/${participant.id}`}><img className='my-buttons' src={viewIcon} alt="" /></a></td>
       <td ><img className='remove-btn' src={removeIcon} alt="" onClick={() => handleDelete(participant.id)}></img></td>
       <td><a href={`/participant-modification-form/${participant.id}`}><img className='my-buttons' src={modifyIcon} alt="" /></a></td>

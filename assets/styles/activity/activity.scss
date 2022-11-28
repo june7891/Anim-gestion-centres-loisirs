@@ -1,3 +1,4 @@
+@import '../functions';
 
     .links {
      
@@ -9,34 +10,51 @@
         }
     }
     .activity-form-container {
-        display: block;
+  
         margin: 0 auto;
         
+            form {
+                width: pxToVw(700px, 1512px);
+                input {
+                    margin-bottom: pxToVw(50px, 1512px);
+                    margin-right: pxToVw(50px, 1512px);
+                }
 
-        form {
-        
-         .row-1 {
-            input{
-                display: inline;
-                margin-bottom: 50px;
-            }
-         }
-
-         .row-2 {
-          
-            input{
-                display: inline;
-                margin-bottom: 50px;
-            }
-         }
-            }
-            
-            .save-button {
-                img {
-                    height: 50px;
+                .small-input {
+                    width: pxToVw(70px, 1512px);
+                }
+                .medium-input {
+                    width: pxToVw(120px, 1512px);
                 }
             }
-        }
+      
+            }
+            
+            .btn-container {
+                margin-left: pxToVw(700px, 1512px);
+                
+                display: inline-block;
+                p {
+                    width: pxToVw(550px, 1512px);
+                    font-size: pxToVw(18px, 1512px);
+                    margin-right: pxToVw(150px, 1512px);
+                    
+                }
+                   .save-button {
+                background-image: url("../../images/add-icon.svg");
+                background-repeat: no-repeat; 
+                background-position: 0px 0px;
+                border: none;           /* assuming we don't want any borders */
+                cursor: pointer;        /* make the cursor like hovering over an <a> element */
+                height: pxToVw(100px, 1512px);           /* make this the size of your image */
+                width: pxToVw(50px, 1512px);           /* make this the size of your image */
+                padding-left: pxToVw(100px, 1512px);     /* make text start to the right of the image */
+                vertical-align: middle; /* align the text vertically centered */
+                
+            }
+            }
+         
+        
     
 
 

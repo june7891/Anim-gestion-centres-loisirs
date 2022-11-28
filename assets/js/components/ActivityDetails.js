@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import logo from '../../images/Logo_blue.svg';
 import { Link } from "react-router-dom";
-import avatar from '../../images/avatar.svg';
-import moment from 'moment';
-import { endHiddenCallStack } from '@babel/core/lib/errors/rewrite-stack-trace';
+import activityIcon from '../../images/activity-icon.svg';
 
 const ActivityDetails = () => {
 
@@ -56,7 +54,7 @@ const ActivityDetails = () => {
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src={avatar} alt="avatar"
+            <img src={activityIcon} alt="avatar"
               class="img-fluid" />
             <h5 class="my-3">{activity.name} </h5>
             <p class="text-muted mb-1"> N° de référence: {activity.reference}</p>
@@ -97,7 +95,7 @@ const ActivityDetails = () => {
             </div>
             <hr/>
            
-           <p>Liste des participants</p>
+           <a href={`/activity/list/${activity.id}`}>Liste des participants de l'activité</a>
            
             
           </div>

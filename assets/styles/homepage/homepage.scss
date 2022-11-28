@@ -5,12 +5,13 @@
 @use '../flex';
 @use '../utils.scss';
 @use '../themes.scss';
+@import '../functions';
 
 
     .top-page {
         position: relative;
         background: url(../../images/wave-blue-top.png);
-        height: 700px;
+        height: pxToVw(700px, 1512px);
         background-size: cover;
         background-repeat: no-repeat;
         text-align: center;
@@ -18,10 +19,10 @@
         .links {
             display: flex;
             float: right;
-            margin-top: 30px;
+            margin-top: pxToVw(30px, 1920px);
             li {
                 display: inline;
-                margin-right: 20px;
+                margin-right: pxToVw(20px, 1920px);
                 color: white;
                
                 a {
@@ -36,8 +37,10 @@
    
 
         img{
-            margin-top: 100px;
-            margin-left: 400px;
+            margin-top: pxToVw(150px, 1512px);
+            margin-left: pxToVw(500px, 1512px);
+            height: pxToVw(220px, 1512px);
+            width: pxToVw(692px, 1512px);
         }
         
 
@@ -45,15 +48,16 @@
         
     }
      .description {
-            margin-left: 180px;
-            margin-right: 180px;
-
+            margin-left: pxToVw(180px, 1920px);
+            margin-right: pxToVw(180px, 1920px);
+          font-size: pxToVw(28px, 1920px);
             h4 {
-                margin-bottom: 40px;
+                margin-bottom: pxToVw(40px, 1920px);
+                font-size: pxToVw(30px, 1920px);
             }
 
             ul{
-                margin-bottom: 40px;
+                margin-bottom: pxToVw(40px, 1920px);
             }
         }
 
@@ -61,22 +65,54 @@
 
     .login-form {
         position: absolute;
-        left: 40%;
-        top: 70%;
+        left: pxToVw(600px, 1512px);
+        top: pxToVw(530px, 1512px);
         display: block;
         margin: 0 auto;
        
-        border-radius: 4px;
-        background-color: rgba($color:#26619C, $alpha: 0.4);
+        border-radius: pxToVw(6px, 1512px);
+        background-color: rgba($color:#26619C, $alpha: 0.25);
+        border: 1px solid var(--primary-blue);
 
-        height: 311px;
-        width: 334px;
+        height: pxToVw(302px, 1512px);
+        width: pxToVw(412px, 1512px);
         align-items: center;
         text-align: center;
       
         form {
             display: inline-block;
-            margin-top: 60px;
+            margin-top: pxToVw(60px, 1512px);
+            
+    
+        
+            input {
+                display: flex;
+                
+                
+            }
+        }
+        
+    }
+
+    .signup-form {
+        position: absolute;
+        left: pxToVw(600px, 1512px);
+        top: pxToVw(530px, 1512px);
+        display: block;
+        margin: 0 auto;
+       
+        border-radius: pxToVw(6px, 1512px);
+        background-color: rgba($color:#26619C, $alpha: 0.25);
+        border: pxToVw(1px, 1512px) solid var(--primary-blue);
+
+        height: pxToVw(302px, 1512px);
+        width: pxToVw(412px, 1512px);
+        align-items: center;
+        text-align: center;
+      
+        form {
+            display: inline-block;
+            margin-top: pxToVw(20px, 1512px);
             
     
         
@@ -91,7 +127,7 @@
 
     .bottom-page {
         background: url(../../images/wave-blue-bottom.png);
-        height: 400px;
+        height: pxToVw(350px, 1512px);
         background-size: cover;
         background-repeat: no-repeat;
 

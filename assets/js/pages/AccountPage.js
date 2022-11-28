@@ -33,7 +33,7 @@ const Account_page = () => {
         <a href="/all-participants">
         <div className='card'>
           <div className='icon-container'>
-          <img src={foldersIcon} alt="" />
+          <img  className="img-participant" src={foldersIcon} alt="" />
           </div>
           <div className='title'>Mes participants</div>
         </div>
