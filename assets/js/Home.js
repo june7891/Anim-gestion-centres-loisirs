@@ -24,9 +24,9 @@ function Home() {
 <>
    
         <Routes>
-            <Route exact path="/" element={<Homepage />} />
+            {/* <Route exact path="/" element={<Homepage />} />
             <Route exact path="/login" element={<Login/>} />
-            <Route exact path="/signup" element={<Signup/>} />
+            <Route exact path="/signup" element={<Signup/>} /> */}
             <Route exact path="/account/:id" element={<AccountPage />} />
             <Route exact path="/add-activity" element={<ActivityPage />} />
             <Route exact path="/all-activities" element={<AllActivitiesPage />} />

@@ -1,16 +1,16 @@
 
-@use '../base';
+@use 'base';
 
-@use '../variables';
-@use '../flex';
-@use '../utils.scss';
-@use '../themes.scss';
-@import '../functions';
+@use 'variables';
+@use 'flex';
+@use 'utils.scss';
+@use 'themes.scss';
+@import 'functions';
 
 
     .top-page {
         position: relative;
-        background: url(../../images/wave-blue-top.png);
+        background: url(../images/wave-blue-top.png);
         height: pxToVw(700px, 1512px);
         background-size: cover;
         background-repeat: no-repeat;
@@ -79,7 +79,7 @@
         align-items: center;
         text-align: center;
       
-        form {
+        .form {
             display: inline-block;
             margin-top: pxToVw(60px, 1512px);
             
@@ -126,7 +126,7 @@
     }
 
     .bottom-page {
-        background: url(../../images/wave-blue-bottom.png);
+        background: url(../images/wave-blue-bottom.png);
         height: pxToVw(350px, 1512px);
         background-size: cover;
         background-repeat: no-repeat;

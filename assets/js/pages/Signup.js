@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../styles/homepage/homepage.scss'
+// import '../../styles/homepage/homepage.scss'
 import logo from '../../images/Logo_white.svg';
 
 const Signup = () => {
