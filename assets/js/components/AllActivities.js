@@ -7,12 +7,31 @@ import axios from 'axios';
 
 const AllActivities = () => {
 
-
+  const [user, setUser] = useState();
   const [activities, setActivities] = useState([]);
 
+
+
+ 
+
+
+  // useEffect(() => {
+  //   const loggedInUser = window.user;
+  //   if(loggedInUser) {
+  //     setUser(loggedInUser?.['@id']);
+  //     console.log(user);
+  //   }
+  // })
+
+
+
   useEffect(() => {
-    
-  axios.get("/api/activities")
+    const loggedInUser = window.user;
+    const user = loggedInUser?.['@id'];
+      console.log(user);
+  
+
+  axios.get(`/api/activities?user=${user}`)
   .then((response) => {
     // console.log(response.data['hydra:member']);
     setActivities(response.data['hydra:member']);
@@ -20,6 +39,10 @@ const AllActivities = () => {
   })
   
   }, [])
+
+
+
+
 
 
   const handleDelete = (id) => {

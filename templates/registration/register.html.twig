@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+ {% include '_partials/_nav.html.twig' %}
+    
+     <div class='signup-form'>
+
+    {{ form_start(registrationForm) }}
+    <div class="form">
+        {{ form_widget(registrationForm.email, {'attr': {'class': 'mb-20'}}) }}
+        {{ form_widget(registrationForm.password.first, {'attr': {'class': 'mb-20'}}) }}
+        {{ form_widget(registrationForm.password.second, {'attr': {'class': 'mb-20'}}) }}
+        <button type="submit" class="login-btn">S'inscrire</button>
+    </div>
+    {{ form_end(registrationForm) }}
+
+     </div>
+
+
+     <div class='bottom-page'>
+ 
+    </div>
+{% endblock %}

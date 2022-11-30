@@ -24,9 +24,21 @@ const ParticipantsPage = () => {
   const [schoolLevels, setSchoolLevels] = useState([]);
   const [schoolTypes, setSchoolTypes] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [user, setUser] = useState();
+
+
+  useEffect(() => {
+    const loggedInUser = window.user;
+    if(loggedInUser) {
+      setUser(loggedInUser?.['@id']);
+    }
+  })
+
+
 
 
   const initialValues = {
+    user,
     firstname:"",
     lastname:"",
     dateOfBirth: "",
@@ -36,9 +48,6 @@ const ParticipantsPage = () => {
     address:"",
     city:"",
     postalCode:"",
-    ficheSanitaire:"",
-    vaccination:"",
-    insurance:"",
     ParentOne:{
       firstName:"",
       lastName:"",
@@ -61,10 +70,10 @@ const ParticipantsPage = () => {
 }
   
   const onSubmit = values => {
-    console.log(values)
+   
+    values.user = user;
+    console.log(values.user)
 
-    
- 
     const refreshPage = ()=>{
       window.location.reload();
    }
@@ -116,7 +125,11 @@ const validationSchema = Yup.object({
           // console.log(response.data);
           setSchoolTypes(response.data['hydra:member']); 
       })
-   axios.get('/api/activities')
+
+      const loggedInUser = window.user;
+      const user = loggedInUser?.['@id'];
+        console.log(user);
+   axios.get(`/api/activities?user=${user}`)
       .then((response) => {
           // console.log(response.data);
           setActivities(response.data['hydra:member']); 
@@ -137,7 +150,7 @@ const validationSchema = Yup.object({
                         <li onClick={handleShow}>Ajouter un participant </li>
                       <li> <Link to="/all-activities">Mes activités</Link> </li>
                     
-                      <li> <Link to="/">Se déconnecter</Link></li>
+                      <li> <a href="/logout">Me déconnecter</a> </li>
                  </ul>
              </div>
       </nav>
@@ -155,6 +168,7 @@ const validationSchema = Yup.object({
 
           <div className="row-1">
        
+          
                 <label htmlFor="firstname">Prénom*</label>
                 <input type="text" name="firstname" id="firstname" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.firstname}/>
                 {formik.touched.firstname && formik.errors.firstname ? <p className='error'>{formik.errors.firstname}</p> : null}

@@ -8,6 +8,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Annotation\ApiFilter;
+
 
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
@@ -23,6 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ]
         ]
 )]
+#[ApiFilter(SearchFilter::class, properties: ['user' => 'exact'])]
 class Activity
 {
     /**
@@ -86,6 +90,12 @@ class Activity
      */
     #[Groups(['read:Activity', 'write:Activity'])]
     private $endDate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="activities")
+     */
+    #[Groups(['read:Activity', 'write:Activity'])]
+    private $user;
 
 
  
@@ -220,6 +230,18 @@ class Activity
     public function setEndDate(?\DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

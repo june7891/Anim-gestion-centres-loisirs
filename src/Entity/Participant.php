@@ -40,7 +40,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
         ]
         ])
         ]
-#[ApiFilter(SearchFilter::class, properties: ['firstname' => 'partial'])]
+#[ApiFilter(SearchFilter::class, properties: ['user' => 'exact'])]
 #[Vich\Uploadable]
 class Participant
 {
@@ -168,7 +168,7 @@ class Participant
 
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     #[Groups(['read:Participant', 'write:Participant'])]
@@ -182,10 +182,16 @@ class Participant
     private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @var \DateTimeImmutable
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="participants")
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $user;
 
 
 
@@ -480,6 +486,18 @@ class Participant
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
   

@@ -20,6 +20,7 @@ class ParentOne
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    #[Groups(['read:Participant', 'write:Participant'])]
     private $id;
 
     /**

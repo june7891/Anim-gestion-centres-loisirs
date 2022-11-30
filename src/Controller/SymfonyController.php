@@ -16,7 +16,7 @@ class SymfonyController extends AbstractController
         ]);
     }
 
-    #[Route('/login', name: 'app_login')]
+    #[Route('/api/login', name: 'api_login')]
     public function login(): Response
     {
         return $this->render('symfony/login.html.twig', [

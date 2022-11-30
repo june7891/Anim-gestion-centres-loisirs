@@ -8,7 +8,7 @@ const NavBar = () => {
         <div className="links">
             <ul>
             <li>Bonjour, user12345!</li>
-            <li><a href="">Se déconnecter</a></li>
+            <li><a href="/logout">Se déconnecter</a></li>
         </ul>
         </div>
         

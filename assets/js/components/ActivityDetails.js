@@ -41,7 +41,7 @@ const ActivityDetails = () => {
                         <li> <Link to="/all-participants">Mes participants</Link> </li>
                       <li> <Link to="/all-activities">Mes activités</Link> </li>
                     
-                      <li> <Link to="/">Se déconnecter</Link></li>
+                      <li> <Link to="/logout">Se déconnecter</Link></li>
                  </ul>
              </div>
       </nav>

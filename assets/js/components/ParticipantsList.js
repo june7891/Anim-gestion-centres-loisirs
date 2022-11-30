@@ -8,8 +8,10 @@ const ParticipantsList = () => {
   const [participants, setParticipants] = useState([]);
 
   useEffect(() => {
-    
-  axios.get("/api/participants")
+    const loggedInUser = window.user;
+    const user = loggedInUser?.['@id'];
+      console.log(user);
+  axios.get(`/api/participants?user=${user}`)
   .then((response) => {
     // console.log(response.data['hydra:member']);
     setParticipants(response.data['hydra:member']);

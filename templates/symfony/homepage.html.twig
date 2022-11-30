@@ -3,18 +3,8 @@
 {% block title %}Anim+{% endblock %}
 
 {% block body %}
-<div class='top-page'>
-    <div class='links'>
-        <ul>
-        <li><a href="/login">Se connecter</a></li>
-        <li><a href="/signup">Créer un compte</a></li>
-    </ul> 
-    </div>
-   
-    <div class='img-container'><a href="/"><img src='{{ asset('images/Logo_white.svg')}}' alt="Anim+" /></a></div>
-    
+ {% include '_partials/_nav.html.twig' %}
 
-    </div>
     <div class='description'>
     <h4>c’est une application qui permet au personnel de pointer les présences des participants et enregistrer les dossiers d'inscription. </h4>
  

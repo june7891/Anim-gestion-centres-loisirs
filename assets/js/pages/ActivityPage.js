@@ -18,7 +18,7 @@ const ActivityPage = () => {
                       
                       <li> <Link to='/all-participants'>Mes dossiers</Link> </li>
                       <li> <Link to='/all-activities'>Mes activités</Link> </li>
-                      <li><Link to="/">Se déconnecter</Link></li>
+                      <li><a href="/logout">Me déconnecter</a></li>
                  </ul>
              </div>
       </nav>

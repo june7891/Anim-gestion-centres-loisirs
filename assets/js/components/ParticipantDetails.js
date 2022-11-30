@@ -17,6 +17,8 @@ const ParticipantDetails = () => {
     const [parentTwo, setParentTwo] = useState([]);
     const [activities, setActivities] = useState([]);
 
+    const baseUrl = "../../../public/uploads/";
+
     let params = useParams();
     const id = params.id;
 
@@ -72,8 +74,6 @@ const ParticipantDetails = () => {
       }, [id]);
 
 
-  console.log(activities);
-
   return (
 <>
 
@@ -85,7 +85,7 @@ const ParticipantDetails = () => {
                         <li> <Link to="/all-participants">Mes participants</Link> </li>
                       <li> <Link to="/all-activities">Mes activités</Link> </li>
                     
-                      <li> <Link to="/">Se déconnecter</Link></li>
+                      <li> <Link to="/logout">Se déconnecter</Link></li>
                  </ul>
              </div>
       </nav>
@@ -98,7 +98,7 @@ const ParticipantDetails = () => {
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src={participant.image} alt={participant.image}
+            <img src = {`${participant.image}`} alt={participant.image}
               class="img-fluid" />
             <h5 class="my-3">{participant.lastname} {participant.firstname}</h5>
             <p class="text-muted mb-1">{participant.schoolLevel?.level}</p>

@@ -4,13 +4,23 @@ import axios from 'axios';
 import addIcon from '../../images/add-icon.svg';
 import {useFormik} from 'formik';
 import * as Yup from 'yup'
-import { FormFloating } from 'react-bootstrap';
+
 
 const ActivityForm = () => {
 
   const [workingDays, setWorkingDays] = useState([]);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const loggedInUser = window.user;
+    if(loggedInUser) {
+      setUser(loggedInUser?.['@id']);
+    }
+  })
+
 
   const initialValues = {
+    user,
     name:"",
     capacity: 0,
     reference: "",
@@ -24,14 +34,16 @@ const ActivityForm = () => {
   
   const onSubmit = values => {
     console.log(values)
+
+    values.user = user;
  
-  //   const refreshPage = ()=>{
-  //     window.location.reload();
-  //  }
+    const refreshPage = ()=>{
+      window.location.reload();
+   }
        axios.post("/api/activities", values)
         .then(function (response) {
         console.log(response)
-        // refreshPage();
+        refreshPage();
         })
         .catch(function (error) {
         console.log(error);
