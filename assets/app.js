@@ -9,6 +9,8 @@
 import './styles/app.scss';
 import './styles/homepage.scss';
 import './styles/account/account.scss';
+import './styles/about/about.scss';
+import './styles/contact/contact.scss';
 import './styles/navbar.scss';
 import './styles/activity/activity.scss';
 import "@fontsource/rubik-mono-one";

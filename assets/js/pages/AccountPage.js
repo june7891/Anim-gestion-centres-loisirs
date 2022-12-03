@@ -27,12 +27,12 @@ const Account_page = () => {
         <div className="links">
             <ul>
             <li>Bonjour, {user.email}</li>
-            <li> <a href="/logout">Se déconnecter</a></li>
+            <li> <a href="/logout">Me déconnecter</a></li>
         </ul>
         </div>
         
     </nav>
-       <div className='cards-container'>
+       <div className='account-cards-container'>
        <a href="/all-activities">
         <div className='card'>
           <div className='icon-container'>

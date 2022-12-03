@@ -1,6 +1,6 @@
 
 @use 'base';
-
+@use 'mixins' as mixin;
 @use 'variables';
 @use 'flex';
 @use 'utils.scss';
@@ -8,67 +8,152 @@
 @import 'functions';
 
 
+
+
     .top-page {
         position: relative;
-        background: url(../images/wave-blue-top.png);
-        height: pxToVw(700px, 1512px);
+        background: url(../images/header.svg);
+        height: pxToVw(434px, 1512px);
         background-size: cover;
         background-repeat: no-repeat;
-        text-align: center;
+        @include mixin.xs{
+            height: pxToVw(634px, 1512px);
+      }
+
+      
+
+        .nav-container {
+         
+              @include mixin.xs{
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+          }
+
+        }
+        
+        img{
+            margin-top: pxToVw(40px, 1512px);
+            margin-left: pxToVw(50px, 1512px);
+            height: pxToVw(140px, 1512px);
+            width: pxToVw(442px, 1512px);
+            transition: ease-in-out 0.5s;
+            &:hover {
+                transform: scale(1.1);
+            }
+         
+            @include mixin.xs{
+                height: pxToVw(280px, 1512px);
+                width: pxToVw(880px, 1512px);
+          }
+        }
+      
 
         .links {
             display: flex;
             float: right;
-            margin-top: pxToVw(30px, 1920px);
+            margin-top: pxToVw(-35px, 1512px);
+            @include mixin.xs{
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                margin-top: pxToVw(10px, 1512px);
+                height: pxToVw(10px, 1512px);
+                
+          }
+         
             li {
                 display: inline;
-                margin-right: pxToVw(20px, 1920px);
+                margin-right: pxToVw(80px, 1920px);
                 color: white;
-               
+                font-size: pxToVw(18px, 1512px);
+                
                 a {
                     text-decoration: none;
                     color: var(--white);
+                    font-size: pxToVw(18px, 1512px);
+                    @include mixin.xs{
+                        font-size: pxToVw(36px, 1512px);
+                         text-decoration: underline;
+                  }
                     &:hover {
-                        color: var(--secondary-red);
+                       text-decoration: underline;
                     }
                 }
             }
         }
    
 
-        img{
-            margin-top: pxToVw(150px, 1512px);
-            margin-left: pxToVw(500px, 1512px);
-            height: pxToVw(220px, 1512px);
-            width: pxToVw(692px, 1512px);
-        }
+      
         
 
    
         
     }
-     .description {
-            margin-left: pxToVw(180px, 1920px);
-            margin-right: pxToVw(180px, 1920px);
-          font-size: pxToVw(28px, 1920px);
-            h4 {
-                margin-bottom: pxToVw(40px, 1920px);
-                font-size: pxToVw(30px, 1920px);
-            }
+  .images-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: pxToVw(90px, 1512px);
+    margin-bottom: pxToVw(250px, 1512px);
+      @include mixin.xs{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
 
-            ul{
-                margin-bottom: pxToVw(40px, 1920px);
-            }
+
+    .image {
+        text-align: center;
+        justify-content: center;
+        display: block;
+     
+
+        img {
+            height: pxToVw(170px, 1512px);
+            width: pxToVw(128px, 1512px);
+            // margin-left: pxToVw(80px, 1512px);
+            margin-bottom: pxToVw(40px, 1512px);
+            @include mixin.xs{
+                height: pxToVw(340px, 1512px);
+                width: pxToVw(260px, 1512px);
+               
+                
+              }
         }
 
-        
+    p{
+        width: pxToVw(300px, 1512px);
+        text-align: justify;
+        font-size: pxToVw(20px, 1512px);
+        @include mixin.xs{
+            font-size: pxToVw(50px, 1512px);
+            width: pxToVw(800px, 1512px);
+            margin-left: pxToVw(400px, 1512px);
+           
+          }
+        }
+
+    }
+  
+
+     
+  }
+
+        .login-section {
+            height: pxToVw(400px, 1512px);
+            
+        @include mixin.xs{
+            height: pxToVw(602px, 1512px);
+        }
+        }
 
     .login-form {
         position: absolute;
-        left: pxToVw(600px, 1512px);
-        top: pxToVw(530px, 1512px);
+        left: pxToVw(550px, 1512px);
+        top: pxToVw(430px, 1512px);
         display: block;
-        margin: 0 auto;
+        margin: auto;
        
         border-radius: pxToVw(6px, 1512px);
         background-color: rgba($color:#26619C, $alpha: 0.25);
@@ -78,6 +163,14 @@
         width: pxToVw(412px, 1512px);
         align-items: center;
         text-align: center;
+
+        @include mixin.xs{
+            left: pxToVw(550px, 1512px);
+            top: pxToVw(630px, 1512px);
+            height: pxToVw(602px, 1512px);
+            width: pxToVw(812px, 1512px);
+
+      }
       
         .form {
             display: inline-block;
@@ -88,16 +181,23 @@
             input {
                 display: flex;
                 
-                
             }
         }
         
     }
 
+
+    .signup-section {
+        height: pxToVw(400px, 1512px);
+        
+    @include mixin.xs{
+        height: pxToVw(602px, 1512px);
+    }
+    }
     .signup-form {
         position: absolute;
-        left: pxToVw(600px, 1512px);
-        top: pxToVw(530px, 1512px);
+        left: pxToVw(550px, 1512px);
+        top: pxToVw(430px, 1512px);
         display: block;
         margin: 0 auto;
        
@@ -112,23 +212,75 @@
       
         form {
             display: inline-block;
-            margin-top: pxToVw(20px, 1512px);
-            
-    
-        
+            margin-top: pxToVw(40px, 1512px);
             input {
                 display: flex;
-                
-                
             }
         }
         
     }
 
+
+    footer{
+      position: relative;
+      bottom: 0;
+      width: 100vw;
+      // margin-top: 100%;
+      // margin-top: auto;
+      // margin-bottom: -10px; 
+    }
     .bottom-page {
-        background: url(../images/wave-blue-bottom.png);
-        height: pxToVw(350px, 1512px);
+        background: url(../images/footer.svg);
+        // background-color: #26619C;
+        height: pxToVw(200px, 1512px);
         background-size: cover;
         background-repeat: no-repeat;
 
+        @include mixin.xs{
+            height: pxToVw(400px, 1512px);
+          }
+
+        ul{
+            display: flex;
+            justify-content: space-evenly;
+            padding-top: pxToVw(140px, 1512px);
+            @include mixin.xs{
+                padding-top: pxToVw(200px, 1512px);
+                display: block;
+                text-align: center;
+              }
+            
+            li{
+
+              color: white;
+              font-size: pxToVw(18px, 1512px);
+                
+                a{
+                  color: white;  
+                  text-decoration: none;
+                  font-size: pxToVw(18px, 1512px);
+                  @include mixin.xs{
+                    font-size: pxToVw(36px, 1512px);
+                    display: block;
+                  }
+                
+                  &:hover {
+                    text-decoration: underline;
+                    
+                  }
+                }
+                
+            }
+            
+        }
+
+    }
+
+
+    #root {
+      min-height: 100vh;
+    }
+
+    #screen-height{
+      min-height: 100vh;
     }

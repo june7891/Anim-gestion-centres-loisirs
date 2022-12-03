@@ -97,12 +97,19 @@ class Activity
     #[Groups(['read:Activity', 'write:Activity'])]
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ActivityDay::class, inversedBy="activities", cascade={"persist", "remove"})
+     */
+    #[Groups(['read:Activity', 'write:Activity'])]
+    private $activityDay;
+
 
  
 
     public function __construct()
     {
         $this->participants = new ArrayCollection();
+        $this->activityDay = new ArrayCollection();
    
     }
 
@@ -242,6 +249,30 @@ class Activity
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ActivityDay>
+     */
+    public function getActivityDay(): Collection
+    {
+        return $this->activityDay;
+    }
+
+    public function addActivityDay(ActivityDay $activityDay): self
+    {
+        if (!$this->activityDay->contains($activityDay)) {
+            $this->activityDay[] = $activityDay;
+        }
+
+        return $this;
+    }
+
+    public function removeActivityDay(ActivityDay $activityDay): self
+    {
+        $this->activityDay->removeElement($activityDay);
 
         return $this;
     }

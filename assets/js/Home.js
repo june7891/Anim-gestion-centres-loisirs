@@ -6,6 +6,7 @@ import ActivityDetails from './components/ActivityDetails';
 import ActivityList from './components/ActivityList';
 import ParticipantDetails from './components/ParticipantDetails';
 import ParticipantModificationForm from './components/ParticipantModificationForm';
+import ActivityModificationForm from './components/ActivityModificationForm';
 
 import AccountPage from './pages/AccountPage';
 
@@ -29,6 +30,7 @@ function Home() {
             <Route exact path="/activity/list/:id" element={<ActivityList/>} />
             <Route exact path="/activity-details/:id" element={<ActivityDetails/>} />
             <Route exact path="/participant-modification-form/:id" element={<ParticipantModificationForm/>} />
+            <Route exact path="/activity-modification-form/:id" element={<ActivityModificationForm/>} />
             <Route exact path="/participant-details/:id" element={<ParticipantDetails/>} />
         </Routes>
         

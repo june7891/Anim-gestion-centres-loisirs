@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anim+ | Contact{% endblock %}
+
+{% block body %}
+  {% include '_partials/_nav.html.twig' %}
+
+<section id="screen-height" class="contact-section">
+
+<h4>Vous avez une question? Une proposition? N'hésitez pas à nous contacter!</h4>
+
+    <div class="image-container">
+        <img src="{{ asset('images/contact-img.svg') }}" alt="contact">
+    </div>
+
+    <div class="form-container">
+        <form class="" action="sendMessage" method="POST">
+            <input type="text" name="name" placeholder="prénom" required>
+            <input type="email" name="email" placeholder="email" required>
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="message" required></textarea>
+            <button class="login-btn" type="submit">Envoyer</button>
+        </form>
+    </div>
+
+</section>
+
+
+{% endblock %}

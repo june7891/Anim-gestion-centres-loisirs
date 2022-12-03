@@ -1,12 +1,26 @@
+
+@use 'mixins' as mixin;
+
 @import 'functions';
 
 
+html {
+    scroll-behavior: smooth;
+    height: 100vh;
+    min-height: 100;
+
+}
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box; 
+  margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
+   min-height: 100vh;
+//    position: relative;
+    
     font-family: var(--font-family);
 }
 
@@ -19,6 +33,14 @@ h3 {
     margin-bottom: pxToVw(50px, 1512px);
     text-align: center;
     font-family: var(--font-family-titles);
+    font-size: pxToVw(28px, 1512px);
+}
+h4 {
+    margin-top: pxToVw(50px, 1512px);
+    margin-bottom: pxToVw(50px, 1512px);
+    text-align: center;
+    font-family: var(--font-family-titles);
+    font-size: pxToVw(20px, 1512px);
 }
 h5 {
     margin-bottom: pxToVw(30px, 1512px);
@@ -44,8 +66,7 @@ a {
 input, ::placeholder {
     font-family: var(--font-family);
     color: var(--primary-blue);
-    font-size: pxToVw(18px, 1512px)
-   
+    font-size: pxToVw(18px, 1512px);
 }
 
 input{
@@ -63,9 +84,9 @@ input{
 
 select{
     width: pxToVw(314px, 1512px);
-    height: pxToVw(70px, 1512px);
-    border: 2px solid var(--primary-blue);
-    border-radius: pxToVw(5px, 1512px);
+    height: pxToVw(50px, 1512px);
+    border: pxToVw(2px, 1512px) solid var(--primary-blue);
+    border-radius: pxToVw(4px, 1512px);
     outline-color: var(--secondary-red);
     // margin-right: pxToVw(40px, 1920px);
 
@@ -77,3 +98,10 @@ select{
 label {
     margin-right: pxToVw(20px, 1512px);
 }
+
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+  }

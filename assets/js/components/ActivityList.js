@@ -2,19 +2,23 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 
+
 const ActivityList = () => {
 
   const [activity, setActivity] = useState([]);
   const [participants, setParticipants] = useState([]);
+  const [date, setDate] = useState();
 
   const [checked, setChecked] = useState([]);
-
 
   
 const handleCheckCount = (e, item) => {
 
+
   if (e.target.checked) {
     setChecked([...checked, item]);
+    setDate(new Date().toLocaleDateString());
+
   } 
  
   else {
@@ -26,7 +30,7 @@ const handleCheckCount = (e, item) => {
 
     
 }
-
+console.log(date);
 console.log(checked.length);
 
 

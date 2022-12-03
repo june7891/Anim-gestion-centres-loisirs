@@ -22,16 +22,56 @@ class ParticipantImageController extends AbstractController
         /**
          * @var UploadedFile $uploadedFile
          */
-        $uploadedFile = $request->files->get('image');
-        // dd($uploadedFile);      
-        $destination = $this->getParameter('kernel.project_dir').'/public/uploads/participants_images';
-        // dd($uploadedFile->move($destination));
-        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-        $newFilename = $originalFilename. '-' . uniqid().'.'.$uploadedFile->guessExtension();
-        $movedFile = $uploadedFile->move($destination, $newFilename);
+        $uploadedImage = $request->files->get('image');
+        $uploadedVaccination = $request->files->get('vaccination');
+        $uploadedInsurance = $request->files->get('insurance');
+        $uploadedFicheSanitaire = $request->files->get('ficheSanitaire');
+        // dd($uploadedImage);      
+        $destination = $this->getParameter('kernel.project_dir').'/assets/images/uploads/participants_images';
+        // dd($destination);
+        // dd($uploadedImage->move($destination));
+        // dd($uploadedImage->getClientOriginalName(), PATHINFO_FILENAME);
+
+        //image
+        $originalImageName = pathinfo($uploadedImage->getClientOriginalName(), PATHINFO_FILENAME);
+    
+        $newImageName = $originalImageName. '-' . uniqid().'.'.$uploadedImage->guessExtension();
+        // dd($newImageName);
+        $movedImage = $uploadedImage->move($destination, $newImageName);
+        // dd($movedImage);
+
+        // vaccination
+        $originalVaccinationName = pathinfo($uploadedVaccination->getClientOriginalName(), PATHINFO_FILENAME);
+        $newVaccinationName = $originalVaccinationName. '-' . uniqid().'.'.$uploadedVaccination->guessExtension();
+        $movedVaccination = $uploadedVaccination->move($destination, $newVaccinationName);
+
+        //insurance
+        $originalInsuranceName = pathinfo($uploadedInsurance->getClientOriginalName(), PATHINFO_FILENAME);
+        $newInsuranceName = $originalInsuranceName. '-' . uniqid().'.'.$uploadedInsurance->guessExtension();
+        $movedInsurance = $uploadedInsurance->move($destination, $newInsuranceName);
+
+        // fiche sanitaire
+        $originalFicheSanitaireName = pathinfo($uploadedFicheSanitaire->getClientOriginalName(), PATHINFO_FILENAME);
+        $newFicheSanitaireName = $originalFicheSanitaireName. '-' . uniqid().'.'.$uploadedFicheSanitaire->guessExtension();
+        $movedFicheSanitaire = $uploadedFicheSanitaire->move($destination, $newFicheSanitaireName);
         //   dd($movedFile);
-        $participant->setImage($newFilename);
-        $participant->setImageFile($movedFile);
+
+        //image
+        $participant->setImage($newImageName);
+        $participant->setImageFile($movedImage);
+
+        //vaccination
+        $participant->setVaccination($newVaccinationName);
+        $participant->setVaccinationFile($movedVaccination);
+
+        //vaccination
+        $participant->setInsurance($newInsuranceName);
+        $participant->setInsuranceFile($movedInsurance);
+
+        //Fiche sanitaire
+        $participant->setFicheSanitaire($newFicheSanitaireName);
+        $participant->setFicheSanitaireFile($movedFicheSanitaire);
+
         return $participant;
        
     }

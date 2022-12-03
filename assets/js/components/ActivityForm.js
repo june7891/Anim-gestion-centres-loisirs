@@ -1,14 +1,19 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import axios from 'axios';
 
 import addIcon from '../../images/add-icon.svg';
 import {useFormik} from 'formik';
-import * as Yup from 'yup'
+import * as Yup from 'yup';
+
+import moment from "moment";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+
 
 
 const ActivityForm = () => {
 
-  const [workingDays, setWorkingDays] = useState([]);
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -21,6 +26,12 @@ const ActivityForm = () => {
 
   const initialValues = {
     user,
+    activityDay: 
+    [
+      {
+        activityDate:"",
+      }
+    ],
     name:"",
     capacity: 0,
     reference: "",
@@ -28,14 +39,22 @@ const ActivityForm = () => {
     startedAt: "",
     endedAt: "",
     price: 0,
-    startDate:"",
-    endDate:""
+    startDate: "",
+    endDate: "",
 }
+
+
+
+
+
+  const onSubmit = (values, index) => {
   
-  const onSubmit = values => {
-    console.log(values)
 
     values.user = user;
+    console.log(values);
+  
+    
+
  
     const refreshPage = ()=>{
       window.location.reload();
@@ -46,7 +65,7 @@ const ActivityForm = () => {
         refreshPage();
         })
         .catch(function (error) {
-        console.log(error);
+        console.log(error.response);
     })
   
     
@@ -66,6 +85,25 @@ const validationSchema = Yup.object({
     onSubmit,
     validationSchema
   });
+
+// datepicker
+// const [selectedDates, setSelectedDates] = useState();
+// const [displayDateArray, setDisplayDateArray] = useState([]);
+// const [array, setArray] = useState([]);
+
+
+// const handleChange = (date) => {
+
+//   let myDate = new Date(date).toLocaleDateString();
+//   const formatDate = moment().format("YYYY-MM-DD");
+//   setSelectedDates(date);
+//   setArray(current => [...current, myDate ])
+//   setDisplayDateArray(current => [...current, myDate]);
+
+   
+// }
+// console.log(array);
+
 
 
 
@@ -111,7 +149,7 @@ const validationSchema = Yup.object({
            </div>
        
          
-            <h3>Période d'ouverture</h3>
+            <h4>Période d'ouverture</h4>
         
             <label htmlFor="startDate"> Date du début</label>
            <input className='medium-input' type="date" name="startDate" id="startDate" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.startDate}/>
@@ -120,13 +158,42 @@ const validationSchema = Yup.object({
             <label htmlFor="endDate"> Date de fin</label>
            <input className='medium-input' type="date" name="endDate" id="endDate" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.endDate}/>
   
+           <h4>Jours d'ouverture</h4>
 
+     
+        {/* <div>
+          <DatePicker
+          name={`activityDay[0]['activityDate']`}
+          selected={selectedDates}
+          onChange= {date => handleChange(date)}
+          dateFormat='dd/MM/yyyy'
+          minDate={new Date()}
+          filterDate={date => date.getDay() !== 6 && date.getDay() !== 0}
+          isClearable
+           />
+
+        </div>
+        <div>
+        <div>Dates choisies</div>
+        
+       {displayDateArray.map((day, index) => (
+      <div key={day.id}>
+        <input type="checkbox" name={`activityDay[${index}].activityDate`} onChange={formik.handleChange} value={day}/> <label>{day}</label>
+      </div>
+
+      
+       ))}
+        
+        </div> */}
 
            <div className='btn-container' ><p>Enregistrer la nouvelle activité</p><button className='save-button' type='submit'></button></div>
         </form>
+
+     
+         {/* <p key={days.id}> {days}</p> */}
     </div>
     </>
-    
+   
   )
 }
 

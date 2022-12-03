@@ -1,21 +1,25 @@
 <div class='top-page'>
+
+    <div class="nav-container">
+  <div class='img-container'><a href="/"><img src='{{ asset('images/Logo_white.svg')}}' alt="Anim+" /></a></div>
     <div class='links'>
         <ul>
         {% if app.user %}
 
+            <li>Bonjour, {{app.user.email}}</li>
             <li><a href="/account">Mon compte</a></li>
-            <li><a href="/logout">Se déconnecter</a></li>
+            <li><a href="/logout">Me déconnecter</a></li>
 
         {% else %}
        
             <li><a href="/login">Me connecter</a></li>
-            <li><a href="/register">Créer un compte</a></li>
+            <li><a href="/register">M'inscrire</a></li>
           {% endif %}
        
     </ul> 
     </div>
    
-    <div class='img-container'><a href="/"><img src='{{ asset('images/Logo_white.svg')}}' alt="Anim+" /></a></div>
+  </div>
     
 
     </div>

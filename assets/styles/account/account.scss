@@ -2,13 +2,11 @@
 
 
     
-    .cards-container {
+    .account-cards-container {
         display: flex;
-        flex-wrap: wrap;
-        gap: pxToVw(150px, 1920px);
-        margin-left: pxToVw(450px, 1920px);
-        margin-top: pxToVw(200px, 1920px);
-       a {
+       justify-content: space-evenly;
+        margin-top: pxToVw(400px, 1920px);
+       
       
         .card {
             height: pxToVw(414px, 1920px);
@@ -53,4 +51,4 @@
             }
         }
     }
-    }
+    

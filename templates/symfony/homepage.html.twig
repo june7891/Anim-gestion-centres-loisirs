@@ -3,40 +3,35 @@
 {% block title %}Anim+{% endblock %}
 
 {% block body %}
- {% include '_partials/_nav.html.twig' %}
+  {% include '_partials/_nav.html.twig' %}
 
-    <div class='description'>
-    <h4>c’est une application qui permet au personnel de pointer les présences des participants et enregistrer les dossiers d'inscription. </h4>
- 
-<p>Elle convient à tous types d’activités : </p> 
- 
- <ul>
-  <li> Accueil de Loisirs Sans Hébergement ;</li>
-  <li>Accueil Périscolaire ;</li>
-  <li> Ateliers.</li>
- </ul>
+<div id="screen-height">
+    <div class="images-container">
+      <div class="image">
+          <img class="animate__animated animate__slideInLeft" src="{{ asset('images/icon-list-red.svg') }}" alt="list-icon">
+          <p class="animate__animated animate__slideInRight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos 
+          amet ullam laborum libero 
+          voluptatum accusantium, commodi eius vel tenetur labore et! 
+          Illo, nemo. Laborum quibusdam soluta, aperiam corporis eveniet pariatur.</p>
+      </div>
+      <div class="image">
+          <img class="animate__animated animate__slideInLeft" src="{{ asset('images/icon-avatar-red.svg') }}" alt="list-icon">
+          <p class="animate__animated animate__slideInRight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos 
+          amet ullam laborum libero 
+          voluptatum accusantium, commodi eius vel tenetur labore et! 
+          Illo, nemo. Laborum quibusdam soluta, aperiam corporis eveniet pariatur.</p>
+      </div>
+      <div class="image">
+          <img class="animate__animated animate__slideInLeft" src="{{ asset('images/icon-folder-red.svg') }}" alt="list-icon">
+          <p class="animate__animated animate__slideInRight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos 
+          amet ullam laborum libero 
+          voluptatum accusantium, commodi eius vel tenetur labore et! 
+          Illo, nemo. Laborum quibusdam soluta, aperiam corporis eveniet pariatur.</p>
+      </div>
+    </div>
+    </div>
 
- 
-<p>Cette application s’adresse également aux différents types de structures : </p>
- 
-<ul>
-  <li> ALSH ;</li>
-  <li> Restauration scolaire ;</li>
-  <li> Centre de loisirs ;</li>
-  <li> Centre social ;</li>
-  <li> Garderie périscolaire.</li>
-</ul>
- 
- 
 
-
-<p>Anim+ est une application simple qui permet de savoir à tout moment qui est présent dans la structure et consulter les dossiers d'inscription.</p>
-
-
-</div>
   
 
-    <div class='bottom-page'>
- 
-    </div>
 {% endblock %}

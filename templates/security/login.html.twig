@@ -3,7 +3,10 @@
 {% block title %}Anim+ | Connexion{% endblock %}
 
 {% block body %}
- {% include '_partials/_nav.html.twig' %}
+  {% include '_partials/_nav.html.twig' %}
+
+
+ <section class="login-section">
 
  <div class='login-form'>
 
@@ -20,9 +23,9 @@
         </div>
     {% endif %}
 
-            <input class='mb-20' type="email" value="{{ last_username }}" name="email" placeholder='Email' autocomplete="email" required/>
+            <input class='mb-20' type="email" value="{{ last_username }}" name="email" placeholder='Email'required/>
     
-            <input class="mb-20" type="password" name='password' placeholder='Mot de passe' autocomplete="current-password" required/>
+            <input class="mb-20" type="password" name='password' placeholder='Mot de passe' required/>
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')}}" >
       
@@ -44,26 +47,7 @@
 
  </div>
 
-
-
-
-   
-        
-            
-       
-   
-    <div class='bottom-page'>
- 
-    </div>
-
-
-
-
-
-
-
-
-
+ </section>
 
 
 

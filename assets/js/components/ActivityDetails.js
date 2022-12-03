@@ -41,28 +41,32 @@ const ActivityDetails = () => {
                         <li> <Link to="/all-participants">Mes participants</Link> </li>
                       <li> <Link to="/all-activities">Mes activités</Link> </li>
                     
-                      <li> <Link to="/logout">Se déconnecter</Link></li>
+                      <li> <a href="/logout">Me déconnecter</a> </li>
                  </ul>
              </div>
       </nav>
 
     <section>
   <div class="container py-5">
+
+  <h3>Fiche de l'activité</h3>
     
 
     <div class="row">
       <div class="col-lg-4">
-        <div class="card mb-4">
+        <div class="card details-card mb-4">
           <div class="card-body text-center">
+          <div className='icon-container'>
             <img src={activityIcon} alt="avatar"
               class="img-fluid" />
+              </div>
             <h5 class="my-3">{activity.name} </h5>
             <p class="text-muted mb-1"> N° de référence: {activity.reference}</p>
             <p class="text-muted mb-1"> Periode: {new Date(activity.startDate).toLocaleDateString()} - {new Date(activity.endDate).toLocaleDateString()}</p>
-       
+            
           </div>
         </div>
-       
+        <a className='activity-list-btn' href={`/activity/list/${activity.id}`}>Liste des participants de l'activité</a>
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
@@ -94,9 +98,7 @@ const ActivityDetails = () => {
               </div>
             </div>
             <hr/>
-           
-           <a href={`/activity/list/${activity.id}`}>Liste des participants de l'activité</a>
-           
+          
             
           </div>
         </div>

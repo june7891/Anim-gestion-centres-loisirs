@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import '../../styles/activity/activity.scss'
 import viewIcon from "../../images/view.svg"
-import removeIcon from "../../images/icon-remove.svg"
+import removeIcon from "../../images/remove-icon-red.svg"
 import modifyIcon from "../../images/icon-modify.svg"
 import axios from 'axios';
+import activityIcon from '../../images/activity-icon.svg';
 
 const AllActivities = () => {
 
@@ -54,35 +55,29 @@ const AllActivities = () => {
   }
   return (
     <>
-    <table className="table">
-<thead className="thead-dark">
-  <tr>
-    <th scope="col">Code de référence</th>
-    <th scope="col">Nom de l'activité</th>
-    <th scope="col">Capacité d'accueil</th>
-    <th scope="col">Tarif</th>
-    <th scope="col">Voir</th>
-    <th scope="col">Supprimer</th>
-    <th scope="col">Modifier</th>
-  </tr>
-</thead>
-<tbody>
+   
+   <h3>Mes activités</h3>
 
+<div className='cards-container'>
 {activities.map((activity) => (
-  <tr key={activity.id}>
-      <th scope="row">{activity.reference}</th>
-      <td>{activity.name}</td>
-      <td>{activity.capacity}</td>
-      <td>{activity.price} €</td>
-      <td><a href={`/activity-details/${activity.id}`}><img className='my-buttons' src={viewIcon} alt="" /></a></td>
-      <td ><img className='remove-btn' src={removeIcon} alt="" onClick={() => handleDelete(activity.id)}></img></td>
-      <td><a href={`/activity-modification-form/${activity.id}`}><img className='my-buttons' src={modifyIcon} alt="" /></a></td>
-    </tr>
-))}
 
-</tbody>
-</table>
+    
+        <div className='card'>
+          <div className='icon-container'>
+            <img src={activityIcon} alt="" />
+          </div>
+          <div className='title'>{activity.name}</div>
+          <div className='btn-container'>
+          <a href={`/activity-details/${activity.id}`}><img className='my-buttons' src={viewIcon} alt="" /></a>
+          <img className='remove-btn' src={removeIcon} alt="" onClick={() => handleDelete(activity.id)}></img>
+          <a href={`/activity-modification-form/${activity.id}`}><img className='my-buttons' src={modifyIcon} alt="" /></a>
+          </div>
+        </div>
 
+
+        ))}
+
+        </div>
 
   </>
   )

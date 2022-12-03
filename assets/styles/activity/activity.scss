@@ -9,6 +9,7 @@
             }
         }
     }
+
     .activity-form-container {
   
         margin: 0 auto;
@@ -30,16 +31,7 @@
       
             }
             
-            .btn-container {
-                margin-left: pxToVw(700px, 1512px);
-                
-                display: inline-block;
-                p {
-                    width: pxToVw(550px, 1512px);
-                    font-size: pxToVw(18px, 1512px);
-                    margin-right: pxToVw(150px, 1512px);
-                    
-                }
+         
                    .save-button {
                 background-image: url("../../images/add-icon.svg");
                 background-repeat: no-repeat; 
@@ -52,7 +44,7 @@
                 vertical-align: middle; /* align the text vertically centered */
                 
             }
-            }
+            
          
         
     
@@ -66,3 +58,109 @@
     max-width: none;
    
   }
+
+  // activity cards styling
+
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: pxToVw(50px, 1512px);
+    margin-left: pxToVw(180px, 1512px);
+    margin-top: pxToVw(100px, 1512px);
+
+    .card {
+        height: pxToVw(430px, 1920px);
+        width: pxToVw(411px, 1920px);
+        border: 2.5px solid var(--primary-blue);
+        border-radius: pxToVw(6px, 1920px);
+        &:hover {
+            border: 2.5px solid var(--secondary-red);
+        }
+
+        .icon-container {
+            width: pxToVw(350px, 1920px);
+            height: pxToVw(280px, 1920px);
+            background-color: rgba($color: #26619C, $alpha: 0.1);
+            margin: auto;
+            margin-top: pxToVw(25px, 1920px);
+            img {
+                margin:  auto;
+                display: flex;
+                width: pxToVw(255px, 1920px);
+                height: pxToVw(278px, 1920px);
+                // transition: all 0.5s ease-in-out;
+                // &:hover {
+                //     filter: brightness(0) saturate(100%) invert(27%) sepia(42%) saturate(1782%) hue-rotate(289deg) brightness(96%) contrast(93%);
+                //     transform: scale(1.1);
+                // }
+               
+            }
+            .img-participant {
+                height: pxToVw(310px, 1920px);
+            }
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: pxToVw(20px,1920px);
+            width: pxToVw(200px, 1920px);
+            text-align: center;
+            margin: auto;
+            margin-top: pxToVw(20px, 1920px);
+            color: var(--black);
+        }
+       
+        .btn-container {
+           
+            display: flex;
+            flex-wrap: wrap;
+            gap: pxToVw(20px, 1512px);
+           margin-left: pxToVw(100px, 1512px);
+           margin-top: pxToVw(20px, 1512px);
+           padding-bottom: pxToVw(20px, 1512px);
+        
+    }
+    }
+
+}
+  
+
+
+// activity details styling
+
+
+.details-card {
+        border: 1px solid var(--primary-blue);
+        border-radius: pxToVw(4px, 1920px);
+        width: pxToVw(340px, 1512px);
+        margin-bottom: pxToVw(40px, 1512px);
+        .icon-container {
+            width: pxToVw(250px, 1920px);
+            height: pxToVw(280px, 1920px);
+            background-color: rgba($color: #26619C, $alpha: 0.1);
+            margin: auto;
+            margin-top: pxToVw(25px, 1920px);
+        }
+}
+.activity-list-btn {
+    background-color: var(--secondary-red);
+    border-radius: pxToVw(4px, 1512px);
+    color: white;
+    padding: pxToVw(15px, 1512px) pxToVw(48px, 1512px);
+    text-decoration: none;
+    &:hover {
+        color: var(--secondary-red);
+        border: 2px solid var(--secondary-red);
+        background-color: white;
+    }
+    
+}
+
+.card-body {
+    border: 1px solid var(--primary-blue);
+    border-radius: pxToVw(4px, 1920px);
+    
+    hr {
+        border: 1px solid var(--primary-blue);
+    }
+}

@@ -124,17 +124,39 @@ class Participant
     #[Groups(['read:Participant', 'write:Participant'])]
     private $ficheSanitaire;
 
+        /**
+     * 
+     * @var UploadedFile $ficheSanitaireFile
+     */
+    #[Vich\UploadableField(mapping: 'participant_ficheSanitaire', fileNameProperty: 'ficheSanitaire')]
+    private $ficheSanitaireFile;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     #[Groups(['read:Participant', 'write:Participant'])]
     private $vaccination;
 
+    
+      /**
+     * 
+     * @var UploadedFile $vaccinationFile
+     */
+    #[Vich\UploadableField(mapping: 'participant_vaccination', fileNameProperty: 'vaccination')]
+    private $vaccinationFile;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     #[Groups(['read:Participant', 'write:Participant'])]
     private $insurance;
+
+        /**
+     * 
+     * @var UploadedFile $insuranceFile
+     */
+    #[Vich\UploadableField(mapping: 'participant_insurance', fileNameProperty: 'insurance')]
+    private $insuranceFile;
 
     /**
      * @ORM\ManyToOne(targetEntity=SchoolType::class, inversedBy="participants", cascade={"persist"})
@@ -193,6 +215,12 @@ class Participant
     #[Groups(['read:Participant', 'write:Participant'])]
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ActivityDay::class, inversedBy="participants", cascade={"persist", "remove"})
+     */
+    #[Groups(['read:Participant', 'write:Participant'])]
+    private $activityDay;
+
 
 
    
@@ -201,6 +229,7 @@ class Participant
     {
         $this->activities = new ArrayCollection();
         $this->emergencyContact = new ArrayCollection();
+        $this->activityDay = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -356,6 +385,26 @@ class Participant
         return $this;
     }
 
+
+    public function setFicheSanitaireFile(File $ficheSanitaire = null)
+    {
+        $this->ficheSanitaireFile = $ficheSanitaire;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($ficheSanitaire) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTimeImmutable('now');
+        }
+    }
+
+    public function getFicheSanitaireFile()
+    {
+        return $this->ficheSanitaireFile;
+    }
+
+
     public function getVaccination(): ?string
     {
         return $this->vaccination;
@@ -368,6 +417,25 @@ class Participant
         return $this;
     }
 
+
+    public function setVaccinationFile(File $vaccination = null)
+    {
+        $this->vaccinationFile = $vaccination;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($vaccination) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTimeImmutable('now');
+        }
+    }
+
+    public function getVaccinationFile()
+    {
+        return $this->vaccinationFile;
+    }
+
     public function getInsurance(): ?string
     {
         return $this->insurance;
@@ -378,6 +446,24 @@ class Participant
         $this->insurance = $insurance;
 
         return $this;
+    }
+
+    public function setInsuranceFile(File $insurance = null)
+    {
+        $this->insuranceFile = $insurance;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($insurance) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTimeImmutable('now');
+        }
+    }
+
+    public function getInsuranceFile()
+    {
+        return $this->insuranceFile;
     }
 
     public function getSchoolType(): ?SchoolType
@@ -496,6 +582,30 @@ class Participant
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ActivityDay>
+     */
+    public function getActivityDay(): Collection
+    {
+        return $this->activityDay;
+    }
+
+    public function addActivityDay(ActivityDay $activityDay): self
+    {
+        if (!$this->activityDay->contains($activityDay)) {
+            $this->activityDay[] = $activityDay;
+        }
+
+        return $this;
+    }
+
+    public function removeActivityDay(ActivityDay $activityDay): self
+    {
+        $this->activityDay->removeElement($activityDay);
 
         return $this;
     }

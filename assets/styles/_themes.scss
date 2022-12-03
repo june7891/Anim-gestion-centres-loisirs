@@ -26,4 +26,27 @@
 
 
 
+.add-btn {
+  background-image: url("../images/add-icon.svg");
+  background-repeat: no-repeat; 
+  background-position: 0px 0px;
+  border: none;           /* assuming we don't want any borders */
+  cursor: pointer;        /* make the cursor like hovering over an <a> element */
+  height: pxToVw(100px, 1512px);           /* make this the size of your image */
+  padding-left: pxToVw(100px, 1512px);     /* make text start to the right of the image */
+  vertical-align: middle; /* align the text vertically centered */
+  margin-left: pxToVw(50px, 1512px);
+  margin-top: pxToVw(50px, 1512px);
+  
+}
+
+// .card {
+//   height: pxToVw(414px, 1920px);
+//   width: pxToVw(411px, 1920px);
+//   border: 2.5px solid var(--primary-blue);
+//   border-radius: pxToVw(6px, 1920px);
+//   &:hover {
+//       border: 2.5px solid var(--secondary-red);
+//   }
+// }
 

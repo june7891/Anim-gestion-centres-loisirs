@@ -4,9 +4,6 @@ import logo from '../../images/Logo_blue.svg';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import avatar from '../../images/avatar.svg';
-import {useFormik} from 'formik';
-import { Formik, Form, Field, FieldArray } from 'formik';
-import * as Yup from 'yup'
 import '../../styles/participant/participant.scss';
 import EasyEdit, {Types} from 'react-easy-edit';
 
@@ -217,9 +214,9 @@ const ParticipantModificationForm = () => {
              }
              const updateParentTwoPhoneNumber = (value) => {
                   // console.log(value)
-                  const id = parentOne.id;
+                  const id = parentTwo.id;
                  
-                  axios.put(`/api/parent_ones/${id}`, {
+                  axios.put(`/api/parent_twos/${id}`, {
                     phoneNumber: value
                   })
                   .then(function (response) {
@@ -231,9 +228,9 @@ const ParticipantModificationForm = () => {
              }
              const updateParentTwoLastname = (value) => {
                   // console.log(value)
-                  const id = parentOne.id;
+                  const id = parentTwo.id;
                  
-                  axios.put(`/api/parent_ones/${id}`, {
+                  axios.put(`/api/parent_twos/${id}`, {
                     lastName: value
                   })
                   .then(function (response) {
@@ -245,9 +242,9 @@ const ParticipantModificationForm = () => {
              }
              const updateParentTwoFirstname = (value) => {
                   // console.log(value)
-                  const id = parentOne.id;
+                  const id = parentTwo.id;
                  
-                  axios.put(`/api/parent_ones/${id}`, {
+                  axios.put(`/api/parent_twos/${id}`, {
                     firstName: value
                   })
                   .then(function (response) {
@@ -259,10 +256,24 @@ const ParticipantModificationForm = () => {
              }
              const updateParentTwoEmail = (value) => {
                   // console.log(value)
-                  const id = parentOne.id;
+                  const id = parentTwo.id;
                  
-                  axios.put(`/api/parent_ones/${id}`, {
+                  axios.put(`/api/parent_twos/${id}`, {
                     email: value
+                  })
+                  .then(function (response) {
+                  console.log(response)
+                  })
+                  .catch(function (error) {
+                  console.log(error);
+              })
+             }
+             const updateActivities = (value) => {
+                  console.log(value)
+                  const id = participant.id;
+                 
+                  axios.put(`/api/participants/${id}`, {
+                    activities: value
                   })
                   .then(function (response) {
                   console.log(response)
@@ -283,45 +294,7 @@ const ParticipantModificationForm = () => {
               return options;
              }
 
-           
-
-             const participantData = {
-              user,
-              firstname:"",
-              lastname:"",
-              dateOfBirth: "",
-              schoolLevel: "",
-              schoolType: "",
-              schoolName:"",
-              address:"",
-              city:"",
-              postalCode:"",
-              ParentOne:{
-                firstName:"",
-                lastName:"",
-                phoneNumber:"",
-                email:""
-               },
-               ParentTwo:{
-                firstName:"",
-                lastName:"",
-                phoneNumber:"",
-                email:""
-              },
-              activities: []
-            //   emergencyContact: {
-            //     // particpantId: ,
-            //     firstName:"",
-            //     lastName:"",
-            //     phoneNumber:""
-            // }
-          }
-            
-       
         
-          
-
-
 
   return (
 <>
@@ -340,14 +313,18 @@ const ParticipantModificationForm = () => {
 
     <section>
   <div class="container py-5">
+
+  <h3>Modification des information</h3>
     
 
     <div class="row">
       <div class="col-lg-4">
-        <div class="card mb-4">
+        <div class="card details-card mb-4">
           <div class="card-body text-center">
-            <img src={avatar} alt="avatar"
+          <div className='icon-container'>
+            <img src = {`${participant.image}`} alt={participant.image}
               class="img-fluid" />
+              </div>
             <h5 class="my-3">{participant.lastname} {participant.firstname}</h5>
             <p class="text-muted mb-1">{participant.schoolLevel?.level}</p>
             <p class="text-muted mb-4">{participant?.schoolName}</p>
@@ -410,7 +387,7 @@ const ParticipantModificationForm = () => {
                   saveButtonLabel="Save Me"
                   cancelButtonLabel="Cancel Me"
                   attributes={{ name: "dateOfBirth", id: 1}}
-                  placeholder={participant.dateOfBirth}
+                  placeholder={new Date(participant.dateOfBirth).toLocaleDateString()}
                   />
               </div>
             </div>
@@ -455,7 +432,7 @@ const ParticipantModificationForm = () => {
             <hr/>
             <div className="row">
                  <div className="col-sm-6">
-                 <p>PARENT 1</p>
+                 <p class="details-title" >PARENT 1</p>
             </div>
             </div>
            
@@ -532,7 +509,7 @@ const ParticipantModificationForm = () => {
             <hr/>
             <div className="row">
                  <div className="col-sm-6">
-                 <p>PARENT 2</p>
+                 <p class="details-title">PARENT 2</p>
             </div>
             </div>
            
@@ -601,8 +578,8 @@ const ParticipantModificationForm = () => {
                   onCancel={cancel}
                   saveButtonLabel="Save Me"
                   cancelButtonLabel="Cancel Me"
-                  attributes={{ name: "parentTwo.email", id: 1}}
-                  placeholder={parentTwo.email}
+                  attributes={{ name: "parentTwo.phoneNumber", id: 1}}
+                  placeholder={parentTwo.phoneNumber}
                   />
               </div>
             </div>
@@ -615,7 +592,9 @@ const ParticipantModificationForm = () => {
                 <EasyEdit
                   type={Types.CHECKBOX}
                   options={getOptions()}
-                  onSave={save}
+                  onSave={updateActivities}
+                  onCancel={cancel}
+                  attributes={{ name: "actitvities", id: 1}}
                   placeholder="Choisissez les activités"
                   instructions="Cochez les activités"
                   />
