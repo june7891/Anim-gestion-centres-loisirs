@@ -1,13 +1,19 @@
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import viewIcon from "../../images/view.svg"
 import removeIcon from "../../images/icon-remove.svg"
 import modifyIcon from "../../images/icon-modify.svg"
+import alphabetIcon from "../../images/a-z-blue.svg"
+import alphabetReverseIcon from "../../images/z-a-red.svg"
+
 const ParticipantsList = () => {
 
   const [participants, setParticipants] = useState([]);
+  const [SchoolTypes, setSchoolTypes] = useState([]);
 
   const [filter, setFilter] = useState('');
+
+  const inputSelectFilter = useRef(null);
 
   const handleInput = (e) => {
     const filter = e.target.value;
@@ -25,6 +31,12 @@ const ParticipantsList = () => {
     setParticipants(response.data['hydra:member']);
     
   })
+  axios.get(`/api/school_types`)
+  .then((response) => {
+    // console.log(response.data['hydra:member']);
+    setSchoolTypes(response.data['hydra:member']);
+    
+  })
   
   }, [])
   // console.log(participants);
@@ -35,13 +47,105 @@ const ParticipantsList = () => {
       console.log(response);
       location.reload()
     });
-
   }
+
+
+    // order filter
+
+    const handleParticipantsFilter = (event) => {
+      console.log(event.target.value)
+      const loggedInUser = window.user;
+      const user = loggedInUser?.['@id'];
+    
+      if(event.target.value === "alphabet") {
+     console.log('it works!')
+          axios.get(`/api/participants?user=${user}`)
+          .then((response) => {
+           
+            setParticipants(response.data['hydra:member'].sort((a, b) => a.lastname.localeCompare(b.lastname)));
+            // console.log(data);
+          })
+      }
+      if(event.target.value === "alphabetReverse") {
+    
+          axios.get(`/api/participants?user=${user}`)
+          .then((response) => {
+           
+            setParticipants(response.data['hydra:member'].sort((a, b) => b.lastname.localeCompare(a.lastname)));
+            // console.log(data);
+          })
+      }
+      if(event.target.value === "Maternelle") {
+    
+          axios.get(`/api/participants?user=${user}&schoolType.type=${event.target.value}`)
+          .then((response) => {
+           
+            setParticipants(response.data['hydra:member']);
+            // console.log(data);
+          })
+      }
+      if(event.target.value === "Elémentaire") {
+    
+          axios.get(`/api/participants?user=${user}&schoolType.type=${event.target.value}`)
+          .then((response) => {
+           
+            setParticipants(response.data['hydra:member']);
+            // console.log(data);
+          })
+      }
+      if(event.target.value === "Collège") {
+    
+          axios.get(`/api/participants?user=${user}&schoolType.type=${event.target.value}`)
+          .then((response) => {
+           
+            setParticipants(response.data['hydra:member']);
+            // console.log(data);
+          })
+      }
+      if(event.target.value === "Lycée") {
+    
+          axios.get(`/api/participants?user=${user}&schoolType.type=${event.target.value}`)
+          .then((response) => {
+           
+            setParticipants(response.data['hydra:member']);
+            // console.log(data);
+          })
+      }
+      // if(inputSelectFilter.current.value === "schoolLevel") {
+    
+      //     axios.participants(`/api/participants?user=${user}`)
+      //     .then((response) => {
+           
+      //       setParticipants(response.data['hydra:member'].sort((a, b) => a.schoolLevel?.level.localeCompare(b.schoolLevel?.level)));
+      //       // console.log(data);
+      //     })
+      // }
+     
+     }
+
+
+
   return (
     <>
+    <h3>Mes participants</h3>
 
-      <input type="text" className='search-input' onInput={handleInput}  placeholder='rechercher'/>
-      <select name="" id="">Trier par:</select>
+  <div className='filter-bar'>
+      <input type="text" className='search-input' onInput={handleInput}  placeholder='Rechercher par le nom'/>
+
+    <div className='filter-icons'>
+      <input className="order-btn" type="image" src={alphabetIcon} value="alphabet" ref={inputSelectFilter} onClick={handleParticipantsFilter}/>
+      <input className="order-btn" type="image" src={alphabetReverseIcon} value="alphabetReverse" ref={inputSelectFilter} onClick={handleParticipantsFilter}/>
+  </div>
+ </div>
+    
+    <div className='mt-5 filter-school-type-buttons'>
+      <h5>Trier par type d'école</h5>
+    {SchoolTypes.map((schoolType) => (
+      <button className="login-btn" value={schoolType.type} onClick={handleParticipantsFilter}>{schoolType.type}</button>
+    ))}
+    
+    </div>
+
       <table className="table mx-auto my-5">
   <thead className="thead-dark">
     <tr>

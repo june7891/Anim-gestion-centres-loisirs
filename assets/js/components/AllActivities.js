@@ -69,7 +69,7 @@ const AllActivities = () => {
           <div className='title'>{activity.name}</div>
           <div className='btn-container'>
           <a href={`/activity-details/${activity.id}`}><img className='my-buttons' src={viewIcon} alt="" /></a>
-          <img className='remove-btn' src={removeIcon} alt="" onClick={() => handleDelete(activity.id)}></img>
+          <img className='remove-btn my-buttons' src={removeIcon} alt="" onClick={() => handleDelete(activity.id)}></img>
           <a href={`/activity-modification-form/${activity.id}`}><img className='my-buttons' src={modifyIcon} alt="" /></a>
           </div>
         </div>

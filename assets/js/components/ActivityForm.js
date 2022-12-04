@@ -12,6 +12,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 
+
+
 const ActivityForm = () => {
 
   const [user, setUser] = useState();
@@ -110,58 +112,112 @@ const validationSchema = Yup.object({
 
   return (
     <>
- 
-     
-
-    <div className='activity-form-container'>
+      <div className="activity-form-container">
         <form onSubmit={formik.handleSubmit}>
-  
-            <label htmlFor="activity_name">Nom de l'activité</label>
-            <div className="block-1">
-
-                      <input type="text" name="name" id="activity_name" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} />
-                      {formik.touched.name && formik.errors.name ? <p className='error'>{formik.errors.name}</p> : null}
-                      <label htmlFor="reference">Code de référence</label>
-                      <input type="text" name="reference" id="reference" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.reference}/>
-                      {formik.touched.reference && formik.errors.reference ? <p className='error'>{formik.errors.reference}</p> : null}
-
+          <div className="block-1">
+            <div>
+              <label className="name" htmlFor="activity_name">
+                Nom de l'activité
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="activity_name"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+              />
+              {formik.touched.name && formik.errors.name ? (
+                <p className="error">{formik.errors.name}</p>
+              ) : null}
             </div>
-           
-           <div className="block-2">
+            <label htmlFor="reference">Code de référence</label>
+            <input
+              type="text"
+              name="reference"
+              id="reference"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.reference}
+            />
+            {formik.touched.reference && formik.errors.reference ? (
+              <p className="error">{formik.errors.reference}</p>
+            ) : null}
+          </div>
 
-              <label htmlFor="capacity"> Capacité d'accueil</label>
-           <input className='small-input' type="number" name="capacity" id="capacity" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.capacity} />
-            
-            <label htmlFor="capacity"> Prix</label>
-           <input className='small-input' type="number" name="capacity" id="capacity" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.price} />
-           </div>
+          <div className="block-2">
+            <label  className='capacity' htmlFor="capacity"> Capacité d'accueil</label>
+            <input
+              className="small-input"
+              type="number"
+              name="capacity"
+              id="capacity"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.capacity}
+            />
 
-          
-           
-           <div className="block-3">
+            <label className='price' htmlFor="price"> Prix</label>
+            <input
+              className="small-input"
+              type="number"
+              name="capacity"
+              id="capacity"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.price}
+            />
+          </div>
 
-                 <label htmlFor="started_at"> Heure du début</label>
-                 <input className='small-input' type="time" name="startedAt" id="started_at" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.startedAt}/>
+          <div className="block-3">
+            <label className='hour-start' htmlFor="started_at"> Heure du début</label>
+            <input
+              className="small-input"
+              type="time"
+              name="startedAt"
+              id="started_at"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.startedAt}
+            />
 
-                <label htmlFor="ending_at"> Heure de fin</label>
-                <input className='small-input' type="time" name="endedAt" id="ending_at" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.endedAt}/>
-      
-           </div>
-       
-         
-            <h4>Période d'ouverture</h4>
-        
-            <label htmlFor="startDate"> Date du début</label>
-           <input className='medium-input' type="date" name="startDate" id="startDate" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.startDate}/>
-           
+            <label className='hour-start' htmlFor="ending_at"> Heure de fin</label>
+            <input
+              className="small-input"
+              type="time"
+              name="endedAt"
+              id="ending_at"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.endedAt}
+            />
+          </div>
 
-            <label htmlFor="endDate"> Date de fin</label>
-           <input className='medium-input' type="date" name="endDate" id="endDate" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.endDate}/>
-  
-           <h4>Jours d'ouverture</h4>
+          <label className="start-date" htmlFor="startDate"> Date du début</label>
+          <input
+            className="medium-input"
+            type="date"
+            name="startDate"
+            id="startDate"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.startDate}
+          />
 
-     
-        {/* <div>
+          <label htmlFor="endDate"> Date de fin</label>
+          <input
+            className="medium-input"
+            type="date"
+            name="endDate"
+            id="endDate"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.endDate}
+          />
+
+          {/* <h4>Jours d'ouverture</h4> */}
+
+          {/* <div>
           <DatePicker
           name={`activityDay[0]['activityDate']`}
           selected={selectedDates}
@@ -186,15 +242,16 @@ const validationSchema = Yup.object({
         
         </div> */}
 
-           <div className='btn-container' ><p>Enregistrer la nouvelle activité</p><button className='save-button' type='submit'></button></div>
+          <div className="save-btn-container">
+            <input className="login-btn" type="submit" value="Enregistrer" />
+          </div>
         </form>
+        {/* <button className='save-button' type='submit'></button> */}
 
-     
-         {/* <p key={days.id}> {days}</p> */}
-    </div>
+        {/* <p key={days.id}> {days}</p> */}
+      </div>
     </>
-   
-  )
+  );
 }
 
 export default ActivityForm

@@ -44,7 +44,44 @@ const ActivityModificationForm = () => {
         .catch(function (error) {
         console.log(error);
     })
+  }
+      const updatePrice = (value) => {
+        // console.log(Number(value))
+        axios.put(`/api/activities/${id}`, {
+          price: Number(value)
+        })
+        .then(function (response) {
+        console.log(response)
+        })
+        .catch(function (error) {
+        console.log(error);
+    })
+  }
+      const updateName = (value) => {
+        // console.log(Number(value))
+        axios.put(`/api/activities/${id}`, {
+          name: value
+        })
+        .then(function (response) {
+        console.log(response)
+        })
+        .catch(function (error) {
+        console.log(error);
+    })
    }
+      const updateReference = (value) => {
+        // console.log(Number(value))
+        axios.put(`/api/activities/${id}`, {
+          reference: value
+        })
+        .then(function (response) {
+        console.log(response)
+        })
+        .catch(function (error) {
+        console.log(error);
+    })
+   }
+
   return (
     <>
     <nav>
@@ -69,8 +106,27 @@ const ActivityModificationForm = () => {
         <div class="card-body text-center">
           <img src={activityIcon} alt="avatar"
             class="img-fluid" />
-          <h5 class="my-3">{activity.name} </h5>
-          <p class="text-muted mb-1"> N° de référence: {activity.reference}</p>
+          <h5 class="my-3">   <EasyEdit
+                  type="text"
+                  onSave={updateName}
+                  onCancel={cancel}
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
+                  attributes={{ name: "name", id: 1}}
+                  placeholder={activity.name}
+                  value={activity.name}
+                  />
+                  </h5>
+          <p class="text-muted mb-1"> N° de référence:<EasyEdit
+                  type="text"
+                  onSave={updateReference}
+                  onCancel={cancel}
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
+                  attributes={{ name: "reference", id: 1}}
+                  placeholder={activity.reference}
+                  value={activity.reference}
+                  /></p>
           <p class="text-muted mb-1"> Periode: {new Date(activity.startDate).toLocaleDateString()} - {new Date(activity.endDate).toLocaleDateString()}</p>
      
         </div>
@@ -89,8 +145,8 @@ const ActivityModificationForm = () => {
                   type="number"
                   onSave={updateCapacity}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "capacity", id: 1}}
                   placeholder={activity.capacity}
                   value={activity.capacity}
@@ -112,7 +168,16 @@ const ActivityModificationForm = () => {
               <p class="mb-0">Prix</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{activity.price}</p>
+              <p class="text-muted mb-0">  <EasyEdit
+                  type="number"
+                  onSave={updatePrice}
+                  onCancel={cancel}
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
+                  attributes={{ name: "price", id: 1}}
+                  placeholder={activity.price}
+                  value={activity.price}
+                  /></p>
             </div>
           </div>
           <hr/>

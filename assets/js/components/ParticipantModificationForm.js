@@ -347,8 +347,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParticipantLastname}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "lastname", id: 1}}
                   placeholder={participant.lastname}
                   value={participant.lastname}
@@ -366,8 +366,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParticipantFirstname}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "firstname", id: 2}}
                   placeholder={participant.firstname}
                   />
@@ -384,8 +384,8 @@ const ParticipantModificationForm = () => {
                   type={Types.DATE}
                   onSave={updateParticipantDateOfBirth}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "dateOfBirth", id: 1}}
                   placeholder={new Date(participant.dateOfBirth).toLocaleDateString()}
                   />
@@ -402,8 +402,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParticipantAddress}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "address", id: 1}}
                   placeholder={participant.address}
                 
@@ -412,8 +412,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParticipantPostalCode}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "postalCode", id: 1}}
                   placeholder={participant.postalCode}
         
@@ -422,8 +422,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParticipantCity}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "city", id: 1}}
                   placeholder={participant.city}
                   />
@@ -445,8 +445,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParentOneLastname}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "parentOne.lastName", id: 1}}
                   placeholder={parentOne.lastName}
                   />
@@ -463,8 +463,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParentOneFirstname}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "parentOne.firstName", id: 1}}
                   placeholder={parentOne.firstName}
                   />
@@ -481,8 +481,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParentOneEmail}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "parentOne.email", id: 1}}
                   placeholder={parentOne.email}
                   />
@@ -499,8 +499,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParentOnePhoneNumber}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "parentOne.phoneNumber", id: 1}}
                   placeholder={parentOne.phoneNumber}
                   />
@@ -522,8 +522,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParentTwoLastname}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "parentTwo.lastName", id: 1}}
                   placeholder={parentTwo.lastName}
                   />
@@ -540,8 +540,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParentTwoFirstname}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "parentTwo.firstName", id: 1}}
                   placeholder={parentTwo.firstName}
                   />
@@ -558,8 +558,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParentTwoEmail}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "parentTwo.email", id: 1}}
                   placeholder={parentTwo.email}
                   />
@@ -576,8 +576,8 @@ const ParticipantModificationForm = () => {
                   type={Types.TEXT}
                   onSave={updateParentTwoPhoneNumber}
                   onCancel={cancel}
-                  saveButtonLabel="Save Me"
-                  cancelButtonLabel="Cancel Me"
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "parentTwo.phoneNumber", id: 1}}
                   placeholder={parentTwo.phoneNumber}
                   />

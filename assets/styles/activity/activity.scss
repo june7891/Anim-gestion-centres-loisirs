@@ -12,15 +12,43 @@
 
     .activity-form-container {
   
-        margin: 0 auto;
+        margin-left:pxToVw(180px, 1512px);
         
             form {
                 width: pxToVw(700px, 1512px);
+                .block-1 {
+                    .name {
+                        margin-left: pxToVw(20px, 1512px);
+                    }
+                }
+                .block-2{
+                    .capacity {
+                        margin-left: pxToVw(5px, 1512px);
+                    }
+                    .price {
+                        margin-left: pxToVw(105px, 1512px);
+                    }
+                }
+                .block-3{
+                    .hour-start {
+                        margin-left: pxToVw(30px, 1512px);
+                    }
+                }
+
+                .start-date {
+                    margin-left: pxToVw(42px, 1512px);
+                }
+            
+
+
                 input {
                     margin-bottom: pxToVw(50px, 1512px);
                     margin-right: pxToVw(50px, 1512px);
                 }
-
+                
+                label {
+                    font-size: pxToVw(20px, 1512px);
+                }
                 .small-input {
                     width: pxToVw(70px, 1512px);
                 }
@@ -31,19 +59,26 @@
       
             }
             
-         
-                   .save-button {
-                background-image: url("../../images/add-icon.svg");
-                background-repeat: no-repeat; 
-                background-position: 0px 0px;
-                border: none;           /* assuming we don't want any borders */
-                cursor: pointer;        /* make the cursor like hovering over an <a> element */
-                height: pxToVw(100px, 1512px);           /* make this the size of your image */
-                width: pxToVw(50px, 1512px);           /* make this the size of your image */
-                padding-left: pxToVw(100px, 1512px);     /* make text start to the right of the image */
-                vertical-align: middle; /* align the text vertically centered */
+            .save-btn-container {
+               margin-left: pxToVw(800px, 1512px);
+
+                .save-button {
+                    border: none;
+                    width: pxToVw(100px, 1512px);
+                // background-image: url("../../images/add-icon.svg");
+                // background-repeat: no-repeat; 
+                // background-position: 0px 0px;
+                // border: none;           /* assuming we don't want any borders */
+                // cursor: pointer;        /* make the cursor like hovering over an <a> element */
+                // height: pxToVw(100px, 1512px);           /* make this the size of your image */
+                // width: pxToVw(50px, 1512px);           /* make this the size of your image */
+                // padding-left: pxToVw(100px, 1512px);     /* make text start to the right of the image */
+                // vertical-align: middle; /* align the text vertically centered */
                 
             }
+            }
+         
+           
             
          
         
@@ -69,10 +104,11 @@
     margin-top: pxToVw(100px, 1512px);
 
     .card {
-        height: pxToVw(430px, 1920px);
+        height: pxToVw(450px, 1920px);
         width: pxToVw(411px, 1920px);
         border: 2.5px solid var(--primary-blue);
         border-radius: pxToVw(6px, 1920px);
+        align-items: center;
         &:hover {
             border: 2.5px solid var(--secondary-red);
         }
@@ -95,9 +131,7 @@
                 // }
                
             }
-            .img-participant {
-                height: pxToVw(310px, 1920px);
-            }
+         
         }
 
         .title {
@@ -115,11 +149,12 @@
             display: flex;
             flex-wrap: wrap;
             gap: pxToVw(20px, 1512px);
-           margin-left: pxToVw(100px, 1512px);
-           margin-top: pxToVw(20px, 1512px);
-           padding-bottom: pxToVw(20px, 1512px);
-        
-    }
+            margin-top: pxToVw(20px, 1512px);
+            padding-bottom: pxToVw(20px, 1512px);
+
+           .my-buttons {
+            height: pxToVw(40px, 1512px);
+           }
     }
 
 }
@@ -164,3 +199,5 @@
         border: 1px solid var(--primary-blue);
     }
 }
+
+  }

@@ -40,7 +40,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
         ]
         ])
         ]
-#[ApiFilter(SearchFilter::class, properties: ['user' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['user' => 'exact', 'schoolLevel.level' => 'exact', 'schoolType.type' => 'exact'] )]
 #[Vich\Uploadable]
 class Participant
 {

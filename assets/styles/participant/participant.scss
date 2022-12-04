@@ -1,13 +1,19 @@
 @import '../functions';
 
     .links {
-     
-        li {
+
+        ul {
+            margin-top: pxToVw(40px, 1512px);
+
+            li {
             cursor: pointer;
             &:hover{
                 color: var(--secondary-red);
             }
         }
+        }
+     
+        
     }
     .form-container {
       
@@ -244,7 +250,39 @@ input[type=file]::file-selector-button:hover {
   }
 
 
-  .search-input {
+  .filter-bar {
+    display: flex;
+        margin-top: pxToVw(80px, 1512px);
+      .search-input {
     margin-left: pxToVw(240px, 1512px);
-    margin-top: pxToVw(100px, 1512px);
+
+    
+  }
+
+
+  .filter-icons {
+
+    // margin-top: 50px;
+      .order-btn {
+    border: none;
+    height: pxToVw(50px, 1512px);
+    width: pxToVw(40px, 1512px);
+    margin-left: pxToVw(40px, 1512px);
+    // padding-top: pxToVw(20px, 1512px);
+    // padding-bottom: pxToVw(20px, 1512px);
+    
+  }
+  }
+  }
+
+  .filter-school-type-buttons {
+    margin-left: pxToVw(190px, 1512px);
+    h5 {
+        font-size: pxToVw(20px, 1512px);
+        margin-left: pxToVw(50px, 1512px);
+    }
+    .login-btn {
+        margin-left: pxToVw(50px, 1512px);
+    }
+  
   }

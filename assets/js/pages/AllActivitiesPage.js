@@ -37,7 +37,7 @@ const ActivityPage = () => {
 
       <Modal dialogClassName="activity-modal" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Crééz votre activité</Modal.Title>
+          <Modal.Title> <h3>Crééz votre activité</h3> </Modal.Title>
         </Modal.Header>
         <Modal.Body> <div><ActivityForm/></div></Modal.Body>
         <Modal.Footer>
