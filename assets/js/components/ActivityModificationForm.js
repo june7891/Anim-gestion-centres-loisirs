@@ -81,6 +81,30 @@ const ActivityModificationForm = () => {
         console.log(error);
     })
    }
+      const updateStartDate = (value) => {
+        // console.log(Number(value))
+        axios.put(`/api/activities/${id}`, {
+          startDate: value
+        })
+        .then(function (response) {
+        console.log(response)
+        })
+        .catch(function (error) {
+        console.log(error);
+    })
+   }
+      const updateEndDate = (value) => {
+        // console.log(Number(value))
+        axios.put(`/api/activities/${id}`, {
+          endDate: value
+        })
+        .then(function (response) {
+        console.log(response)
+        })
+        .catch(function (error) {
+        console.log(error);
+    })
+   }
 
   return (
     <>
@@ -117,7 +141,8 @@ const ActivityModificationForm = () => {
                   value={activity.name}
                   />
                   </h5>
-          <p class="text-muted mb-1"> N° de référence:<EasyEdit
+          <p class="text-muted mb-1"> N° de référence:
+                  <EasyEdit
                   type="text"
                   onSave={updateReference}
                   onCancel={cancel}
@@ -126,8 +151,34 @@ const ActivityModificationForm = () => {
                   attributes={{ name: "reference", id: 1}}
                   placeholder={activity.reference}
                   value={activity.reference}
-                  /></p>
-          <p class="text-muted mb-1"> Periode: {new Date(activity.startDate).toLocaleDateString()} - {new Date(activity.endDate).toLocaleDateString()}</p>
+                  />
+            </p>
+          <p class="text-muted mb-1"> Periode: 
+                  <EasyEdit
+                  type="date"
+                  onSave={updateStartDate}
+                  onCancel={cancel}
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
+                  attributes={{ name: "startDate", id: 1}}
+                  placeholder={new Date(activity.startDate).toLocaleDateString()}
+                  value={new Date(activity.startDate).toLocaleDateString()}
+                  />
+                  -
+                  <EasyEdit
+                  type="date"
+                  onSave={updateEndDate}
+                  onCancel={cancel}
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
+                  attributes={{ name: "endDate", id: 1}}
+                  placeholder={new Date(activity.endDate).toLocaleDateString()}
+                  value={new Date(activity.endDate).toLocaleDateString()}
+                  />
+          
+          {/* {new Date(activity.startDate).toLocaleDateString()} - {new Date(activity.endDate).toLocaleDateString()} */}
+          
+          </p>
      
         </div>
       </div>
@@ -168,7 +219,8 @@ const ActivityModificationForm = () => {
               <p class="mb-0">Prix</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">  <EasyEdit
+              <p class="text-muted mb-0">  
+                  <EasyEdit
                   type="number"
                   onSave={updatePrice}
                   onCancel={cancel}

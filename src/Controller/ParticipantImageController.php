@@ -27,7 +27,7 @@ class ParticipantImageController extends AbstractController
         $uploadedInsurance = $request->files->get('insurance');
         $uploadedFicheSanitaire = $request->files->get('ficheSanitaire');
         // dd($uploadedImage);      
-        $destination = $this->getParameter('kernel.project_dir').'/assets/images/uploads/participants_images';
+        $destination = $this->getParameter('kernel.project_dir').'/public/images/uploads/participants_images';
         // dd($destination);
         // dd($uploadedImage->move($destination));
         // dd($uploadedImage->getClientOriginalName(), PATHINFO_FILENAME);
@@ -36,7 +36,8 @@ class ParticipantImageController extends AbstractController
         $originalImageName = pathinfo($uploadedImage->getClientOriginalName(), PATHINFO_FILENAME);
     
         $newImageName = $originalImageName. '-' . uniqid().'.'.$uploadedImage->guessExtension();
-        // dd($newImageName);
+        // $completeUrl = $destination . $newImageName;
+        // dd();
         $movedImage = $uploadedImage->move($destination, $newImageName);
         // dd($movedImage);
 

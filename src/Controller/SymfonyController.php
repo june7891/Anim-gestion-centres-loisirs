@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Message;
+use App\Repository\ParticipantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,8 +55,7 @@ class SymfonyController extends AbstractController
         ]);
     }
 
-
-
+  
     #[Route('/sendMessage', name: 'app_message')]
     public function sendMessage(Request $request, MailerInterface $mailer, EntityManagerInterface $em){
 

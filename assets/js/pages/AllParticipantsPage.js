@@ -306,7 +306,7 @@ const validationSchema = Yup.object({
 
           
 
-           <div className='save-button'><p>Enregistrer participant</p><button type="submit"></button></div>
+          <div className='save-btn-container'><button className='login-btn' type="submit">Enregistrer</button></div>
         </form>
     </div>
         

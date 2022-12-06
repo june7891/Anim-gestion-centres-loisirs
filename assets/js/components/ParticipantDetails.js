@@ -10,6 +10,7 @@ import modifyIcon from "../../images/icon-modify.svg"
 
 
 
+
 const ParticipantDetails = () => {
 
     const [participant, setParticipant] = useState([]);
@@ -22,6 +23,25 @@ const ParticipantDetails = () => {
     let params = useParams();
     const id = params.id;
 
+
+    useEffect(() => {
+      axios.get(`/api/participants/${id}`)
+        .then (response => {
+          console.log(response.data);
+          const data = response.data;
+          setParticipant(data);
+          console.log(data.ParentOne);
+          setParentOne(data.ParentOne);
+          setParentTwo(data.ParentTwo);
+          setActivities(data.activities);
+        })
+        
+      
+   
+    }, [id]);
+
+   
+
     const initialValues = {
       image: "",
       vaccination:"",
@@ -29,9 +49,7 @@ const ParticipantDetails = () => {
       ficheSanitaire:""
   }
 
-  const config = {     
-    headers: { 'content-type': 'multipart/form-data' }
-}
+ 
 
   const onSubmit = values => {
     console.log(values.image);
@@ -54,7 +72,8 @@ const ParticipantDetails = () => {
             headers: { "Content-Type": "multipart/form-data" }
   })
     .then(function (response) {
-    console.log(response.data)
+    console.log(response)
+    window.location.reload();
   
     })
     .catch(function (error) {
@@ -68,28 +87,10 @@ const ParticipantDetails = () => {
     onSubmit
   });
 
-    useEffect(() => {
-        const getParticipant = async () => {
-          await axios.get(`/api/participants/${id}`)
-          .then (response => {
-            console.log(response.data);
-            const data = response.data;
-            setParticipant(data);
-            console.log(data.ParentOne);
-            setParentOne(data.ParentOne);
-            setParentTwo(data.ParentTwo);
-            setActivities(data.activities);
-            
-            console.log(data.image)
-          })
-          };
-        getParticipant();
-        // setImage(data.image);
-
-      }, [id]);
 
 
-      console.log(participant)
+
+     
       
 
   return (
@@ -113,14 +114,14 @@ const ParticipantDetails = () => {
   <h3>Fiche de renseignements</h3>
 
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-4 text-center">
         <div class="card details-card mb-4">
-          <div class="card-body text-center">
-          <div className='icon-container'>
-            <img src={`../../images/uploads/participants_images/${participant.image}`} alt={participant.image}
-              class="img-fluid" />
-              </div>
-            <h5 class="my-3">{image} {participant.firstname}</h5>
+          <div class="participant-card-body card-body text-center">
+          {/* <div className='profile-image-container'> */}
+           {participant.image &&  <img src={ require(`../../../public/images/${participant.image}`)} alt={participant.image} class="img-fluid" />}
+            {/* <img src={ require(`../../../public/images/${image}`)} alt={participant.image} class="img-fluid" /> */}
+              {/* </div> */}
+            <h5 class="my-3"> {participant.firstname}</h5>
             <p class="text-muted mb-1">Classe: {participant.schoolLevel?.level}</p>
             <p class="text-muted mb-4">Ecole: {participant?.schoolName}</p>
        
@@ -280,23 +281,27 @@ const ParticipantDetails = () => {
 
             <div className='row-9'>
 
-            <h4>Joindre les pièces complémentaires</h4>
+            <p className='details-title'>Joindre les pièces complémentaires</p>
 
               <form onSubmit={formik.handleSubmit} className="file-form">
             <label htmlFor="photo">Photo</label>
             <input type="file" id="photo" name="image" accept="image/png, image/jpeg" onChange={(e) => formik.setFieldValue('image', e.target.files[0])}/>
-            {/* <a href={require("../../images/uploads/participants_images/" + participant?.image)} download/> */}
+           
+            {participant.image &&   <a href={require(`../../../public/images/${participant.image}`)} download>Photo</a>}
             <label htmlFor="fiche_sanitaire">Fiche sanitaire</label>
             <input type="file" id="fiche_sanitaire" name="ficheSanitaire" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('ficheSanitaire', e.target.files[0])}/>
-            {/* <a href= {require(`../../../public/uploads/participants_images/${participant.ficheSanitaire}`)} download/> */}
+           
+            {participant.ficheSanitaire &&   <a href={require(`../../../public/images/${participant.ficheSanitaire}`)} download>Fiche sanitaire</a>}
             <label htmlFor="vaccination">Vaccins</label>
             <input type="file" id="vaccination" name="vaccination" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('vaccination', e.target.files[0])}/>
-            {/* <a href= {require(`../../../public/uploads/participants_images/${participant.vaccination}`)} download/> */}
+            
+            {participant.vaccination &&   <a href={require(`../../../public/images/${participant.vaccination}`)} download>Vaccins</a>}
             <label htmlFor="insurance">Assurance</label>
             <input type="file" id="insurance" name="insurance" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('insurance', e.target.files[0])}/>
-            {/* <a href= {require(`images/${participant.insurance}`)} download/> */}
-            <p>{participant.insurance}</p>
-                <button className='add-btn' type="submit"></button>
+          
+            {participant.insurance &&   <a href={require(`../../../public/images/${participant.insurance}`)} download>Assurance</a>}
+    
+                <button className='login-btn' type="submit">Enregistrer</button>
             </form>
           </div>
        

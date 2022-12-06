@@ -27,34 +27,34 @@
 
 
         .row-1, .row-2, .row-3, .row-4, .row-5, .row-6, .row-7, .row-8, .row-9 {
-            margin-bottom: 40px;
+            margin-bottom: pxToVw(40px, 1512PX);
         }
 
         .row-2 {
         
-            margin-left: 80px;
+            margin-left: pxToVw(80px, 1512px);
       
             .school_type {
-                margin-left: 62px;
+                margin-left: pxToVw(62px, 1512px);
             }
 
             .school_name {
-                margin-left: 50px;
+                margin-left: pxToVw(50px, 1512px);
             }
         }
 
         .row-3 {
             .city {
-                margin-left: 12px;
+                margin-left: pxToVw(12px, 1512px);
             }
             .postal_code {
-                margin-left: 44px
+                margin-left: pxToVw(44px, 1512px);
             }
         }
 
         .row-4 {
             .lastName {
-                margin-left: 10px;
+                margin-left: pxToVw(10px, 1512px);
             }
             .parentOne{
                 color: var(--secondary-red);
@@ -64,7 +64,7 @@
 
         .row-5 {
             .email {
-                margin-left: 18px;
+                margin-left: pxToVw(18px, 1512px);
             }
         }
 
@@ -74,7 +74,7 @@
                 font-weight: bold;
             }
             .lastName {
-                margin-left: 10px;
+                margin-left: pxToVw(10px, 1512px);
             }
         }
         
@@ -118,11 +118,11 @@
               }
         }
 
-  
+            
         }
 
         h3 {
-            margin-top: pxToVw(800px, 1512px);
+            margin-top: pxToVw(80px, 1512px);
         }
             .save-button {
                 margin-left: 100px;
@@ -139,7 +139,6 @@
                     height: 100px;           /* make this the size of your image */
                     padding-left: 100px;     /* make text start to the right of the image */
                     vertical-align: middle; /* align the text vertically centered */
-                    
                 }
             }
         }
@@ -185,6 +184,7 @@
     background-color: var(--secondary-red);
     border-radius: pxToVw(4px, 1512px);
     padding: pxToVw(15px, 1512px) pxToVw(40px, 1512px);
+    margin-left: pxToVw(10px, 1512px);
     
    &:hover {
     color: var(--secondary-red);
@@ -225,13 +225,27 @@ input[type=file]::file-selector-button:hover {
     background-color: var(--secondary-red);
     text-align: center;
     color: white;
-    width: pxToVw(780px, 1512px);
+    width: pxToVw(660px, 1512px);
     padding-top: pxToVw(10px, 1512px) ;
     padding-bottom: pxToVw(10px, 1512px) ;
     border-radius: pxToVw(6px, 1512px);
     
   }
 
+  .participant-card-body {
+    img {
+        height: pxToVw(300px, 1512px);
+        width: pxToVw(300px, 1512px);
+    }
+  }
+
+  .profile-image-container {
+
+    height: pxToVw(100px, 1512px);
+    width: pxToVw(100px, 1512px);
+   
+
+  }
 
   // Participants list styling
 

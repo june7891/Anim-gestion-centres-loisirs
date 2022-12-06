@@ -97,6 +97,7 @@ select{
 
 label {
     margin-right: pxToVw(20px, 1512px);
+    margin-left: pxToVw(20px, 1512px);
 }
 
 ::-webkit-scrollbar {
@@ -105,3 +106,11 @@ label {
   ::-webkit-scrollbar-thumb {
     background: var(--primary-blue);
   }
+
+
+input[type=checkbox] {
+
+    height: pxToVw(25px, 1512px);
+    width: pxToVw(25px, 1512px);
+
+}

@@ -54,6 +54,7 @@ const ActivityForm = () => {
 
     values.user = user;
     console.log(values);
+    // console.log(values.activityDay[0].activityDate.toLocaleDateString());
   
     
 
@@ -89,21 +90,21 @@ const validationSchema = Yup.object({
   });
 
 // datepicker
-// const [selectedDates, setSelectedDates] = useState();
-// const [displayDateArray, setDisplayDateArray] = useState([]);
-// const [array, setArray] = useState([]);
+const [selectedDates, setSelectedDates] = useState();
+const [displayDateArray, setDisplayDateArray] = useState([]);
+const [array, setArray] = useState([]);
 
 
-// const handleChange = (date) => {
+const handleChange = (date) => {
 
-//   let myDate = new Date(date).toLocaleDateString();
-//   const formatDate = moment().format("YYYY-MM-DD");
-//   setSelectedDates(date);
-//   setArray(current => [...current, myDate ])
-//   setDisplayDateArray(current => [...current, myDate]);
+  let myDate = new Date(date);
+  const formatDate = moment().format("YYYY-MM-DD");
+  setSelectedDates(date);
+  setArray(current => [...current, myDate ])
+  setDisplayDateArray(current => [...current, myDate]);
 
    
-// }
+}
 // console.log(array);
 
 
@@ -215,9 +216,9 @@ const validationSchema = Yup.object({
             value={formik.values.endDate}
           />
 
-          {/* <h4>Jours d'ouverture</h4> */}
+          <h4>Jours d'ouverture</h4>
 
-          {/* <div>
+          <div>
           <DatePicker
           name={`activityDay[0]['activityDate']`}
           selected={selectedDates}
@@ -240,15 +241,15 @@ const validationSchema = Yup.object({
       
        ))}
         
-        </div> */}
+        </div>
 
           <div className="save-btn-container">
             <input className="login-btn" type="submit" value="Enregistrer" />
           </div>
         </form>
-        {/* <button className='save-button' type='submit'></button> */}
+  
 
-        {/* <p key={days.id}> {days}</p> */}
+        {/* <p > {displayDateArray}</p>  */}
       </div>
     </>
   );

@@ -52,7 +52,8 @@ security:
         - { path: ^/all-acitivities, role: ROLE_USER }
         - { path: ^/activity-details/[0-9]+, role: ROLE_USER }
         - { path: ^/participant-details/[0-9]+, role: ROLE_USER }
-        - { path: ^/participant-modification-form/[0-9]+, role: ROLE_USER }
+        - { path: ^/participant-modification-form/[0-9]+, role: ROLE_ADMIN }
+        - { path: ^/activity-modification-form/[0-9]+, role: ROLE_ADMIN }
         - { path: ^/activity/list/[0-9]+, role: ROLE_USER }
         
 

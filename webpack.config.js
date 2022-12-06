@@ -22,6 +22,7 @@ Encore
         // only copy files matching this pattern
         //pattern: /\.(png|jpg|jpeg)$/
       })
+
     
     // public path used by the web server to access the output path
     .setPublicPath('/build')
@@ -62,9 +63,9 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // configure Babel
-    // .configureBabel((config) => {
-    //     config.plugins.push('@babel/a-babel-plugin');
-    // })
+    .configureBabel((config) => {
+        config.plugins.push('@babel/plugin-transform-runtime');
+    })
 
     // enables and configure @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
@@ -80,6 +81,7 @@ Encore
 
     // uncomment if you use React
     .enableReactPreset()
+
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
