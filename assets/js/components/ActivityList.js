@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import loadingIcon from '../../images/Loading_icon.gif';
+import SecondaryNavBar from "../components/SecondaryNavBar.js"
 
 
 const ActivityList = () => {
@@ -10,7 +12,7 @@ const ActivityList = () => {
   const [date, setDate] = useState();
 
   const [checked, setChecked] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   
 const handleCheckCount = (e, item) => {
 
@@ -50,11 +52,14 @@ console.log(checked.length);
       })
       };
     getActivity();
+    setLoading(false);
   }, [id]);
 
 
   return (
     <>
+
+    <SecondaryNavBar/>
 
   <div className=''>
 
@@ -73,9 +78,9 @@ console.log(checked.length);
   </tr>
 </thead>
 <tbody>
-{participants.map((participant, index) => (
+{loading ? <img className='loading-icon' src={loadingIcon}/> : participants.map((participant, index) => (
   <tr>
-    <th key={participant.id} scope="row">1</th>
+    <th key={participant.id} scope="row">{index+1}</th>
     <td>{participant.firstname}</td>
     <td>{participant.lastname}</td>
     <td><input type="checkbox" id={participant['@id']} name="present" value={participant['@id']} onChange={(e) => handleCheckCount(e, participant.id)}/></td>

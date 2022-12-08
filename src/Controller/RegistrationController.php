@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Enterprise;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
@@ -20,6 +21,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
+        $enterprise = new Enterprise();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -31,8 +33,11 @@ class RegistrationController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
-
+            $user->setRoles(array('ROLE_ADMIN'));
+            $enterprise = $form->get('enterprise')->getData();
+            $user->setEnterprise($enterprise);
             $entityManager->persist($user);
+            $entityManager->persist($enterprise);
             $entityManager->flush();
             // do anything else you need here, like send an email
 

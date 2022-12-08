@@ -54,6 +54,13 @@ class SymfonyController extends AbstractController
             'controller_name' => 'SymfonyController',
         ]);
     }
+    #[Route('/user-account', name: 'app_user_account')]
+    public function account(): Response
+    {
+        return $this->render('symfony/user-account.html.twig', [
+            'controller_name' => 'SymfonyController',
+        ]);
+    }
 
   
     #[Route('/sendMessage', name: 'app_message')]

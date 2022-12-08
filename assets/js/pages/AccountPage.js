@@ -5,6 +5,7 @@ import activityIcon from '../../images/activity-icon.svg';
 import addIcon from '../../images/add-icon.svg';
 import foldersIcon from '../../images/folders-icon.svg';
 import { Link } from "react-router-dom";
+import NavBar from '../components/NavBar';
 
 
 
@@ -22,16 +23,8 @@ const Account_page = () => {
 
   return (
     <>
-     <nav>
-        <a href="/homepage"><img src={logo} alt="" /></a> 
-        <div className="links">
-            <ul>
-            <li>Bonjour, {user.email}</li>
-            <li> <a href="/logout">Me déconnecter</a></li>
-        </ul>
-        </div>
-        
-    </nav>
+      <NavBar/>
+
        <div className='account-cards-container'>
        <a href="/all-activities">
         <div className='card'>

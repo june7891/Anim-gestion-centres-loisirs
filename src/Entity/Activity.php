@@ -26,7 +26,7 @@ use ApiPlatform\Core\Annotation\ApiFilter;
         ]
         ]
 )]
-#[ApiFilter(SearchFilter::class, properties: ['user' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['enterprise' => 'exact'])]
 class Activity
 {
     /**
@@ -92,24 +92,21 @@ class Activity
     private $endDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="activities")
+     * @ORM\ManyToOne(targetEntity=Enterprise::class, inversedBy="activities")
+     * @ORM\JoinColumn(nullable=false)
      */
     #[Groups(['read:Activity', 'write:Activity'])]
-    private $user;
+    private $enterprise;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ActivityDay::class, inversedBy="activities", cascade={"persist", "remove"})
-     */
-    #[Groups(['read:Activity', 'write:Activity'])]
-    private $activityDay;
+  
 
+ 
 
  
 
     public function __construct()
     {
         $this->participants = new ArrayCollection();
-        $this->activityDay = new ArrayCollection();
    
     }
 
@@ -241,42 +238,21 @@ class Activity
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getEnterprise(): ?Enterprise
     {
-        return $this->user;
+        return $this->enterprise;
     }
 
-    public function setUser(?User $user): self
+    public function setEnterprise(?Enterprise $enterprise): self
     {
-        $this->user = $user;
+        $this->enterprise = $enterprise;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, ActivityDay>
-     */
-    public function getActivityDay(): Collection
-    {
-        return $this->activityDay;
-    }
+   
 
-    public function addActivityDay(ActivityDay $activityDay): self
-    {
-        if (!$this->activityDay->contains($activityDay)) {
-            $this->activityDay[] = $activityDay;
-        }
-
-        return $this;
-    }
-
-    public function removeActivityDay(ActivityDay $activityDay): self
-    {
-        $this->activityDay->removeElement($activityDay);
-
-        return $this;
-    }
-
+   
 
 
   

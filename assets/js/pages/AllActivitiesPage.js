@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import logo from '../../images/Logo_blue.svg';
 import AllActivities from '../components/AllActivities';
@@ -15,6 +15,16 @@ const ActivityPage = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [user, setUser] = useState([]);
+
+
+
+  useEffect(() => {
+    const loggedInUser = window.user;
+    if(loggedInUser) {
+      setUser(loggedInUser?.['roles'])
+    }
+  })
 
   return (
     <>
@@ -23,7 +33,7 @@ const ActivityPage = () => {
               <div className="links">
                   <ul>
                       <li><Link to ="/all-participants">Mes participants</Link> </li>
-                      <li onClick={handleShow}>Créer une activité </li>
+                      {user[0] === 'ROLE_USER' ? '' : <li onClick={handleShow}>Créer une activité </li>}
                       <li><Link to="/">Se déconnecter</Link></li>
                  </ul>
              </div>

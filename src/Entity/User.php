@@ -37,7 +37,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
             'output' => false
         ]
         ],
-        normalizationContext: ['group' => ['read:User']]
+        normalizationContext: ['group' => ['read:User']],
+        denormalizationContext: ['group' => ['write:User']]
 )]
 #[UniqueEntity(fields: ['email'], message: 'Cette adresse email est déjà utilisé!')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -68,21 +69,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="user")
-     */
-    private $activities;
 
+ 
     /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="user")
+     * @ORM\ManyToOne(targetEntity=Enterprise::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $participants;
+    #[Groups(['read:User', 'write:User'])]
+    private $enterprise;
 
-    public function __construct()
-    {
-        $this->activities = new ArrayCollection();
-        $this->participants = new ArrayCollection();
-    }
+
 
     public function getId(): ?int
     {
@@ -154,62 +150,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection<int, Activity>
-     */
-    public function getActivities(): Collection
+
+
+
+    public function getEnterprise(): ?Enterprise
     {
-        return $this->activities;
+        return $this->enterprise;
     }
 
-    public function addActivity(Activity $activity): self
+    public function setEnterprise(?Enterprise $enterprise): self
     {
-        if (!$this->activities->contains($activity)) {
-            $this->activities[] = $activity;
-            $activity->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeActivity(Activity $activity): self
-    {
-        if ($this->activities->removeElement($activity)) {
-            // set the owning side to null (unless already changed)
-            if ($activity->getUser() === $this) {
-                $activity->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Participant>
-     */
-    public function getParticipants(): Collection
-    {
-        return $this->participants;
-    }
-
-    public function addParticipant(Participant $participant): self
-    {
-        if (!$this->participants->contains($participant)) {
-            $this->participants[] = $participant;
-            $participant->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeParticipant(Participant $participant): self
-    {
-        if ($this->participants->removeElement($participant)) {
-            // set the owning side to null (unless already changed)
-            if ($participant->getUser() === $this) {
-                $participant->setUser(null);
-            }
-        }
+        $this->enterprise = $enterprise;
 
         return $this;
     }

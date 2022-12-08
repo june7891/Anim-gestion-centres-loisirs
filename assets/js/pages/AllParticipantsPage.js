@@ -24,13 +24,15 @@ const ParticipantsPage = () => {
   const [schoolLevels, setSchoolLevels] = useState([]);
   const [schoolTypes, setSchoolTypes] = useState([]);
   const [activities, setActivities] = useState([]);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState([]);
+  const [enterprise, setEnterprise] = useState();
 
 
   useEffect(() => {
     const loggedInUser = window.user;
     if(loggedInUser) {
-      setUser(loggedInUser?.['@id']);
+      setEnterprise(loggedInUser?.['enterprise']);
+      setUser(loggedInUser?.['roles'])
     }
   })
 
@@ -38,7 +40,7 @@ const ParticipantsPage = () => {
 
 
   const initialValues = {
-    user,
+    enterprise,
     firstname:"",
     lastname:"",
     dateOfBirth: "",
@@ -71,8 +73,8 @@ const ParticipantsPage = () => {
   
   const onSubmit = values => {
    
-    values.user = user;
-    console.log(values.user)
+    values.enterprise = enterprise;
+    console.log(values.enterprise)
 
     const refreshPage = ()=>{
       window.location.reload();
@@ -127,9 +129,9 @@ const validationSchema = Yup.object({
       })
 
       const loggedInUser = window.user;
-      const user = loggedInUser?.['@id'];
-        console.log(user);
-   axios.get(`/api/activities?user=${user}`)
+      const enterprise = loggedInUser?.['enterprise'];
+        console.log(enterprise);
+   axios.get(`/api/activities?enterprise=${enterprise}`)
       .then((response) => {
           // console.log(response.data);
           setActivities(response.data['hydra:member']); 
@@ -147,7 +149,7 @@ const validationSchema = Yup.object({
               <a href="/"><img src={logo} alt="" /> </a>
               <div className="links">
                   <ul>
-                        <li onClick={handleShow}>Ajouter un participant </li>
+                      {user[0] === 'ROLE_USER' ? '' : <li onClick={handleShow}>Ajouter un participant </li>}
                       <li> <Link to="/all-activities">Mes activités</Link> </li>
                     
                       <li> <a href="/logout">Me déconnecter</a> </li>

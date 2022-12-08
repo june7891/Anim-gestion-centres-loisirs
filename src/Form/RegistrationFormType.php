@@ -2,11 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Enterprise;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -21,6 +23,10 @@ class RegistrationFormType extends AbstractType
             ->add('email', null, [
                 'attr' => ['placeholder' => 'email'],
             ])
+            ->add('enterprise',null, [
+                'attr' => ['placeholder' => 'nom de votre structure'],
+            ])
+            
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passes doivent être identiques',
@@ -34,7 +40,7 @@ class RegistrationFormType extends AbstractType
                 )],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez rensigner le mot de passe',
+                        'message' => 'Veuillez renseigner le mot de passe',
                     ]),
                     new Length([
                         'min' => 6,

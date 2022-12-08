@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\EmergencyContact;
+use App\Entity\Enterprise;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<EmergencyContact>
+ * @extends ServiceEntityRepository<Enterprise>
  *
- * @method EmergencyContact|null find($id, $lockMode = null, $lockVersion = null)
- * @method EmergencyContact|null findOneBy(array $criteria, array $orderBy = null)
- * @method EmergencyContact[]    findAll()
- * @method EmergencyContact[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Enterprise|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Enterprise|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Enterprise[]    findAll()
+ * @method Enterprise[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EmergencyContactRepository extends ServiceEntityRepository
+class EnterpriseRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, EmergencyContact::class);
+        parent::__construct($registry, Enterprise::class);
     }
 
-    public function add(EmergencyContact $entity, bool $flush = false): void
+    public function add(Enterprise $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class EmergencyContactRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(EmergencyContact $entity, bool $flush = false): void
+    public function remove(Enterprise $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class EmergencyContactRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return EmergencyContact[] Returns an array of EmergencyContact objects
+//     * @return Enterprise[] Returns an array of Enterprise objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class EmergencyContactRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?EmergencyContact
+//    public function findOneBySomeField($value): ?Enterprise
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')

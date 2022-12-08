@@ -4,15 +4,16 @@ import logo from '../../images/Logo_blue.svg';
 const NavBar = () => {
   return (
     <nav>
-        <img src={logo} alt="" />
-        <div className="links">
-            <ul>
-            <li>Bonjour, user12345!</li>
-            <li><a href="/logout">Se déconnecter</a></li>
-        </ul>
-        </div>
-        
-    </nav>
+    <a href="/"><img src={logo} alt="anim+" /></a> 
+    <div className="links">
+        <ul>
+        <li>Bonjour, {user.email}</li>
+        <li> <a href="/user-account">Gérer mon compte</a></li>
+        <li> <a href="/logout">Me déconnecter</a></li>
+    </ul>
+    </div>
+    
+</nav>
   )
 }
 

@@ -7,7 +7,7 @@ import avatar from '../../images/avatar.svg';
 import '../../styles/participant/participant.scss'
 import {useFormik} from 'formik';
 import modifyIcon from "../../images/icon-modify.svg"
-
+import SecondaryNavBar from "../components/SecondaryNavBar.js"
 
 
 
@@ -96,19 +96,7 @@ const ParticipantDetails = () => {
   return (
 <>
 
-
-<nav>
-              <a href="/"><img src={logo} alt="" /> </a>
-              <div className="links">
-                  <ul>
-                        <li> <Link to="/all-participants">Mes participants</Link> </li>
-                      <li> <Link to="/all-activities">Mes activités</Link> </li>
-                    
-                      <li> <Link to="/logout">Se déconnecter</Link></li>
-                 </ul>
-             </div>
-      </nav>
-
+<SecondaryNavBar/>
     <section>
   <div class="container py-5">
   <h3>Fiche de renseignements</h3>

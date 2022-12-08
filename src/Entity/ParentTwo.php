@@ -63,7 +63,7 @@ class ParentTwo
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="ParentTwo", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="ParentTwo", cascade={"persist", "remove"})
      */
     private $participants;
 

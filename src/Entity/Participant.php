@@ -40,7 +40,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
         ]
         ])
         ]
-#[ApiFilter(SearchFilter::class, properties: ['user' => 'exact', 'schoolLevel.level' => 'exact', 'schoolType.type' => 'exact'] )]
+#[ApiFilter(SearchFilter::class, properties: ['enterprise' =>'exact', 'schoolLevel.level' => 'exact', 'schoolType.type' => 'exact'] )]
 #[Vich\Uploadable]
 class Participant
 {
@@ -74,7 +74,7 @@ class Participant
 
 
     /**
-     * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="participants", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="participants", cascade={"persist", "remove"})
      */
     #[Groups(['read:item', 'write:Participant'])]
     private $activities;
@@ -182,12 +182,6 @@ class Participant
     #[Groups(['read:Participant', 'write:Participant'])]
     private $schoolLevel;
 
-    /**
-     * @ORM\OneToMany(targetEntity=EmergencyContact::class, mappedBy="participant")
-     */
-    #[Groups(['read:Participant', 'write:Participant'])]
-    private $emergencyContact;
-
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -210,26 +204,20 @@ class Participant
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity=Enterprise::class, inversedBy="participants")
+     * @ORM\JoinColumn(nullable=false)
      */
     #[Groups(['read:Participant', 'write:Participant'])]
-    private $user;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=ActivityDay::class, inversedBy="participants", cascade={"persist", "remove"})
-     */
-    #[Groups(['read:Participant', 'write:Participant'])]
-    private $activityDay;
+    private $enterprise;
 
 
+   
 
    
 
     public function __construct()
     {
         $this->activities = new ArrayCollection();
-        $this->emergencyContact = new ArrayCollection();
-        $this->activityDay = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -516,35 +504,10 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection<int, EmergencyContact>
-     */
-    public function getEmergencyContact(): Collection
-    {
-        return $this->emergencyContact;
-    }
 
-    public function addEmergencyContact(EmergencyContact $emergencyContact): self
-    {
-        if (!$this->emergencyContact->contains($emergencyContact)) {
-            $this->emergencyContact[] = $emergencyContact;
-            $emergencyContact->setParticipant($this);
-        }
 
-        return $this;
-    }
 
-    public function removeEmergencyContact(EmergencyContact $emergencyContact): self
-    {
-        if ($this->emergencyContact->removeElement($emergencyContact)) {
-            // set the owning side to null (unless already changed)
-            if ($emergencyContact->getParticipant() === $this) {
-                $emergencyContact->setParticipant(null);
-            }
-        }
 
-        return $this;
-    }
 
     public function setImageFile(File $image = null)
     {
@@ -574,41 +537,20 @@ class Participant
         return $this->image;
     }
 
-    public function getUser(): ?User
+    public function getEnterprise(): ?Enterprise
     {
-        return $this->user;
+        return $this->enterprise;
     }
 
-    public function setUser(?User $user): self
+    public function setEnterprise(?Enterprise $enterprise): self
     {
-        $this->user = $user;
+        $this->enterprise = $enterprise;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, ActivityDay>
-     */
-    public function getActivityDay(): Collection
-    {
-        return $this->activityDay;
-    }
 
-    public function addActivityDay(ActivityDay $activityDay): self
-    {
-        if (!$this->activityDay->contains($activityDay)) {
-            $this->activityDay[] = $activityDay;
-        }
 
-        return $this;
-    }
-
-    public function removeActivityDay(ActivityDay $activityDay): self
-    {
-        $this->activityDay->removeElement($activityDay);
-
-        return $this;
-    }
 
   
 }

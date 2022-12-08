@@ -4,7 +4,8 @@ import viewIcon from "../../images/view.svg"
 import removeIcon from "../../images/icon-remove.svg"
 import modifyIcon from "../../images/icon-modify.svg"
 import alphabetIcon from "../../images/a-z-blue.svg"
-import alphabetReverseIcon from "../../images/z-a-red.svg"
+import alphabetReverseIcon from "../../images/z-a-red.svg";
+import loadingIcon from '../../images/Loading_icon.gif';
 
 const ParticipantsList = () => {
 
@@ -12,6 +13,7 @@ const ParticipantsList = () => {
   const [SchoolTypes, setSchoolTypes] = useState([]);
 
   const [filter, setFilter] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const inputSelectFilter = useRef(null);
 
@@ -23,12 +25,14 @@ const ParticipantsList = () => {
 
   useEffect(() => {
     const loggedInUser = window.user;
-    const user = loggedInUser?.['@id'];
-      console.log(user);
-  axios.get(`/api/participants?user=${user}`)
+    const enterprise = loggedInUser?.['enterprise'];
+      console.log(enterprise);
+      setLoading(true);
+  axios.get(`/api/participants?enterprise=${enterprise}`)
   .then((response) => {
     // console.log(response.data['hydra:member']);
     setParticipants(response.data['hydra:member']);
+    setLoading(false);
     
   })
   axios.get(`/api/school_types`)
@@ -55,11 +59,11 @@ const ParticipantsList = () => {
     const handleParticipantsFilter = (event) => {
       console.log(event.target.value)
       const loggedInUser = window.user;
-      const user = loggedInUser?.['@id'];
+      const enterprise = loggedInUser?.['enterprise'];
     
       if(event.target.value === "alphabet") {
      console.log('it works!')
-          axios.get(`/api/participants?user=${user}`)
+          axios.get(`/api/participants?enterprise=${enterprise}`)
           .then((response) => {
            
             setParticipants(response.data['hydra:member'].sort((a, b) => a.lastname.localeCompare(b.lastname)));
@@ -68,7 +72,7 @@ const ParticipantsList = () => {
       }
       if(event.target.value === "alphabetReverse") {
     
-          axios.get(`/api/participants?user=${user}`)
+          axios.get(`/api/participants?enterprise=${enterprise}`)
           .then((response) => {
            
             setParticipants(response.data['hydra:member'].sort((a, b) => b.lastname.localeCompare(a.lastname)));
@@ -77,7 +81,7 @@ const ParticipantsList = () => {
       }
       if(event.target.value === "Maternelle") {
     
-          axios.get(`/api/participants?user=${user}&schoolType.type=${event.target.value}`)
+          axios.get(`/api/participants?enterprise=${enterprise}&schoolType.type=${event.target.value}`)
           .then((response) => {
            
             setParticipants(response.data['hydra:member']);
@@ -86,7 +90,7 @@ const ParticipantsList = () => {
       }
       if(event.target.value === "Elémentaire") {
     
-          axios.get(`/api/participants?user=${user}&schoolType.type=${event.target.value}`)
+          axios.get(`/api/participants?enterprise=${enterprise}&schoolType.type=${event.target.value}`)
           .then((response) => {
            
             setParticipants(response.data['hydra:member']);
@@ -95,7 +99,7 @@ const ParticipantsList = () => {
       }
       if(event.target.value === "Collège") {
     
-          axios.get(`/api/participants?user=${user}&schoolType.type=${event.target.value}`)
+          axios.get(`/api/participants?enterprise=${enterprise}&schoolType.type=${event.target.value}`)
           .then((response) => {
            
             setParticipants(response.data['hydra:member']);
@@ -104,22 +108,14 @@ const ParticipantsList = () => {
       }
       if(event.target.value === "Lycée") {
     
-          axios.get(`/api/participants?user=${user}&schoolType.type=${event.target.value}`)
+          axios.get(`/api/participants?enterprise=${enterprise}&schoolType.type=${event.target.value}`)
           .then((response) => {
            
             setParticipants(response.data['hydra:member']);
             // console.log(data);
           })
       }
-      // if(inputSelectFilter.current.value === "schoolLevel") {
-    
-      //     axios.participants(`/api/participants?user=${user}`)
-      //     .then((response) => {
-           
-      //       setParticipants(response.data['hydra:member'].sort((a, b) => a.schoolLevel?.level.localeCompare(b.schoolLevel?.level)));
-      //       // console.log(data);
-      //     })
-      // }
+  
      
      }
 
@@ -127,7 +123,7 @@ const ParticipantsList = () => {
 
   return (
     <>
-    <h3>Mes participants</h3>
+    {participants.length === 0 ? <h4>Vous n'avez aucun participant enregistré</h4> :<h3>Mes participants</h3>}
 
   <div className='filter-bar'>
       <input type="text" className='search-input' onInput={handleInput}  placeholder='Rechercher par le nom'/>
@@ -160,7 +156,7 @@ const ParticipantsList = () => {
   </thead>
   <tbody>
 
-{participants.filter(participant =>participant.lastname.toLowerCase().includes(filter)).map((participant) => (
+{ loading ? <img className='loading-icon' src={loadingIcon}/> :participants.filter(participant =>participant.lastname.toLowerCase().includes(filter)).map((participant) => (
   <tr key={participant.id}>
       <th class="col">{participant.id}</th>
       <td class="col-2">{participant.lastname}</td>

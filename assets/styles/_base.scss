@@ -67,6 +67,7 @@ input, ::placeholder {
     font-family: var(--font-family);
     color: var(--primary-blue);
     font-size: pxToVw(18px, 1512px);
+    padding-left: pxToVw(10px, 1512px);
 }
 
 input{
@@ -79,6 +80,7 @@ input{
 
    &:focus::placeholder {
     color: var(--secondary-red);
+    padding-left: pxToVw(10px, 1512px);
 }
 }
 

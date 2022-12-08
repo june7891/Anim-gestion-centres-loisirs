@@ -193,11 +193,10 @@
     @include mixin.xs{
         height: pxToVw(602px, 1512px);
     }
-    }
-    .signup-form {
+ .signup-form {
         position: absolute;
         left: pxToVw(550px, 1512px);
-        top: pxToVw(430px, 1512px);
+        top: pxToVw(530px, 1512px);
         display: block;
         margin: 0 auto;
        
@@ -205,12 +204,13 @@
         background-color: rgba($color:#26619C, $alpha: 0.25);
         border: pxToVw(1px, 1512px) solid var(--primary-blue);
 
-        height: pxToVw(302px, 1512px);
+        height: pxToVw(372px, 1512px);
         width: pxToVw(412px, 1512px);
         align-items: center;
         text-align: center;
+        
       
-        form {
+        .form {
             display: inline-block;
             margin-top: pxToVw(40px, 1512px);
             input {
@@ -219,6 +219,9 @@
         }
         
     }
+
+    }
+   
 
 
     footer{

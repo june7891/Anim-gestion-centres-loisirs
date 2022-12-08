@@ -16,18 +16,19 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const ActivityForm = () => {
 
-  const [user, setUser] = useState();
+  const [enterprise, setEnterprise] = useState();
 
   useEffect(() => {
     const loggedInUser = window.user;
+  
     if(loggedInUser) {
-      setUser(loggedInUser?.['@id']);
+      setEnterprise(loggedInUser?.['enterprise']);
     }
   })
 
 
   const initialValues = {
-    user,
+    enterprise,
     activityDay: 
     [
       {
@@ -52,9 +53,10 @@ const ActivityForm = () => {
   const onSubmit = (values, index) => {
   
 
-    values.user = user;
+    values.enterprise = enterprise;
+    console.log(values.enterprise);
     console.log(values);
-    // console.log(values.activityDay[0].activityDate.toLocaleDateString());
+   
   
     
 
@@ -216,7 +218,7 @@ const handleChange = (date) => {
             value={formik.values.endDate}
           />
 
-          <h4>Jours d'ouverture</h4>
+          {/* <h4>Jours d'ouverture</h4>
 
           <div>
           <DatePicker
@@ -241,15 +243,13 @@ const handleChange = (date) => {
       
        ))}
         
-        </div>
+        </div> */}
 
           <div className="save-btn-container">
             <input className="login-btn" type="submit" value="Enregistrer" />
           </div>
         </form>
   
-
-        {/* <p > {displayDateArray}</p>  */}
       </div>
     </>
   );

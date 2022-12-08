@@ -4,6 +4,7 @@ import axios from 'axios';
 import logo from '../../images/Logo_blue.svg';
 import { Link } from "react-router-dom";
 import activityIcon from '../../images/activity-icon.svg';
+import SecondaryNavBar from "../components/SecondaryNavBar.js"
 
 const ActivityDetails = () => {
 
@@ -34,17 +35,8 @@ const ActivityDetails = () => {
 
   return (
     <>
-      <nav>
-              <a href="/"><img src={logo} alt="" /> </a>
-              <div className="links">
-                  <ul>
-                        <li> <Link to="/all-participants">Mes participants</Link> </li>
-                      <li> <Link to="/all-activities">Mes activités</Link> </li>
-                    
-                      <li> <a href="/logout">Me déconnecter</a> </li>
-                 </ul>
-             </div>
-      </nav>
+
+<SecondaryNavBar/>
 
     <section>
   <div class="container py-5">
