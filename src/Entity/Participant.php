@@ -6,13 +6,12 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
-use App\Controller\ParticipantImageController;
+use App\Controller\ParticipantFilesController;
 use App\Repository\ParticipantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-// use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -30,18 +29,18 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
         'put',
         'delete',
         'get' => [
-            'normalization_context' => ['groups' => ['read:collection', 'read:item', 'read:Participant']]
+            'normalization_context' => ['groups' => ['read:Participant']]
         ],
-        'image' => [
+        'files' => [
             'method' => 'POST',
-            'path' => '/participants/{id}/image',
+            'path' => '/participants/{id}/files',
             'deserialize' => false,
-            'controller' => ParticipantImageController::class
+            'controller' => ParticipantFilesController::class
         ]
         ])
         ]
 #[ApiFilter(SearchFilter::class, properties: ['enterprise' =>'exact', 'schoolLevel.level' => 'exact', 'schoolType.type' => 'exact'] )]
-#[Vich\Uploadable]
+
 class Participant
 {
     /**

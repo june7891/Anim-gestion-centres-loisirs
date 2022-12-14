@@ -2,10 +2,9 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import logo from '../../images/Logo_blue.svg';
-import { Link } from "react-router-dom";
 import activityIcon from '../../images/activity-icon.svg';
 import EasyEdit, {Types} from 'react-easy-edit';
+import SecondaryNavBar from "../components/SecondaryNavBar.js"
 
 const ActivityModificationForm = () => {
     const [activity, setActivity] = useState([]);
@@ -28,7 +27,7 @@ const ActivityModificationForm = () => {
       }, [id]);
   
       const startedAt = new Date(activity.startedAt).getHours() + ':' + new Date(activity.startedAt).getMinutes();
-      const endedAt = new Date(activity.startedAt).getHours() + ':' + new Date(activity.endedAt).getMinutes();
+      const endedAt = new Date(activity.endedAt).getHours() + ':' + new Date(activity.endedAt).getMinutes();
   
 
       const cancel = () => {console.log("Cancelled")}
@@ -105,32 +104,46 @@ const ActivityModificationForm = () => {
         console.log(error);
     })
    }
+      const updateStartHour = (value) => {
+        console.log(value)
+        axios.put(`/api/activities/${id}`, {
+          startedAt: value
+        })
+        .then(function (response) {
+        console.log(response)
+        })
+        .catch(function (error) {
+        console.log(error);
+    })
+   }
+      const updateEndHour = (value) => {
+        // console.log(Number(value))
+        axios.put(`/api/activities/${id}`, {
+          endedAt: value
+        })
+        .then(function (response) {
+        console.log(response)
+        })
+        .catch(function (error) {
+        console.log(error);
+    })
+   }
 
   return (
     <>
-    <nav>
-            <a href="/"><img src={logo} alt="" /> </a>
-            <div className="links">
-                <ul>
-                      <li> <Link to="/all-participants">Mes participants</Link> </li>
-                    <li> <Link to="/all-activities">Mes activités</Link> </li>
-                  
-                    <li> <Link to="/logout">Se déconnecter</Link></li>
-               </ul>
-           </div>
-    </nav>
+    <SecondaryNavBar/>
 
   <section>
-<div class="container py-5">
+<div className="container py-5">
   
 
-  <div class="row">
-    <div class="col-lg-4">
-      <div class="card mb-4">
-        <div class="card-body text-center">
+  <div className="row">
+    <div className="col-lg-4">
+      <div className="card mb-4">
+        <div className="card-body text-center">
           <img src={activityIcon} alt="avatar"
-            class="img-fluid" />
-          <h5 class="my-3">   <EasyEdit
+            className="img-fluid" />
+          <h5 className="my-3">   <EasyEdit
                   type="text"
                   onSave={updateName}
                   onCancel={cancel}
@@ -141,7 +154,7 @@ const ActivityModificationForm = () => {
                   value={activity.name}
                   />
                   </h5>
-          <p class="text-muted mb-1"> N° de référence:
+          <p className="text-muted mb-1"> N° de référence:
                   <EasyEdit
                   type="text"
                   onSave={updateReference}
@@ -153,7 +166,7 @@ const ActivityModificationForm = () => {
                   value={activity.reference}
                   />
             </p>
-          <p class="text-muted mb-1"> Periode: 
+          <p className="text-muted mb-1"> Periode: 
                   <EasyEdit
                   type="date"
                   onSave={updateStartDate}
@@ -184,14 +197,14 @@ const ActivityModificationForm = () => {
       </div>
      
     </div>
-    <div class="col-lg-8">
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Capacité d'accueil</p>
+    <div className="col-lg-8">
+      <div className="card mb-4">
+        <div className="card-body">
+          <div className="row">
+            <div className="col-sm-3">
+              <p className="mb-0">Capacité d'accueil</p>
             </div>
-            <div class="col-sm-9">
+            <div className="col-sm-9">
               <EasyEdit
                   type="number"
                   onSave={updateCapacity}
@@ -205,21 +218,41 @@ const ActivityModificationForm = () => {
             </div>
           </div>
           <hr/>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Horaires</p>
+          <div className="row">
+            <div className="col-sm-3">
+              <p className="mb-0">Horaires</p>
             </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{startedAt} - {endedAt} </p>
+            <div className="col-sm-9">
+              <p className="text-muted mb-0">
+                  <EasyEdit
+                  type="time"
+                  onSave={updateStartHour}
+                  onCancel={cancel}
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
+                  attributes={{ name: "startedAt", id: 1}}
+                  placeholder={startedAt}
+                  value={startedAt}
+                  /> - <EasyEdit
+                  type="time"
+                  onSave={updateEndHour}
+                  onCancel={cancel}
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
+                  attributes={{ name: "endedAt", id: 1}}
+                  placeholder={endedAt}
+                  value={endedAt}
+                  /> 
+                   </p>
             </div>
           </div>
           <hr/>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Prix</p>
+          <div className="row">
+            <div className="col-sm-3">
+              <p className="mb-0">Prix</p>
             </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">  
+            <div className="col-sm-9">
+              <p className="text-muted mb-0">  
                   <EasyEdit
                   type="number"
                   onSave={updatePrice}

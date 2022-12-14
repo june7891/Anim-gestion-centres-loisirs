@@ -64,7 +64,7 @@
          
             li {
                 display: inline;
-                margin-right: pxToVw(80px, 1920px);
+                margin-right: pxToVw(80px, 1512px);
                 color: white;
                 font-size: pxToVw(18px, 1512px);
                 
@@ -286,4 +286,21 @@
 
     #screen-height{
       min-height: 100vh;
+    }
+
+
+    // page not found styling
+
+    .navbar-notfound {
+      margin-right: pxToVw(20px, 1512px);
+      margin-left: pxToVw(150px, 1512px);
+    }
+
+    .error404 {
+      text-align: center;
+      img {
+        height: pxToVw(330px, 1512px);
+        width: pxToVw(500px, 1512px);
+
+      }
     }

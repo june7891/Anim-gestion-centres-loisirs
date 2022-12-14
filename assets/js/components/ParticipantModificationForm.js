@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from "react-router-dom";
-import logo from '../../images/Logo_blue.svg';
+
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import avatar from '../../images/avatar.svg';
+
 import '../../styles/participant/participant.scss';
 import EasyEdit, {Types} from 'react-easy-edit';
-
+import SecondaryNavBar from "../components/SecondaryNavBar.js"
 
 const ParticipantModificationForm = () => {
 
@@ -299,49 +298,41 @@ const ParticipantModificationForm = () => {
   return (
 <>
 
+<SecondaryNavBar/>
 
-<nav>
-              <a href="/"><img src={logo} alt="logo" /> </a>
-              <div className="links">
-                  <ul>
-                        <li> <Link to="/all-participants">Mes participants</Link> </li>
-                      <li> <Link to="/all-activities">Mes activités</Link> </li>
-                      <li> <a href="/logout">Me déconnecter</a></li>
-                 </ul>
-             </div>
-      </nav>
+
 
     <section>
-  <div class="container py-5">
+  <div className="container py-5">
 
   <h3>Modification des information</h3>
     
 
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card details-card mb-4">
-          <div class="card-body text-center">
+    <div className="row">
+      <div className="col-lg-4">
+        <div className="card details-card mb-4">
+          <div className="card-body text-center">
           <div className='icon-container'>
             <img src = {`${participant.image}`} alt={participant.image}
-              class="img-fluid" />
+              className="img-fluid" />
               </div>
-            <h5 class="my-3">{participant.lastname} {participant.firstname}</h5>
-            <p class="text-muted mb-1">{participant.schoolLevel?.level}</p>
-            <p class="text-muted mb-4">{participant?.schoolName}</p>
+            <h5 className="my-3">{participant.lastname} {participant.firstname}</h5>
+            <p className="text-muted mb-1">{participant.schoolLevel?.level}</p>
+            <p className="text-muted mb-4">{participant?.schoolName}</p>
        
           </div>
         </div>
        
       </div>
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Nom de famille</p>
+      <div className="col-lg-8">
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Nom de famille</p>
            
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
              
               <EasyEdit
                   type={Types.TEXT}
@@ -356,12 +347,12 @@ const ParticipantModificationForm = () => {
               </div>
             </div>
             <hr/>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Prénom</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Prénom</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"></p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0"></p>
                 <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParticipantFirstname}
@@ -374,12 +365,12 @@ const ParticipantModificationForm = () => {
               </div>
             </div>
             <hr/>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Date de naissance</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Date de naissance</p>
               
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               <EasyEdit
                   type={Types.DATE}
                   onSave={updateParticipantDateOfBirth}
@@ -392,11 +383,11 @@ const ParticipantModificationForm = () => {
               </div>
             </div>
             <hr/>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Adresse</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Adresse</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               
                 <EasyEdit
                   type={Types.TEXT}
@@ -432,15 +423,15 @@ const ParticipantModificationForm = () => {
             <hr/>
             <div className="row">
                  <div className="col-sm-6">
-                 <p class="details-title" >PARENT 1</p>
+                 <p className="details-title" >PARENT 1</p>
             </div>
             </div>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Nom de famille</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Nom de famille</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParentOneLastname}
@@ -454,11 +445,11 @@ const ParticipantModificationForm = () => {
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Prénom</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Prénom</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParentOneFirstname}
@@ -472,11 +463,11 @@ const ParticipantModificationForm = () => {
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Email</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParentOneEmail}
@@ -490,11 +481,11 @@ const ParticipantModificationForm = () => {
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">N° de téléphone</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">N° de téléphone</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParentOnePhoneNumber}
@@ -509,15 +500,15 @@ const ParticipantModificationForm = () => {
             <hr/>
             <div className="row">
                  <div className="col-sm-6">
-                 <p class="details-title">PARENT 2</p>
+                 <p className="details-title">PARENT 2</p>
             </div>
             </div>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Nom de famille</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Nom de famille</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParentTwoLastname}
@@ -531,11 +522,11 @@ const ParticipantModificationForm = () => {
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Prénom</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Prénom</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParentTwoFirstname}
@@ -549,11 +540,11 @@ const ParticipantModificationForm = () => {
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Email</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParentTwoEmail}
@@ -567,11 +558,12 @@ const ParticipantModificationForm = () => {
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">N° de téléphone</p>
+              <div className="col-sm-9">
+            <div className="row">
+            
+                <p className="mb-0">N° de téléphone</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
               <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParentTwoPhoneNumber}
@@ -584,11 +576,11 @@ const ParticipantModificationForm = () => {
               </div>
             </div>
             <hr/>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Inscrit(e) aux activités suivantes</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Inscrit(e) aux activités suivantes</p>
               </div>
-              <div class="col-sm-9">
+              <div className="col-sm-9">
                 <EasyEdit
                   type={Types.CHECKBOX}
                   options={getOptions()}

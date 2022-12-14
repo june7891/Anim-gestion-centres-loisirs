@@ -20,23 +20,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 #[ApiResource(
     security: 'is_granted("ROLE_USER")',
-    collectionOperations: [
-        'me' => [
-            'pagination_enabled' => false,
-            'path' => '/me',
-            'method' => 'get',
-            'controller' => MeController::class,
-            'read' => false
-        ]
-    ],
-    itemOperations:[
-        'get' => [
-            'controller' => NotFoundAction::class,
-            'openapi_context' => ['summary' => 'hidden'],
-            'read' => false,
-            'output' => false
-        ]
-        ],
         normalizationContext: ['group' => ['read:User']],
         denormalizationContext: ['group' => ['write:User']]
 )]

@@ -13,6 +13,7 @@ import AccountPage from './pages/AccountPage';
 import ActivityPage from './pages/ActivityPage';
 import AllActivitiesPage from './pages/AllActivitiesPage';
 import AllParticipantsPage from './pages/AllParticipantsPage';
+import NotFound from './components/NotFound';
 
 
 
@@ -32,6 +33,7 @@ function Home() {
             <Route exact path="/participant-modification-form/:id" element={<ParticipantModificationForm/>} />
             <Route exact path="/activity-modification-form/:id" element={<ActivityModificationForm/>} />
             <Route exact path="/participant-details/:id" element={<ParticipantDetails/>} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
         
      

@@ -137,7 +137,7 @@ const ParticipantsList = () => {
     <div className='mt-5 filter-school-type-buttons'>
       <h5>Trier par type d'école</h5>
     {SchoolTypes.map((schoolType) => (
-      <button className="login-btn" value={schoolType.type} onClick={handleParticipantsFilter}>{schoolType.type}</button>
+      <button key={schoolType.id} className="login-btn" value={schoolType.type} onClick={handleParticipantsFilter}>{schoolType.type}</button>
     ))}
     
     </div>
@@ -145,25 +145,25 @@ const ParticipantsList = () => {
       <table className="table mx-auto my-5">
   <thead className="thead-dark">
     <tr>
-      <th class="col">#</th>
-      <th class="col-2">Nom</th>
-      <th class="col-2">Prénom</th>
-      <th class="col-2">Classe</th>
-      <th class="col">Voir</th>
-      <th class="col">Supprimer</th>
-      <th class="col">Modifier</th>
+      <th className="col">#</th>
+      <th className="col-2">Nom</th>
+      <th className="col-2">Prénom</th>
+      <th className="col-2">Classe</th>
+      <th className="col">Voir</th>
+      <th className="col">Supprimer</th>
+      <th className="col">Modifier</th>
     </tr>
   </thead>
   <tbody>
 
-{ loading ? <img className='loading-icon' src={loadingIcon}/> :participants.filter(participant =>participant.lastname.toLowerCase().includes(filter)).map((participant) => (
+{ loading ? <img className='loading-icon' src={loadingIcon}/> : participants.filter(participant =>participant.lastname.toLowerCase().startsWith(filter)).map((participant, index) => (
   <tr key={participant.id}>
-      <th class="col">{participant.id}</th>
-      <td class="col-2">{participant.lastname}</td>
-      <td class="col-2">{participant.firstname}</td>
+      <th className="col">{index+1}</th>
+      <td className="col-2">{participant.lastname}</td>
+      <td className="col-2">{participant.firstname}</td>
       <td>{participant.schoolLevel?.level}</td>
       <td><a href={`/participant-details/${participant.id}`}><img className='my-buttons' src={viewIcon} alt="" /></a></td>
-      <td class="col"><img className='remove-btn' src={removeIcon} alt="" onClick={() => handleDelete(participant.id)}></img></td>
+      <td className="col"><img className='remove-btn' src={removeIcon} alt="" onClick={() => handleDelete(participant.id)}></img></td>
       <td><a href={`/participant-modification-form/${participant.id}`}><img className='my-buttons' src={modifyIcon} alt="" /></a></td>
     </tr>
 ))}

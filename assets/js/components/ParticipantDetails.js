@@ -8,8 +8,11 @@ import '../../styles/participant/participant.scss'
 import {useFormik} from 'formik';
 import modifyIcon from "../../images/icon-modify.svg"
 import SecondaryNavBar from "../components/SecondaryNavBar.js"
+import PDFFile from '../components/PDFFile';
+import Modal from 'react-bootstrap/Modal';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
-
+import { PDFViewer } from '@react-pdf/renderer';
 
 const ParticipantDetails = () => {
 
@@ -18,6 +21,10 @@ const ParticipantDetails = () => {
     const [parentOne, setParentOne] = useState([]);
     const [parentTwo, setParentTwo] = useState([]);
     const [activities, setActivities] = useState([]);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
     let params = useParams();
@@ -98,64 +105,78 @@ const ParticipantDetails = () => {
 
 <SecondaryNavBar/>
     <section>
-  <div class="container py-5">
+  <div className="container py-5">
   <h3>Fiche de renseignements</h3>
 
-    <div class="row">
-      <div class="col-lg-4 text-center">
-        <div class="card details-card mb-4">
-          <div class="participant-card-body card-body text-center">
+    <div className="row">
+      <div className="col-lg-4 text-center">
+        <div className="card details-card mb-4">
+          <div className="participant-card-body card-body text-center">
           {/* <div className='profile-image-container'> */}
-           {participant.image &&  <img src={ require(`../../../public/images/${participant.image}`)} alt={participant.image} class="img-fluid" />}
+           {participant.image &&  <img src={ require(`../../../public/images/uploads/participants_files/${participant.image}`)} alt={participant.image} className="img-fluid" />}
             {/* <img src={ require(`../../../public/images/${image}`)} alt={participant.image} class="img-fluid" /> */}
               {/* </div> */}
-            <h5 class="my-3"> {participant.firstname}</h5>
-            <p class="text-muted mb-1">Classe: {participant.schoolLevel?.level}</p>
-            <p class="text-muted mb-4">Ecole: {participant?.schoolName}</p>
+            <h5 className="my-3"> {participant.firstname}</h5>
+            <p className="text-muted mb-1">Classe: {participant.schoolLevel?.level}</p>
+            <p className="text-muted mb-4">Ecole: {participant?.schoolName}</p>
        
           </div>
         </div>
       
-          <p><a className='modification-btn' href={`/participant-modification-form/${participant.id}`}>Modifier la fiche de renseignement</a></p>      
+          <p><a className='modification-btn' href={`/participant-modification-form/${participant.id}`}>Modifier la fiche de renseignement</a></p> 
+           <PDFDownloadLink document={<PDFFile/>} fileName="Fiche"></PDFDownloadLink>
+           <button onClick={handleShow}>Voir le pdf</button>
+
+           <Modal  show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title> <h3>Fiche de renseignement</h3> </Modal.Title>
+        </Modal.Header>
+        <Modal.Body> <PDFFile participant={participant} /> </Modal.Body>
+        <Modal.Footer>
         
+        </Modal.Footer>
+      </Modal>
+
+              
+       
       </div>
 
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Nom de famille</p>
+      <div className="col-lg-8">
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Nom de famille</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{participant.lastname}</p>
-              </div>
-            </div>
-            <hr/>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Prénom</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{participant.firstname}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{participant.lastname}</p>
               </div>
             </div>
             <hr/>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Date de naissance</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Prénom</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{new Date(participant.dateOfBirth).toLocaleDateString()}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{participant.firstname}</p>
               </div>
             </div>
             <hr/>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Adresse</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Date de naissance</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{participant.address}, {participant.postalCode} {participant.city}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{new Date(participant.dateOfBirth).toLocaleDateString()}</p>
+              </div>
+            </div>
+            <hr/>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Adresse</p>
+              </div>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{participant.address}, {participant.postalCode} {participant.city}</p>
               </div>
             </div>
             <hr/>
@@ -165,42 +186,42 @@ const ParticipantDetails = () => {
             </div>
             </div>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Nom de famille</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Nom de famille</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{parentOne?.lastName}</p>
-              </div>
-            </div>
-            <hr/>
-           
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Prénom</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{parentOne?.firstName}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{parentOne?.lastName}</p>
               </div>
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Prénom</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{parentOne?.email}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{parentOne?.firstName}</p>
               </div>
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">N° de téléphone</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Email</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{parentOne?.phoneNumber}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{parentOne?.email}</p>
+              </div>
+            </div>
+            <hr/>
+           
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">N° de téléphone</p>
+              </div>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{parentOne?.phoneNumber}</p>
               </div>
             </div>
             <hr/>
@@ -210,53 +231,53 @@ const ParticipantDetails = () => {
             </div>
             </div>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Nom de famille</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Nom de famille</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{parentTwo?.lastName}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{parentTwo?.lastName}</p>
               </div>
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
+            <div className="row">
+              <div className="col-sm-3">
                 <p class="mb-0">Prénom</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{parentTwo?.firstName}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{parentTwo?.firstName}</p>
               </div>
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Email</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{parentTwo?.email}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{parentTwo?.email}</p>
               </div>
             </div>
             <hr/>
            
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">N° de téléphone</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">N° de téléphone</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{parentTwo?.phoneNumber}</p>
+              <div className="col-sm-9">
+                <p className="text-muted mb-0">{parentTwo?.phoneNumber}</p>
               </div>
             </div>
             <hr/>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Inscrit(e) aux activités suivantes</p>
+            <div className="row">
+              <div className="col-sm-3">
+                <p className="mb-0">Inscrit(e) aux activités suivantes</p>
               </div>
               
               {activities?.map((activity) => (
-                <div class="col-sm-9">
-                <p class="text-muted mb-0">{activity.name}</p>
+                <div className="col-sm-9">
+                <p className="text-muted mb-0">{activity.name}</p>
                  </div>
                 ))}
                
@@ -275,19 +296,19 @@ const ParticipantDetails = () => {
             <label htmlFor="photo">Photo</label>
             <input type="file" id="photo" name="image" accept="image/png, image/jpeg" onChange={(e) => formik.setFieldValue('image', e.target.files[0])}/>
            
-            {participant.image &&   <a href={require(`../../../public/images/${participant.image}`)} download>Photo</a>}
+            {/* {participant.image &&   <a href={require(`../../../public/images/${participant.image}`)} download>Photo</a>} */}
             <label htmlFor="fiche_sanitaire">Fiche sanitaire</label>
             <input type="file" id="fiche_sanitaire" name="ficheSanitaire" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('ficheSanitaire', e.target.files[0])}/>
            
-            {participant.ficheSanitaire &&   <a href={require(`../../../public/images/${participant.ficheSanitaire}`)} download>Fiche sanitaire</a>}
+            {/* {participant.ficheSanitaire &&   <a href={require(`../../../public/images/${participant.ficheSanitaire}`)} download>Fiche sanitaire</a>} */}
             <label htmlFor="vaccination">Vaccins</label>
             <input type="file" id="vaccination" name="vaccination" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('vaccination', e.target.files[0])}/>
             
-            {participant.vaccination &&   <a href={require(`../../../public/images/${participant.vaccination}`)} download>Vaccins</a>}
+            {/* {participant.vaccination &&   <a href={require(`../../../public/images/${participant.vaccination}`)} download>Vaccins</a>} */}
             <label htmlFor="insurance">Assurance</label>
             <input type="file" id="insurance" name="insurance" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('insurance', e.target.files[0])}/>
           
-            {participant.insurance &&   <a href={require(`../../../public/images/${participant.insurance}`)} download>Assurance</a>}
+            {/* {participant.insurance &&   <a href={require(`../../../public/images/${participant.insurance}`)} download>Assurance</a>} */}
     
                 <button className='login-btn' type="submit">Enregistrer</button>
             </form>

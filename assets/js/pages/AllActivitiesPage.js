@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import logo from '../../images/Logo_blue.svg';
 import AllActivities from '../components/AllActivities';
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+
 import Modal from 'react-bootstrap/Modal';
 import ActivityForm from '../components/ActivityForm';
 import '../../styles/activity/activity.scss'
@@ -41,9 +41,6 @@ const ActivityPage = () => {
       <div><AllActivities /></div>
 
 
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button> */}
 
       <Modal dialogClassName="activity-modal" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -51,9 +48,7 @@ const ActivityPage = () => {
         </Modal.Header>
         <Modal.Body> <div><ActivityForm/></div></Modal.Body>
         <Modal.Footer>
-          {/* <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button> */}
+      
         
         </Modal.Footer>
       </Modal>

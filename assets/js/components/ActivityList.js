@@ -44,10 +44,9 @@ console.log(checked.length);
     const getActivity = async () => {
       await axios.get(`/api/activities/${id}`)
       .then (response => {
-        console.log(response.data);
         const data = response.data;
         setActivity(data);
-        setParticipants(data.participants)
+        setParticipants(data.participants.sort((a, b) => a.lastname.localeCompare(b.lastname)))
        
       })
       };
@@ -64,7 +63,7 @@ console.log(checked.length);
   <div className=''>
 
       <h3 className=''>{activity.name}</h3>
-      <p className=''>Date: {new Intl.DateTimeFormat('fr-FR', {weekday:"long"}).format(new Date())} {new Date().toLocaleDateString()}</p>
+      <p className='date'>Date d'aujourd'hui: {new Intl.DateTimeFormat('fr-FR', {weekday:"long"}).format(new Date())} {new Date().toLocaleDateString()}</p>
   </div>
   
     <table className="table">
@@ -81,8 +80,8 @@ console.log(checked.length);
 {loading ? <img className='loading-icon' src={loadingIcon}/> : participants.map((participant, index) => (
   <tr>
     <th key={participant.id} scope="row">{index+1}</th>
-    <td>{participant.firstname}</td>
     <td>{participant.lastname}</td>
+    <td>{participant.firstname}</td>
     <td><input type="checkbox" id={participant['@id']} name="present" value={participant['@id']} onChange={(e) => handleCheckCount(e, participant.id)}/></td>
     <td><input type="checkbox" name="departure" id="" /></td>
   </tr>
