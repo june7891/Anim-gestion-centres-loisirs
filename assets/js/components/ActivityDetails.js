@@ -58,7 +58,9 @@ const ActivityDetails = () => {
             
           </div>
         </div>
-        <a className='activity-list-btn' href={`/activity/list/${activity.id}`}>Liste des participants de l'activité</a>
+        <div className='profile-btn-container'>
+           <p><a className='modification-btn' href={`/activity/list/${activity.id}`}>Liste des participants de l'activité</a></p>  
+          </div>
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
@@ -86,7 +88,7 @@ const ActivityDetails = () => {
                 <p class="mb-0">Prix</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{activity.price}</p>
+                <p class="text-muted mb-0">{activity.price} €</p>
               </div>
             </div>
             <hr/>

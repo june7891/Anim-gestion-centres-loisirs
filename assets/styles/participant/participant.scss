@@ -80,14 +80,21 @@
     }
 }
 
-
-.modification-btn {
-    border: 2px solid var(--secondary-red);
-    color: white;
+.profile-btn-container {
+  margin-top: pxToVw(40px, 1512px);
+  p {
+    margin-bottom: pxToVw(40px, 1512px);
+  }
+  .modification-btn {
+    border: pxToVw(2px, 1512pc) solid var(--secondary-red);
+    color: var(--white);
     background-color: var(--secondary-red);
     border-radius: pxToVw(4px, 1512px);
     padding: pxToVw(15px, 1512px) pxToVw(40px, 1512px);
     margin-left: pxToVw(10px, 1512px);
+    width: pxToVw(340px, 1512px);
+    height: pxToVw(50px, 1512px);
+  
     
    &:hover {
     color: var(--secondary-red);
@@ -95,9 +102,11 @@
 
    }
 }
+}
+
 
 input[type=file]::file-selector-button {
-    border: none;
+    border: none !important;
     padding: .2em .4em;
     border-radius: .2em;
     background-color: var(--primary-blue);;
@@ -106,9 +115,12 @@ input[type=file]::file-selector-button {
 } 
 
 input[type=file] {
-    border: none;
+    border: none !important;
 }
 
+input[type=file]::file-selector-button {
+  cursor: pointer;
+}
 input[type=file]::file-selector-button:hover {
     background-color: white;
     border: 2px solid var(--primary-blue);
@@ -127,28 +139,23 @@ input[type=file]::file-selector-button:hover {
   .details-title {
     background-color: var(--secondary-red);
     text-align: center;
-    color: white;
+    color: var(--white);
     width: pxToVw(780px, 1512px);
     padding-top: pxToVw(10px, 1512px) ;
     padding-bottom: pxToVw(10px, 1512px) ;
     border-radius: pxToVw(6px, 1512px);
+    text-transform: uppercase;
     
   }
 
   .participant-card-body {
     img {
-        height: pxToVw(300px, 1512px);
-        width: pxToVw(300px, 1512px);
+        height: 30%;
+        width: 30%;
     }
   }
 
-  .profile-image-container {
-
-    height: pxToVw(100px, 1512px);
-    width: pxToVw(100px, 1512px);
-   
-
-  }
+  
 
   // Participants list styling
 
@@ -202,4 +209,12 @@ input[type=file]::file-selector-button:hover {
         margin-left: pxToVw(50px, 1512px);
     }
   
+  }
+
+  .participant-detail-card-body {
+    width: pxToVw(820px, 1512px);
+  }
+
+  .email-modal {
+    width: 30vw;
   }

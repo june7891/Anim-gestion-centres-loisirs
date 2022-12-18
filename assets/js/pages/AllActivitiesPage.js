@@ -34,7 +34,7 @@ const ActivityPage = () => {
                   <ul>
                       <li><Link to ="/all-participants">Mes participants</Link> </li>
                       {user[0] === 'ROLE_USER' ? '' : <li onClick={handleShow}>Créer une activité </li>}
-                      <li><Link to="/">Se déconnecter</Link></li>
+                      <li><a href="/logout"></a> Se déconnecter</li>
                  </ul>
              </div>
       </nav>

@@ -6,11 +6,15 @@ import modifyIcon from "../../images/icon-modify.svg"
 import alphabetIcon from "../../images/a-z-blue.svg"
 import alphabetReverseIcon from "../../images/z-a-red.svg";
 import loadingIcon from '../../images/Loading_icon.gif';
+import DeleteParticipantModal from './DeleteParticipantModal';
 
 const ParticipantsList = () => {
 
   const [participants, setParticipants] = useState([]);
   const [SchoolTypes, setSchoolTypes] = useState([]);
+  const [user, setUser] = useState([]);
+  const [hideDeleteModal, setHideDeleteModal]= useState(false);
+  const [participantId, setParticipantId] = useState(0);
 
   const [filter, setFilter] = useState('');
   const [loading, setLoading] = useState(false);
@@ -22,6 +26,14 @@ const ParticipantsList = () => {
     setFilter(filter.trim().toLowerCase());
 
   };
+
+  useEffect(() => {
+    const loggedInUser = window.user;
+    if(loggedInUser) {
+      setUser(loggedInUser?.['roles']);
+      console.log(user[0]);
+    }
+  })
 
   useEffect(() => {
     const loggedInUser = window.user;
@@ -43,15 +55,9 @@ const ParticipantsList = () => {
   })
   
   }, [])
-  // console.log(participants);
+
   
-  const handleDelete = (id) => {
-    axios.delete(`/api/participants/${id}`)
-    .then(response => {
-      console.log(response);
-      location.reload()
-    });
-  }
+
 
 
     // order filter
@@ -119,7 +125,26 @@ const ParticipantsList = () => {
      
      }
 
-
+     const hide = (id) => {
+      if (hideDeleteModal) {
+        setHideDeleteModal(false);
+      } else {
+        setHideDeleteModal(true);
+        setParticipantId(id);
+      }
+    };
+  
+  
+  
+    const deleteParticipant = () => {
+      axios.delete(`/api/participants/${participantId}`)
+      .then(response => {
+        console.log(response);
+        hide();
+        location.reload()
+      });
+    }
+  
 
   return (
     <>
@@ -150,8 +175,8 @@ const ParticipantsList = () => {
       <th className="col-2">Prénom</th>
       <th className="col-2">Classe</th>
       <th className="col">Voir</th>
-      <th className="col">Supprimer</th>
-      <th className="col">Modifier</th>
+      {user[0] === "ROLE_USER" ? ("") : (<th className="col">Supprimer</th>)}
+      {user[0] === "ROLE_USER" ? ("") : (<th className="col">Modifier</th>)}
     </tr>
   </thead>
   <tbody>
@@ -163,8 +188,8 @@ const ParticipantsList = () => {
       <td className="col-2">{participant.firstname}</td>
       <td>{participant.schoolLevel?.level}</td>
       <td><a href={`/participant-details/${participant.id}`}><img className='my-buttons' src={viewIcon} alt="" /></a></td>
-      <td className="col"><img className='remove-btn' src={removeIcon} alt="" onClick={() => handleDelete(participant.id)}></img></td>
-      <td><a href={`/participant-modification-form/${participant.id}`}><img className='my-buttons' src={modifyIcon} alt="" /></a></td>
+      {user[0] === "ROLE_USER" ? ("") : (<td className="col"><img className='remove-btn' src={removeIcon} alt="" onClick={() => hide(participant.id)}></img></td>)}
+      {user[0] === "ROLE_USER" ? ("") : (<td><a href={`/participant-modification-form/${participant.id}`}><img className='my-buttons' src={modifyIcon} alt="" /></a></td>)}
     </tr>
 ))}
     
@@ -172,7 +197,9 @@ const ParticipantsList = () => {
   </tbody>
 </table>
 
-
+{hideDeleteModal && (
+        <DeleteParticipantModal hideModal={hide} delete={deleteParticipant} />
+      )}
     </>
   )
 }

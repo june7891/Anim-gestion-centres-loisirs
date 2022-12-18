@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../../images/Logo_blue.svg';
 import { Link } from "react-router-dom";
-import imgError from '../../images/404.jpg';
+import imgError from '../../images/404.png';
 
 
 const NotFound = () => {

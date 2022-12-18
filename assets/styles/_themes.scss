@@ -23,33 +23,78 @@
       color: var(--primary-blue);
     }
 }
+.btn-blue {
+    padding: pxToVw(5px, 1512px) pxToVw(15px, 1512px);
+    border-radius: pxToVw(4px, 1512px);
+    cursor: pointer;
+    transition: 0.2s opacity;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    font-weight: bold;
+    border: none;
+    height: pxToVw(30px, 1512px);
+    width: pxToVw(60px, 1512px);
+    font-size: pxToVw(12px, 1512px);
+   
+    
 
-
-
-.add-btn {
-  background-image: url("../images/add-icon.svg");
-  background-repeat: no-repeat; 
-  background-position: 0px 0px;
-  border: none;           /* assuming we don't want any borders */
-  cursor: pointer;        /* make the cursor like hovering over an <a> element */
-  height: pxToVw(100px, 1512px);           /* make this the size of your image */
-  padding-left: pxToVw(100px, 1512px);     /* make text start to the right of the image */
-  vertical-align: middle; /* align the text vertically centered */
-  margin-left: pxToVw(50px, 1512px);
-  margin-top: pxToVw(50px, 1512px);
-  
+    &:hover {
+      border: pxToVw(2px, 1512px) solid var(--primary-blue);
+      background-color: var(--white);
+      color: var(--primary-blue);
+    }
 }
 
-// .card {
-//   height: pxToVw(414px, 1920px);
-//   width: pxToVw(411px, 1920px);
-//   border: 2.5px solid var(--primary-blue);
-//   border-radius: pxToVw(6px, 1920px);
-//   &:hover {
-//       border: 2.5px solid var(--secondary-red);
-//   }
-// }
+.btn-red {
+    padding: pxToVw(5px, 1512px) pxToVw(15px, 1512px);
+    border-radius: pxToVw(4px, 1512px);
+    cursor: pointer;
+    transition: 0.2s opacity;
+    background-color: var(--secondary-red);
+    color: var(--white);
+    font-weight: bold;
+    border: none;
+    height: pxToVw(30px, 1512px);
+    width: pxToVw(60px, 1512px);
+    font-size: pxToVw(12px, 1512px);
+
+    
+
+    &:hover {
+      border: pxToVw(2px, 1512px) solid var(--secondary-red);
+      background-color: var(--white);
+      color: var(--secondary-red);
+    }
+}
+
+
+
+.save-btn {
+    padding: pxToVw(5px, 1512px) pxToVw(15px, 1512px);
+    border-radius: pxToVw(4px, 1512px);
+    cursor: pointer;
+    transition: 0.2s opacity;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    font-weight: bold;
+    border: none;
+    height: pxToVw(30px, 1512px);
+    width: pxToVw(115px, 1512px);
+    font-size: pxToVw(12px, 1512px);
+    margin-left: pxToVw(1000px, 1512px);
+    margin-top: pxToVw(50px, 1512px);
+    margin-bottom: pxToVw(50px, 1512px);
+    
+
+    &:hover {
+      border: pxToVw(2px, 1512px) solid var(--primary-blue);
+      background-color: var(--white);
+      color: var(--primary-blue);
+    }
+}
 
 .loading-icon {
-  margin-left: pxToVw(300px, 1512px);
+  margin-left: pxToVw(500px, 1512px);
+  margin-top: pxToVw(200px, 1512px);
+  height: pxToVw(100px, 1512px);
 }

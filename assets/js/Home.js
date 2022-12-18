@@ -51,10 +51,10 @@ if (document.getElementById('root')) {
     const root = createRoot(rootElement);
   
     root.render(
-        <StrictMode>
+        // <StrictMode>
           <Router>
             <Home />
             </Router>
-        </StrictMode>
+        // </StrictMode>
     );
 }

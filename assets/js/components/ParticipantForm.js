@@ -146,7 +146,7 @@ const validationSchema = Yup.object({
     </div>
     <div class="form-group col-md-3">
 
-      <input type="text" class="form-control" placeholder="Date de naissance" name="dateOfBirth" id="dateOfBirth" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.dateOfBirth}/>
+      <input type="date" class="form-control" placeholder="Date de naissance" name="dateOfBirth" id="dateOfBirth" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.dateOfBirth}/>
       {formik.touched.dateOfBirth && formik.errors.dateOfBirth ? <p className='error'>{formik.errors.dateOfBirth}</p> : null}
     </div>
   </div>
@@ -186,11 +186,11 @@ const validationSchema = Yup.object({
     </div>
     <div class="form-group col-md-3">
    
-      <input type="text" class="form-control"  placeholder="Code postale" name="city" id="city" onChange={formik.handleChange} value={formik.values.city}/>
+      <input type="text" class="form-control"  placeholder="Code postale" name="postalCode" id="postalCode" onChange={formik.handleChange} value={formik.values.postalCode}/>
     </div>
     <div class="form-group col-md-3">
     
-      <input type="text" class="form-control" placeholder="Ville" onChange={formik.handleChange} value={formik.values.postalCode}/>
+      <input type="text" class="form-control" placeholder="Ville" name='city' id="city" onChange={formik.handleChange} value={formik.values.city}/>
     </div>
   </div>
 
@@ -242,7 +242,7 @@ const validationSchema = Yup.object({
    
   </div>
 
- 
+  <h3>Activités</h3>
   <div class="form-group">
     <div class="form-check">
     {activities.map((activity) =>
@@ -252,7 +252,7 @@ const validationSchema = Yup.object({
                     )}
     </div>
   </div>
-  <button type="submit" className="login-btn">Enregistrer</button>
+  <button type="submit" className="save-btn">Enregistrer</button>
 </form>
   )
 }

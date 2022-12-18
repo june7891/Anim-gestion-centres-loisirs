@@ -155,7 +155,7 @@ const validationSchema = Yup.object({
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Ajouter un nouveau participant</Modal.Title>
+          <Modal.Title> <h4>Ajouter un nouveau participant</h4> </Modal.Title>
         </Modal.Header>
         <Modal.Body> 
         <ParticipantForm/>

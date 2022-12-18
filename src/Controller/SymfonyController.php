@@ -61,6 +61,7 @@ class SymfonyController extends AbstractController
         $email = $request->get("email");
         $name = $request->get("name");
         $text = $request->get("message");
+       
 
         $message = new Message();
         $message->setName($name);
@@ -86,6 +87,40 @@ class SymfonyController extends AbstractController
         $this->addFlash(
             'comment', 'Votre message à été bien envoyé!'
         );
+        return $this->redirectToRoute("app_contact"); 
+    }
+    #[Route('/api/sendEmail', name: 'app_email')]
+    public function sendEmail(Request $request, MailerInterface $mailer){
+
+
+        $data = $request->attributes->get('data');
+
+        dd($data);
+
+        $email = $request->attributes->get("email");
+        $text = $request->attributes->get("message");
+
+        // dd($email);
+       
+    
+       
+
+        $mail = (new Email())
+                ->from('no_reply@animplus.com')
+                ->to($email)
+                ->subject('Vous avez un nouveau message!')
+                ->text($text, 'text/html');
+
+        $mailer->send($mail);
+
+     
+
+
+
+
+        // $this->addFlash(
+        //     'comment', 'Votre message à été bien envoyé!'
+        // );
         return $this->redirectToRoute("app_contact"); 
     }
 

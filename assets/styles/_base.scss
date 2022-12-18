@@ -1,4 +1,3 @@
-
 @use 'mixins' as mixin;
 
 @import 'functions';
@@ -12,19 +11,21 @@ html {
 }
 
 * {
-  box-sizing: border-box; 
-  margin: 0;
+    box-sizing: border-box;
+    margin: 0;
     padding: 0;
 }
 
 body {
-   min-height: 100vh;
-//    position: relative;
-    
+    min-height: 100vh;
+    background-color: var(--white);
     font-family: var(--font-family);
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     margin: 0;
 }
 
@@ -35,6 +36,7 @@ h3 {
     font-family: var(--font-family-titles);
     font-size: pxToVw(28px, 1512px);
 }
+
 h4 {
     margin-top: pxToVw(50px, 1512px);
     margin-bottom: pxToVw(50px, 1512px);
@@ -42,6 +44,7 @@ h4 {
     font-family: var(--font-family-titles);
     font-size: pxToVw(20px, 1512px);
 }
+
 h5 {
     margin-bottom: pxToVw(30px, 1512px);
     margin-left: pxtoVw(20px, 1512px);
@@ -63,14 +66,15 @@ a {
 //     max-width: 100%;
 // }
 
-input, ::placeholder {
+input,
+::placeholder {
     font-family: var(--font-family) !important;
     color: var(--primary-blue) !important;
     font-size: pxToVw(18px, 1512px) !important;
     padding-left: pxToVw(10px, 1512px) !important;
 }
 
-input{
+input {
     width: pxToVw(314px, 1512px) !important;
     height: pxToVw(50px, 1512px) !important;
     border: pxToVw(2px, 1512px) solid var(--primary-blue) !important;
@@ -78,13 +82,13 @@ input{
     outline-color: var(--secondary-red) !important;
     // margin-right: pxToVw(40px, 1920px);
 
-   &:focus::placeholder {
-    color: var(--secondary-red) !important;
-    padding-left: pxToVw(10px, 1512px) !important;
-}
+    &:focus::placeholder {
+        color: var(--secondary-red) !important;
+        padding-left: pxToVw(10px, 1512px) !important;
+    }
 }
 
-select{
+select {
     width: pxToVw(314px, 1512px) !important;
     height: pxToVw(50px, 1512px) !important;
     border: pxToVw(2px, 1512px) solid var(--primary-blue) !important;
@@ -93,20 +97,21 @@ select{
     color: var(--primary-blue) !important;
     // margin-right: pxToVw(40px, 1920px);
 
-   &:focus::placeholder {
-    color: var(--secondary-red) !important;
-    
-}
-option {
-    color: var(--secondary-red) !important;
-}
+    &:focus::placeholder {
+        color: var(--secondary-red) !important;
+
+    }
+
+    option {
+        color: var(--secondary-red) !important;
+    }
 }
 
 .form-control:focus {
     border-color: var(--secondary-red);
     box-shadow: none;
     border: pxToVw(2px, 1512px) solid var(--secondary-red) !important;
-  }
+}
 
 label {
     margin-right: pxToVw(20px, 1512px);
@@ -115,10 +120,11 @@ label {
 
 ::-webkit-scrollbar {
     width: 15px;
-  }
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background: var(--primary-blue);
-  }
+}
 
 
 input[type=checkbox] {
@@ -126,4 +132,24 @@ input[type=checkbox] {
     height: pxToVw(25px, 1512px) !important;
     width: pxToVw(25px, 1512px) !important;
 
+}
+
+
+nav {
+    border-bottom: 3px solid var(--secondary-red);
+ 
+}
+
+
+textarea {
+    display: block;
+    width: pxToVw(314px, 1512px) !important;
+    height: pxToVw(200px, 1512px) !important;
+
+    border: pxToVw(2px, 1512px) solid var(--primary-blue) !important;
+    border-radius: pxToVw(4px, 1512px) !important;
+    outline-color: var(--secondary-red);
+    &:focus::placeholder {
+        color: var(--secondary-red);
+    }
 }

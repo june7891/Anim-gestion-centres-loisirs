@@ -1,18 +1,16 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from "react-router-dom";
-import logo from '../../images/Logo_blue.svg';
+
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import avatar from '../../images/avatar.svg';
+
 import '../../styles/participant/participant.scss'
 import {useFormik} from 'formik';
-import modifyIcon from "../../images/icon-modify.svg"
-import SecondaryNavBar from "../components/SecondaryNavBar.js"
-import PDFFile from '../components/PDFFile';
-import Modal from 'react-bootstrap/Modal';
-import { PDFDownloadLink } from '@react-pdf/renderer';
 
-import { PDFViewer } from '@react-pdf/renderer';
+import SecondaryNavBar from "../components/SecondaryNavBar.js"
+
+import Modal from 'react-bootstrap/Modal';
+import EmailModal from './EmailModal';
+
 
 const ParticipantDetails = () => {
 
@@ -21,17 +19,34 @@ const ParticipantDetails = () => {
     const [parentOne, setParentOne] = useState([]);
     const [parentTwo, setParentTwo] = useState([]);
     const [activities, setActivities] = useState([]);
-    const [show, setShow] = useState(false);
+    const [loadingReportData, setLoadingReportData] = useState(true);
 
+    const [show, setShow] = useState(false);
+    const [showEmail, setShowEmail] = useState(false);
+
+    const [user, setUser] = useState([]);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleCloseEmail = () => setShowEmail(false);
+    const handleShowEmail = () => setShowEmail(true);
 
 
     let params = useParams();
     const id = params.id;
 
+    useEffect(() => {
+      const loggedInUser = window.user;
+      if(loggedInUser) {
+        setUser(loggedInUser?.['roles']);
+        console.log(user[0]);
+      }
+    })
+
+
+
 
     useEffect(() => {
+    
       axios.get(`/api/participants/${id}`)
         .then (response => {
           console.log(response.data);
@@ -41,6 +56,7 @@ const ParticipantDetails = () => {
           setParentOne(data.ParentOne);
           setParentTwo(data.ParentTwo);
           setActivities(data.activities);
+         
         })
         
       
@@ -74,7 +90,7 @@ const ParticipantDetails = () => {
 
 
     axios({method: "post",
-            url: `/api/participants/${id}/image`,
+            url: `/api/participants/${id}/files`,
             data: formData,
             headers: { "Content-Type": "multipart/form-data" }
   })
@@ -94,10 +110,6 @@ const ParticipantDetails = () => {
     onSubmit
   });
 
-
-
-
-     
       
 
   return (
@@ -112,38 +124,70 @@ const ParticipantDetails = () => {
       <div className="col-lg-4 text-center">
         <div className="card details-card mb-4">
           <div className="participant-card-body card-body text-center">
-          {/* <div className='profile-image-container'> */}
+          <div className='profile-image-container'>
            {participant.image &&  <img src={ require(`../../../public/images/uploads/participants_files/${participant.image}`)} alt={participant.image} className="img-fluid" />}
             {/* <img src={ require(`../../../public/images/${image}`)} alt={participant.image} class="img-fluid" /> */}
-              {/* </div> */}
-            <h5 className="my-3"> {participant.firstname}</h5>
+              </div>
+            <h5 className="my-3"> {participant.firstname} {participant.lastname}</h5>
             <p className="text-muted mb-1">Classe: {participant.schoolLevel?.level}</p>
             <p className="text-muted mb-4">Ecole: {participant?.schoolName}</p>
        
           </div>
         </div>
-      
-          <p><a className='modification-btn' href={`/participant-modification-form/${participant.id}`}>Modifier la fiche de renseignement</a></p> 
-           <PDFDownloadLink document={<PDFFile/>} fileName="Fiche"></PDFDownloadLink>
-           <button onClick={handleShow}>Voir le pdf</button>
 
-           <Modal  show={show} onHide={handleClose}>
+        <div className='profile-btn-container'>
+           {user[0] === "ROLE_USER" ? ("") : (<p><a className='modification-btn' href={`/participant-modification-form/${participant.id}`}>Modifier la fiche de renseignement</a></p>)} 
+              
+              <p><button className='modification-btn' onClick={handleShowEmail} >Contacter les parents</button></p>
+          </div>
+
+           {/* <button onClick={handleShow}>Voir le pdf</button> */}
+
+           {/* <Modal  show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title> <h3>Fiche de renseignement</h3> </Modal.Title>
+          <Modal.Title> <h4>Télécharger le document</h4> */}
+
+          {/* <button onClick={generatePdfDocument}>Télécharger</button>  */}
+
+        
+          
+          {/* </Modal.Title>
         </Modal.Header>
-        <Modal.Body> <PDFFile participant={participant} /> </Modal.Body>
+        <Modal.Body> <PDFFile 
+          lastName={participant.lastname} 
+          firstName={participant.firstname} 
+          dateOfBirth={new Date(participant.dateOfBirth).toLocaleDateString()}
+          address={participant.address + participant.postalCode + participant.city}
+          parentOneLastname = {parentOne.lastName}
+          parentOneFirstname = {parentOne.firstName}
+          parentOneEmail = {parentOne.email}
+          parentOnePhone = {parentOne.phoneNumber}
+          parentTwoLastname = {parentTwo.lastName}
+          parentTwoFirstname = {parentTwo.firstName}
+          parentTwoEmail = {parentTwo.email}
+          parentTwoPhone = {parentTwo.phoneNumber}
+
+        /> 
+     </Modal.Body>
+      </Modal> */}
+
+      <Modal dialogClassName="email-modal"   show={showEmail} onHide={handleCloseEmail}>
+        <Modal.Header closeButton>
+          <Modal.Title> <h3>Contacter la famille</h3> </Modal.Title>
+        </Modal.Header>
+        <Modal.Body> <EmailModal text={parentOne.email}/> </Modal.Body>
         <Modal.Footer>
+      
         
         </Modal.Footer>
       </Modal>
-
-              
+      
        
       </div>
 
       <div className="col-lg-8">
-        <div className="card mb-4">
-          <div className="card-body">
+        <div className="card mb-4 participant-detail-card-body">
+          <div className="card-body participant-detail-card-body">
             <div className="row">
               <div className="col-sm-3">
                 <p className="mb-0">Nom de famille</p>
@@ -210,7 +254,7 @@ const ParticipantDetails = () => {
               <div className="col-sm-3">
                 <p className="mb-0">Email</p>
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm-6">
                 <p className="text-muted mb-0">{parentOne?.email}</p>
               </div>
             </div>
@@ -243,7 +287,7 @@ const ParticipantDetails = () => {
            
             <div className="row">
               <div className="col-sm-3">
-                <p class="mb-0">Prénom</p>
+                <p className="mb-0">Prénom</p>
               </div>
               <div className="col-sm-9">
                 <p className="text-muted mb-0">{parentTwo?.firstName}</p>
@@ -255,7 +299,7 @@ const ParticipantDetails = () => {
               <div className="col-sm-3">
                 <p className="mb-0">Email</p>
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm-6">
                 <p className="text-muted mb-0">{parentTwo?.email}</p>
               </div>
             </div>
@@ -274,13 +318,13 @@ const ParticipantDetails = () => {
               <div className="col-sm-3">
                 <p className="mb-0">Inscrit(e) aux activités suivantes</p>
               </div>
-              
-              {activities?.map((activity) => (
-                <div className="col-sm-9">
+              <div className="col-sm-9">
+              {activities?.length == 0 ? <p className="text-muted mb-0">Aucune activité</p> : activities?.map((activity) => (
+                
                 <p className="text-muted mb-0">{activity.name}</p>
-                 </div>
+                
                 ))}
-               
+                </div>
              
             </div>
             <hr/>
@@ -296,19 +340,19 @@ const ParticipantDetails = () => {
             <label htmlFor="photo">Photo</label>
             <input type="file" id="photo" name="image" accept="image/png, image/jpeg" onChange={(e) => formik.setFieldValue('image', e.target.files[0])}/>
            
-            {/* {participant.image &&   <a href={require(`../../../public/images/${participant.image}`)} download>Photo</a>} */}
+            {participant.image &&   <a href={require(`../../../public/images/uploads/participants_files/${participant.image}`)} download>Télécharger la photo</a>}
             <label htmlFor="fiche_sanitaire">Fiche sanitaire</label>
             <input type="file" id="fiche_sanitaire" name="ficheSanitaire" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('ficheSanitaire', e.target.files[0])}/>
            
-            {/* {participant.ficheSanitaire &&   <a href={require(`../../../public/images/${participant.ficheSanitaire}`)} download>Fiche sanitaire</a>} */}
+            {participant.ficheSanitaire &&   <a href={require(`../../../public/images/uploads/participants_files/${participant.ficheSanitaire}`)} download>Fiche sanitaire</a>}
             <label htmlFor="vaccination">Vaccins</label>
             <input type="file" id="vaccination" name="vaccination" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('vaccination', e.target.files[0])}/>
             
-            {/* {participant.vaccination &&   <a href={require(`../../../public/images/${participant.vaccination}`)} download>Vaccins</a>} */}
+            {participant.vaccination &&   <a href={require(`../../../public/images/uploads/participants_files/${participant.vaccination}`)} download>Vaccins</a>}
             <label htmlFor="insurance">Assurance</label>
             <input type="file" id="insurance" name="insurance" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('insurance', e.target.files[0])}/>
           
-            {/* {participant.insurance &&   <a href={require(`../../../public/images/${participant.insurance}`)} download>Assurance</a>} */}
+            {participant.insurance &&   <a href={require(`../../../public/images/uploads/participants_files/${participant.insurance}`)} download>Assurance</a>}
     
                 <button className='login-btn' type="submit">Enregistrer</button>
             </form>

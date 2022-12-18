@@ -13,6 +13,11 @@ const ParticipantModificationForm = () => {
     const [parentOne, setParentOne] = useState([]);
     const [parentTwo, setParentTwo] = useState([]);
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     let params = useParams();
     const id = params.id;
 
@@ -26,21 +31,19 @@ const ParticipantModificationForm = () => {
             console.log(data.ParentOne);
             setParentOne(data.ParentOne);
             setParentTwo(data.ParentTwo);
+            setParticipantActivities(data.activities);
           })
           };
         getParticipant();
       }, [id]);
 
-      const [show, setShow] = useState(false);
-
-      const handleClose = () => setShow(false);
-      const handleShow = () => setShow(true);
-    
+  
     
       
       const [schoolLevels, setSchoolLevels] = useState([]);
       const [schoolTypes, setSchoolTypes] = useState([]);
       const [activities, setActivities] = useState([]);
+      const [participantActivities, setParticipantActivities] = useState([]);
       const [user, setUser] = useState();
       
       
@@ -68,9 +71,9 @@ const ParticipantModificationForm = () => {
           })
     
           const loggedInUser = window.user;
-          const user = loggedInUser?.['@id'];
+          const enterprise = loggedInUser?.['enterprise'];
             console.log(user);
-       axios.get(`/api/activities?user=${user}`)
+       axios.get(`/api/activities?enterprise=${enterprise}`)
           .then((response) => {
               // console.log(response.data);
               setActivities(response.data['hydra:member']); 
@@ -111,6 +114,18 @@ const ParticipantModificationForm = () => {
                   // console.log(value)
                   axios.put(`/api/participants/${id}`, {
                     dateOfBirth: value
+                  })
+                  .then(function (response) {
+                  console.log(response)
+                  })
+                  .catch(function (error) {
+                  console.log(error);
+              })
+             }
+             const updateSchoolName = (value) => {
+                  // console.log(value)
+                  axios.put(`/api/participants/${id}`, {
+                    schoolName: value
                   })
                   .then(function (response) {
                   console.log(response)
@@ -262,6 +277,7 @@ const ParticipantModificationForm = () => {
                   })
                   .then(function (response) {
                   console.log(response)
+                  location.reload();
                   })
                   .catch(function (error) {
                   console.log(error);
@@ -276,6 +292,7 @@ const ParticipantModificationForm = () => {
                   })
                   .then(function (response) {
                   console.log(response)
+                  location.reload();
                   })
                   .catch(function (error) {
                   console.log(error);
@@ -292,6 +309,8 @@ const ParticipantModificationForm = () => {
               // console.log(options);
               return options;
              }
+
+           
 
         
 
@@ -310,22 +329,35 @@ const ParticipantModificationForm = () => {
 
     <div className="row">
       <div className="col-lg-4">
-        <div className="card details-card mb-4">
+        <div className="card details-card  mb-4">
           <div className="card-body text-center">
-          <div className='icon-container'>
-            <img src = {`${participant.image}`} alt={participant.image}
-              className="img-fluid" />
+          <div className='profile-image-container'>
+          {participant.image &&  <img src={ require(`../../../public/images/uploads/participants_files/${participant.image}`)} alt={participant.image} className="img-fluid" />}
               </div>
             <h5 className="my-3">{participant.lastname} {participant.firstname}</h5>
             <p className="text-muted mb-1">{participant.schoolLevel?.level}</p>
-            <p className="text-muted mb-4">{participant?.schoolName}</p>
+            <p className="text-muted mb-4"> <EasyEdit
+                  type={Types.TEXT}
+                  onSave={updateSchoolName}
+                  onCancel={cancel}
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
+                  attributes={{ name: "schoolName", id: 1}}
+                  placeholder={participant.schoolName}
+                  value={participant.schoolName}
+                  /></p>
        
           </div>
         </div>
+
+        <div className='profile-btn-container'>
+           <p><a className='modification-btn' href={`/participant-details/${participant.id}`}>Voir la fiche de renseignements</a></p>
+              
+          </div>
        
       </div>
       <div className="col-lg-8">
-        <div className="card mb-4">
+        <div className="card mb-4 participant-detail-card-body">
           <div className="card-body">
             <div className="row">
               <div className="col-sm-3">
@@ -544,7 +576,7 @@ const ParticipantModificationForm = () => {
               <div className="col-sm-3">
                 <p className="mb-0">Email</p>
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm-6">
               <EasyEdit
                   type={Types.TEXT}
                   onSave={updateParentTwoEmail}
@@ -555,12 +587,13 @@ const ParticipantModificationForm = () => {
                   placeholder={parentTwo.email}
                   />
               </div>
+             
             </div>
             <hr/>
            
-              <div className="col-sm-9">
+              
             <div className="row">
-            
+            <div className="col-sm-3">
                 <p className="mb-0">N° de téléphone</p>
               </div>
               <div className="col-sm-9">
@@ -581,13 +614,26 @@ const ParticipantModificationForm = () => {
                 <p className="mb-0">Inscrit(e) aux activités suivantes</p>
               </div>
               <div className="col-sm-9">
+              {participantActivities?.length == 0 ? <p className="text-muted mb-0">Aucune activité</p> : participantActivities?.map((activity) => (
+                
+                <p className="text-muted mb-0">{activity.name}</p>
+                
+                ))}
+                </div>
+
+                <div className="col-sm-3">
+                <p className="mb-0">Ajouter</p>
+              </div>
+              <div className="col-sm-9">
                 <EasyEdit
                   type={Types.CHECKBOX}
                   options={getOptions()}
                   onSave={updateActivities}
                   onCancel={cancel}
+                  saveButtonLabel="Modifier"
+                  cancelButtonLabel="Annuler"
                   attributes={{ name: "actitvities", id: 1}}
-                  placeholder="Choisissez les activités"
+                  placeholder={"Modifier les activités"}
                   instructions="Cochez les activités"
                   />
                   </div>

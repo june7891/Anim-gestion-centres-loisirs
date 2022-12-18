@@ -118,7 +118,7 @@ const validationSchema = Yup.object({
           <div class="form-group col-md-3">
           <label htmlFor="capacity">Capacité d'accueil</label>
             <input
-              className="small-input"
+              className="medium-input"
               type="number"
               name="capacity"
               id="capacity"
@@ -131,7 +131,7 @@ const validationSchema = Yup.object({
           <div class="form-group col-md-3">
           <label htmlFor="price">Tarif</label>
           <input
-            className="small-input"
+            className="medium-input"
             type="number"
             name="price"
             id="price"
@@ -149,7 +149,7 @@ const validationSchema = Yup.object({
         <div class="form-group col-md-3">
         <label htmlFor="started_at">Date du début</label>
           <input
-            className="small-input"
+            className="medium-input"
             type="time"
             name="startedAt"
             id="started_at"
@@ -162,7 +162,7 @@ const validationSchema = Yup.object({
   <div class="form-group col-md-3">
   <label htmlFor="ended_at">Heure de la fin</label>
           <input
-            className="small-input"
+            className="medium-input"
             type="time"
             name="endedAt"
             id="ended_at"
@@ -202,7 +202,7 @@ const validationSchema = Yup.object({
         />
   </div>
   </div>
-        <button type="submit" className="login-btn">
+        <button type="submit" className="save-btn">
           Enregistrer
         </button>
       </form>

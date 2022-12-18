@@ -75,7 +75,7 @@ class Participant
     /**
      * @ORM\ManyToMany(targetEntity=Activity::class, inversedBy="participants", cascade={"persist", "remove"})
      */
-    #[Groups(['read:item', 'write:Participant'])]
+    #[Groups(['read:Participant', 'write:Participant'])]
     private $activities;
 
     
