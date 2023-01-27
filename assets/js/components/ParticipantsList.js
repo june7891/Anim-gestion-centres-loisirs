@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useEffect, useState, useRef} from 'react';
 import viewIcon from "../../images/view.svg"
-import removeIcon from "../../images/icon-remove.svg"
+import removeIcon from "../../images/remove-icon-red.svg";
 import modifyIcon from "../../images/icon-modify.svg"
 import alphabetIcon from "../../images/a-z-blue.svg"
 import alphabetReverseIcon from "../../images/z-a-red.svg";
@@ -11,7 +11,7 @@ import DeleteParticipantModal from './DeleteParticipantModal';
 const ParticipantsList = () => {
 
   const [participants, setParticipants] = useState([]);
-  const [SchoolTypes, setSchoolTypes] = useState([]);
+  const [schoolTypes, setSchoolTypes] = useState([]);
   const [user, setUser] = useState([]);
   const [hideDeleteModal, setHideDeleteModal]= useState(false);
   const [participantId, setParticipantId] = useState(0);
@@ -148,7 +148,7 @@ const ParticipantsList = () => {
 
   return (
     <>
-    {participants.length === 0 ? <h4>Vous n'avez aucun participant enregistré</h4> :<h3>Mes participants</h3>}
+    {participants && participants.length === 0 ? <h4>Vous n'avez aucun participant enregistré</h4> :<h3>Mes participants</h3>}
 
   <div className='filter-bar'>
       <input type="text" className='search-input' onInput={handleInput}  placeholder='Rechercher par le nom'/>
@@ -161,7 +161,7 @@ const ParticipantsList = () => {
     
     <div className='mt-5 filter-school-type-buttons'>
       <h5>Trier par type d'école</h5>
-    {SchoolTypes.map((schoolType) => (
+    {schoolTypes.map((schoolType) => (
       <button key={schoolType.id} className="login-btn" value={schoolType.type} onClick={handleParticipantsFilter}>{schoolType.type}</button>
     ))}
     

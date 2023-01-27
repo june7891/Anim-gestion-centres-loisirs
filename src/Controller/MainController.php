@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class MainController extends AbstractController
 {
    
-    #[Route('/{reactRouting}', name: 'home', priority:'-1', requirements:['reactRouting' => "^(?!api).+"] , defaults: ['reactRouting' => null])]
+    #[Route('/{reactRouting}', name: 'app_account', priority:'-1', requirements:['reactRouting' => "^(?!api).+"] , defaults: ['reactRouting' => null])]
     public function index(SerializerInterface $serializer)
     {
 

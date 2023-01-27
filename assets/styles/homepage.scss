@@ -176,6 +176,17 @@
             display: inline-block;
             margin-top: pxToVw(60px, 1512px);
             
+            .msg-loggedin {
+              font-size: pxToVw(10px, 1512px);
+            }
+
+            .msg-error {
+              height: pxToVw(20px, 1512px);
+              color: var(--secondary-red);
+              font-size: pxToVw(15px, 1512px);
+              padding-bottom: pxToVw(30px, 1512px);
+              padding-top: pxToVw(10px, 1512px);
+            }
     
         
             input {
@@ -213,6 +224,12 @@
         .form {
             display: inline-block;
             margin-top: pxToVw(40px, 1512px);
+            li{
+              
+              color: var(--secondary-red);
+              font-size: pxToVw(10px, 1512px);
+            }
+    
             input {
                 display: flex;
             }
@@ -304,3 +321,17 @@
 
       }
     }
+
+
+        
+
+    @media screen and (max-width: 768px) {
+      nav .links ul {
+          margin-left: 220px;
+
+          li {
+              font-size: 12px;
+          }
+      }
+  }
+ 

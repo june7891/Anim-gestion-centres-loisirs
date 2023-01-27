@@ -67,10 +67,12 @@ class ParticipantFilesController extends AbstractController
         $movedFicheSanitaire = $uploadedFicheSanitaire->move($destination, $newFicheSanitaireName);
 
          $participant->setFicheSanitaire($newFicheSanitaireName);
-        $participant->setFicheSanitaireFile($movedFicheSanitaire);
+         $participant->setFicheSanitaireFile($movedFicheSanitaire);
         }
 
-    
+        else{
+            echo 'erreur';
+        }
      
         return $participant;
        

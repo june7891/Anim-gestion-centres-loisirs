@@ -39,10 +39,34 @@ class SymfonyController extends AbstractController
     {
         return $this->render('symfony/contact.html.twig');
     }
+
     #[Route('/about', name: 'app_about')]
     public function about(): Response
     {
         return $this->render('symfony/about.html.twig');
+    }
+
+    #[Route('/list', name: 'app_list')]
+    public function getParticipantsList(ParticipantRepository $participantRepository): Response
+    {
+
+        $participants = $participantRepository->findAll();
+
+        return $this->render('symfony/list.html.twig', [
+            'participants' => $participants
+        ]);
+    }
+
+
+    #[Route('/mailing-list', name: 'app_mailing_list')]
+    public function getParticipantsEmails(ParticipantRepository $participantRepository): Response
+    {
+
+        $participants = $participantRepository->findAll();
+
+        return $this->render('symfony/mailing_list.html.twig', [
+
+        ]);
     }
 
 
@@ -58,37 +82,54 @@ class SymfonyController extends AbstractController
     #[Route('/sendMessage', name: 'app_message')]
     public function sendMessage(Request $request, MailerInterface $mailer, EntityManagerInterface $em){
 
+
+
+
         $email = $request->get("email");
         $name = $request->get("name");
         $text = $request->get("message");
        
+        if(!empty($email && $name && $text)) {
+                $message = new Message();
+                $message->setName($name);
+                $message->setEmail($email);
+                $message->setMessage($text);
+                $em->persist($message);
 
-        $message = new Message();
-        $message->setName($name);
-        $message->setEmail($email);
-        $message->setMessage($text);
-        $em->persist($message);
-       
-
-        $mail = (new Email())
+                $mail = (new Email())
                 ->from($email)
                 ->to('contact@animplus.org')
                 ->subject('Vous avez un nouveau message!')
                 ->text($text, 'text/html')
                 ->html("<p>Vous avez un nouveau message de $name ($email) sur le site de anim+: </p><br> $text");
 
-        $mailer->send($mail);
+                $mailer->send($mail);
+
+                $em->flush();
+
+                $this->addFlash('notice', 'Votre message à été bien envoyé!');
+                return $this->redirect($this->generateUrl('app_contact').'#section-contact');
+
+        } else {
+            
+            $this->addFlash('error', 'Veuillez remplir tous les champs!');
+            return $this->redirect($this->generateUrl('app_contact').'#section-contact');
+
+        }
 
      
-        $em->flush();
+       
+
+   
 
 
 
-        $this->addFlash(
-            'comment', 'Votre message à été bien envoyé!'
-        );
-        return $this->redirectToRoute("app_contact"); 
+        
     }
+
+
+
+
     #[Route('/api/sendEmail', name: 'app_email')]
     public function sendEmail(Request $request, MailerInterface $mailer){
 

@@ -93,6 +93,25 @@
     }
 }
 
+
+
+.modification-btn {
+  border: pxToVw(2px, 1512pc) solid var(--secondary-red);
+  color: var(--white);
+  background-color: var(--secondary-red);
+  border-radius: pxToVw(4px, 1512px);
+  padding: pxToVw(15px, 1512px) pxToVw(40px, 1512px);
+  width: pxToVw(340px, 1512px);
+  height: pxToVw(50px, 1512px);
+
+  
+ &:hover {
+  color: var(--secondary-red);
+  background-color: white;
+
+ }
+}
+
 .loading-icon {
   margin-left: pxToVw(500px, 1512px);
   margin-top: pxToVw(200px, 1512px);

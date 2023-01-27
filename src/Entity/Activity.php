@@ -74,7 +74,7 @@ class Activity
     private $endedAt;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="decimal", nullable=true)
      */
     #[Groups(['read:Activity', 'write:Activity'])]
     private $price;

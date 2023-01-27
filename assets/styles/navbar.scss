@@ -21,13 +21,14 @@ nav {
         margin-top: pxToVw(40px, 1920px);
         
         ul {
-            margin-left: pxToVw(680px, 1920px);
+            margin-left: pxToVw(580px, 1920px);
           li{
            display: inline;  
            color: var(--black);
            margin-right: pxToVw(20px, 1920px);
            font-weight: bold;
            cursor: pointer;
+           font-size: pxToVw(20px, 1512px);
           
            &:hover {
             color: var(--secondary-red);
@@ -44,3 +45,15 @@ nav {
     } 
     }
     
+
+    @media screen and (max-width: 768px) {
+        nav .links ul {
+            margin-left: 110px;
+
+            li {
+                font-size: 14px;
+            }
+        }
+    }
+   
+          

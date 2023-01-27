@@ -135,41 +135,14 @@ const ParticipantDetails = () => {
           </div>
         </div>
 
-        <div className='profile-btn-container'>
-           {user[0] === "ROLE_USER" ? ("") : (<p><a className='modification-btn' href={`/participant-modification-form/${participant.id}`}>Modifier la fiche de renseignement</a></p>)} 
+        <div className='profile-btn-container mb-4'>
+           {user[0] === "ROLE_USER" ? ("") : (<a className='modification-btn' href={`/participant-modification-form/${participant.id}`}>Modifier la fiche de renseignement</a>)} 
               
-              <p><button className='modification-btn' onClick={handleShowEmail} >Contacter les parents</button></p>
+            <a className='modification-btn' onClick={handleShowEmail} >Contacter les parents</a>
           </div>
 
-           {/* <button onClick={handleShow}>Voir le pdf</button> */}
-
-           {/* <Modal  show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title> <h4>Télécharger le document</h4> */}
-
-          {/* <button onClick={generatePdfDocument}>Télécharger</button>  */}
-
+   
         
-          
-          {/* </Modal.Title>
-        </Modal.Header>
-        <Modal.Body> <PDFFile 
-          lastName={participant.lastname} 
-          firstName={participant.firstname} 
-          dateOfBirth={new Date(participant.dateOfBirth).toLocaleDateString()}
-          address={participant.address + participant.postalCode + participant.city}
-          parentOneLastname = {parentOne.lastName}
-          parentOneFirstname = {parentOne.firstName}
-          parentOneEmail = {parentOne.email}
-          parentOnePhone = {parentOne.phoneNumber}
-          parentTwoLastname = {parentTwo.lastName}
-          parentTwoFirstname = {parentTwo.firstName}
-          parentTwoEmail = {parentTwo.email}
-          parentTwoPhone = {parentTwo.phoneNumber}
-
-        /> 
-     </Modal.Body>
-      </Modal> */}
 
       <Modal dialogClassName="email-modal"   show={showEmail} onHide={handleCloseEmail}>
         <Modal.Header closeButton>
@@ -321,7 +294,7 @@ const ParticipantDetails = () => {
               <div className="col-sm-9">
               {activities?.length == 0 ? <p className="text-muted mb-0">Aucune activité</p> : activities?.map((activity) => (
                 
-                <p className="text-muted mb-0">{activity.name}</p>
+                <p key={activity.id} className="text-muted mb-0"><a href={`/activity-details/${activity.id}`}>{activity.name}</a></p>
                 
                 ))}
                 </div>
@@ -335,22 +308,22 @@ const ParticipantDetails = () => {
             <div className='row-9'>
 
             <p className='details-title'>Joindre les pièces complémentaires</p>
-
+                  <p>(formats png, jpeg autorisés)</p>
               <form onSubmit={formik.handleSubmit} className="file-form">
             <label htmlFor="photo">Photo</label>
             <input type="file" id="photo" name="image" accept="image/png, image/jpeg" onChange={(e) => formik.setFieldValue('image', e.target.files[0])}/>
-           
+                
             {participant.image &&   <a href={require(`../../../public/images/uploads/participants_files/${participant.image}`)} download>Télécharger la photo</a>}
             <label htmlFor="fiche_sanitaire">Fiche sanitaire</label>
-            <input type="file" id="fiche_sanitaire" name="ficheSanitaire" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('ficheSanitaire', e.target.files[0])}/>
+            <input type="file" id="fiche_sanitaire" name="ficheSanitaire" accept="image/png, image/jpeg" onChange={(e) => formik.setFieldValue('ficheSanitaire', e.target.files[0])}/>
            
             {participant.ficheSanitaire &&   <a href={require(`../../../public/images/uploads/participants_files/${participant.ficheSanitaire}`)} download>Fiche sanitaire</a>}
             <label htmlFor="vaccination">Vaccins</label>
-            <input type="file" id="vaccination" name="vaccination" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('vaccination', e.target.files[0])}/>
+            <input type="file" id="vaccination" name="vaccination" accept="image/png, image/jpeg" onChange={(e) => formik.setFieldValue('vaccination', e.target.files[0])}/>
             
             {participant.vaccination &&   <a href={require(`../../../public/images/uploads/participants_files/${participant.vaccination}`)} download>Vaccins</a>}
             <label htmlFor="insurance">Assurance</label>
-            <input type="file" id="insurance" name="insurance" accept="image/png, image/jpeg, .pdf" onChange={(e) => formik.setFieldValue('insurance', e.target.files[0])}/>
+            <input type="file" id="insurance" name="insurance" accept="image/png, image/jpeg" onChange={(e) => formik.setFieldValue('insurance', e.target.files[0])}/>
           
             {participant.insurance &&   <a href={require(`../../../public/images/uploads/participants_files/${participant.insurance}`)} download>Assurance</a>}
     

@@ -52,3 +52,50 @@
         }
     }
     
+
+        //tablet screen styling
+        @media screen and (max-width: 768px) {
+  
+            .account-cards-container {
+                margin-top: pxToVw(300px, 1920px);
+                
+               
+              
+                .card {
+                    height: 314px;
+                    width: 311px;
+                    border: 2.5px solid var(--primary-blue);
+                    border-radius: pxToVw(6px, 1920px);
+                    &:hover {
+                        border: 2.5px solid var(--secondary-red);
+                    }
+                 
+                    .icon-container {
+                        width: 250px;
+                        height: 380px;
+
+                        margin-top:25px;
+                        img {
+                            width: 255px;
+                            height: 225px;
+                           
+                        }
+                        .img-participant {
+                            height: 240px;
+                        }
+                    }
+        
+                    .title {
+                 
+                        font-size: 24px;
+                        width: 200px;
+          
+             
+                    }
+                }
+            }
+
+
+
+          }
+          

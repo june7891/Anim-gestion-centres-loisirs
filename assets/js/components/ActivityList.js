@@ -76,12 +76,12 @@ const handleSave = (e) => {
       
         <div className="total">
           {" "}
-          <p className="text">Total présents: </p>
-          <p> {activeItemsCount}</p>
+          <p className="text">Total présents</p>
+          <p className="number"> {activeItemsCount}</p>
         </div>
 
-        <button className="btn-red" onClick={handleReset}>Reset</button>
-        <button className="btn-blue" onClick={handleSave}>Save</button>
+        {/* <button className="btn-red" onClick={handleReset}>Reset</button>
+        <button className="btn-blue" onClick={handleSave}>Save</button> */}
         <p className="date">
           Date d'aujourd'hui:{" "}
           {new Intl.DateTimeFormat("fr-FR", { weekday: "long" }).format(

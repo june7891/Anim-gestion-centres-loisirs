@@ -324,13 +324,13 @@ const ParticipantModificationForm = () => {
     <section>
   <div className="container py-5">
 
-  <h3>Modification des information</h3>
+  <h3>Modification des informations</h3>
     
 
     <div className="row">
-      <div className="col-lg-4">
+      <div className="col-lg-4 text-center">
         <div className="card details-card  mb-4">
-          <div className="card-body text-center">
+          <div className="participant-card-body card-body text-center">
           <div className='profile-image-container'>
           {participant.image &&  <img src={ require(`../../../public/images/uploads/participants_files/${participant.image}`)} alt={participant.image} className="img-fluid" />}
               </div>
@@ -349,12 +349,9 @@ const ParticipantModificationForm = () => {
        
           </div>
         </div>
-
-        <div className='profile-btn-container'>
-           <p><a className='modification-btn' href={`/participant-details/${participant.id}`}>Voir la fiche de renseignements</a></p>
-              
-          </div>
-       
+        <div className='profile-btn-container mb-4'>
+      <a className='modification-btn' href={`/participant-details/${participant.id}`}>Voir la fiche de renseignements</a>
+       </div>
       </div>
       <div className="col-lg-8">
         <div className="card mb-4 participant-detail-card-body">

@@ -1,55 +1,43 @@
-import React, {useState, useEffect} from 'react'
-import '../../styles/activity/activity.scss'
-import viewIcon from "../../images/view.svg"
-import removeIcon from "../../images/remove-icon-red.svg"
-import modifyIcon from "../../images/icon-modify.svg"
-import axios from 'axios';
-import activityIcon from '../../images/activity-icon.svg';
-import loadingIcon from '../../images/Loading_icon.gif';
-import DeleteModal from './DeleteModal'
+import React, { useState, useEffect } from "react";
+import "../../styles/activity/activity.scss";
+import viewIcon from "../../images/view.svg";
+import removeIcon from "../../images/remove-icon-red.svg";
+import modifyIcon from "../../images/icon-modify.svg";
+import axios from "axios";
+import activityIcon from "../../images/activity-icon.svg";
+import loadingIcon from "../../images/Loading_icon.gif";
+import DeleteModal from "./DeleteModal";
 
 const AllActivities = () => {
-
   const [enterprise, setEnterprise] = useState();
   const [activities, setActivities] = useState([]);
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const [hideDeleteModal, setHideDeleteModal]= useState(false);
+  const [hideDeleteModal, setHideDeleteModal] = useState(false);
   const [activityId, setActivityId] = useState(0);
 
-
- 
-
-
   useEffect(() => {
     const loggedInUser = window.user;
-    if(loggedInUser) {
-      setUser(loggedInUser?.['roles']);
-      console.log(user[0]);
+    if (loggedInUser) {
+      setUser(loggedInUser?.["roles"]);
+      // console.log(user[0]);
     }
-  })
-
-
+  });
 
   useEffect(() => {
     const loggedInUser = window.user;
-    console.log(loggedInUser);
-    const enterprise = loggedInUser?.['enterprise'];
-      console.log(enterprise);
-      setLoading(true)
+    // console.log(loggedInUser);
+    const enterprise = loggedInUser?.["enterprise"];
+    // console.log(enterprise);
+    setLoading(true);
 
-  axios.get(`/api/activities?enterprise=${enterprise}`)
-  .then((response) => {
-    // console.log(response.data['hydra:member']);
-    
-    setActivities(response.data['hydra:member']);
-    setLoading(false)
-  })
-  
-  }, [])
-
-
+    axios.get(`/api/activities?enterprise=${enterprise}`).then((response) => {
+      // console.log(response.data['hydra:member']);
+      setActivities(response.data["hydra:member"]);
+      setLoading(false);
+    });
+  }, []);
 
   const hide = (id) => {
     if (hideDeleteModal) {
@@ -60,19 +48,13 @@ const AllActivities = () => {
     }
   };
 
-
-
   const deleteActivity = () => {
-    axios.delete(`/api/activities/${activityId}`)
-    .then(response => {
-      console.log(response);
+    axios.delete(`/api/activities/${activityId}`).then((response) => {
+      // console.log(response);
       hide();
-      location.reload()
+      location.reload();
     });
-  }
-
-
-
+  };
 
   return (
     <>
@@ -87,7 +69,7 @@ const AllActivities = () => {
           <img className="loading-icon" src={loadingIcon} />
         ) : (
           activities.map((activity) => (
-            <div className="card">
+            <div className="card" key={activity.id}>
               <div className="icon-container">
                 <img src={activityIcon} alt="" />
               </div>
@@ -122,6 +104,6 @@ const AllActivities = () => {
       )}
     </>
   );
-}
+};
 
-export default AllActivities
+export default AllActivities;
