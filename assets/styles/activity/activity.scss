@@ -14,22 +14,24 @@
 .activity-form {
 
     margin-left: pxToVw(180px, 1512px);
+
     .form-group {
         margin-right: pxToVw(40px, 1512px);
 
     }
-      .small-input {
-            width: pxToVw(100px, 1512px) !important;
-        }
 
-        .medium-input {
-            width: pxToVw(130px, 1512px) !important;
-        }
-    
+    .small-input {
+        width: pxToVw(100px, 1512px) !important;
+    }
+
+    .medium-input {
+        width: pxToVw(130px, 1512px) !important;
+    }
+
 }
-    
 
-      
+
+
 // Delete modal styling
 
 .backdrop-modal {
@@ -40,9 +42,9 @@
     height: 100vh;
     z-index: 10;
     background: #0000007b;
-  }
-  
-  .delete-modal {
+}
+
+.delete-modal {
     position: fixed;
     top: 5vh;
     left: 35%;
@@ -50,10 +52,10 @@
     z-index: 100;
     background-color: #fff;
     border: 1px solid #dee2e6;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0,  0.075);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     border-radius: 0.5rem;
     /* overflow: hidden; */
-  }
+}
 
 
 
@@ -135,52 +137,53 @@
 
 }
 
-    // activity details styling
+// activity details styling
 
 
-    .details-card {
-        border-radius: pxToVw(4px, 1920px);
-        width: pxToVw(340px, 1512px);
-        margin-bottom: pxToVw(40px, 1512px);
-        
+.details-card {
+    border-radius: pxToVw(4px, 1920px);
+    width: pxToVw(340px, 1512px);
+    margin-bottom: pxToVw(40px, 1512px);
 
 
-        .icon-container {
-            width: pxToVw(250px, 1920px);
-            height: pxToVw(280px, 1920px);
-            background-color: rgba($color: #26619C, $alpha: 0.1);
-            margin: auto;
-            margin-top: pxToVw(25px, 1920px);
-        }
 
-       }
-
-
-    .card-body {
-        border: 1px solid var(--primary-blue);
-        border-radius: pxToVw(4px, 1920px);
-
-        hr {
-            border: 1px solid var(--primary-blue);
-        }
+    .icon-container {
+        width: pxToVw(250px, 1920px);
+        height: pxToVw(280px, 1920px);
+        background-color: rgba($color: #26619C, $alpha: 0.1);
+        margin: auto;
+        margin-top: pxToVw(25px, 1920px);
     }
 
-
-    // .activity-btn-container {
-    //     display: flex;
-    //     flex-direction: column;
-    // }
+}
 
 
-    //activity modification styling 
+.card-body {
+    border: 1px solid var(--primary-blue);
+    border-radius: pxToVw(4px, 1920px);
 
-    .sub-title {
-        font-weight: 600 !important;
-      }
+    hr {
+        border: 1px solid var(--primary-blue);
+    }
+}
+
+
+// .activity-btn-container {
+//     display: flex;
+//     flex-direction: column;
+// }
+
+
+//activity modification styling 
+
+.sub-title {
+    font-weight: 600 !important;
+}
 
 //participant list by activity styling
 
-.table, .date {
+.table,
+.date {
     margin-left: pxToVw(180px, 1512px);
 }
 
@@ -199,15 +202,15 @@
     color: var(--white);
     background-color: var(--secondary-red);
     height: pxToVw(80px, 1512px);
-   border-radius: pxToVw(6px, 1512px);
+    border-radius: pxToVw(6px, 1512px);
     align-items: center;
     text-align: center;
-   
 
-    .text{
+
+    .text {
         padding-top: pxToVw(10px, 1512px);
     }
-    
+
 }
 
 
@@ -217,101 +220,101 @@
 @media screen and (max-width: 768px) {
 
     .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: pxToVw(50px, 1512px);
-            margin-left: pxToVw(180px, 1512px);
-            margin-top: pxToVw(100px, 1512px);
-    
-            .card {
-                height: 310px;
-                width: 270px;
-    
-                .icon-container {
-                    width: 240px;
-                    height: 250px;
-                    margin-top: pxToVw(25px, 1920px);
-    
-                    img {
-                        margin: auto;
-                        display: flex;
-                        width: 200px;
-                        height: 200px;
-                    }
-    
-                }
-    
-                .title {
-    
-                    font-size: 18px;
-                    width: 300px;
-                }
-    
-                .btn-container {
-    
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 20px;
-                    padding-bottom: 30px;
-                    margin-top: 10px;
-    
-                    .my-buttons {
-                        width: 40px;
-                        height: 40px;
-                    }
-                }
-            }
-        }
+        display: flex;
+        flex-wrap: wrap;
+        gap: pxToVw(50px, 1512px);
+        margin-left: pxToVw(180px, 1512px);
+        margin-top: pxToVw(100px, 1512px);
 
-        .details-card {
-            width: 330px;
-            margin: auto;
-
-      
+        .card {
+            height: 310px;
+            width: 270px;
 
             .icon-container {
-                width: 250px;
-                height:280px;
-                background-color: rgba($color: #26619C, $alpha: 0.1);
-                margin: auto;
+                width: 240px;
+                height: 250px;
                 margin-top: pxToVw(25px, 1920px);
-                
+
                 img {
+                    margin: auto;
+                    display: flex;
                     width: 200px;
-                    height: 260px;
+                    height: 200px;
+                }
+
+            }
+
+            .title {
+
+                font-size: 18px;
+                width: 300px;
+            }
+
+            .btn-container {
+
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                padding-bottom: 30px;
+                margin-top: 10px;
+
+                .my-buttons {
+                    width: 40px;
+                    height: 40px;
                 }
             }
         }
+    }
 
-        .activity-btn-container {
-           flex-direction: row !important;
-           gap: 20px;
-           justify-content: center;
-            
-           .modification-btn {
+    .details-card {
+        width: 330px;
+        margin: auto;
+
+
+
+        .icon-container {
+            width: 250px;
+            height: 280px;
+            background-color: rgba($color: #26619C, $alpha: 0.1);
+            margin: auto;
+            margin-top: pxToVw(25px, 1920px);
+
+            img {
+                width: 200px;
+                height: 260px;
+            }
+        }
+    }
+
+    .activity-btn-container {
+        flex-direction: row !important;
+        gap: 20px;
+        justify-content: center;
+
+        .modification-btn {
             padding: 10px 40px;
             width: 320px;
             height: 50px;
-           }
+        }
+    }
+
+
+
+
+    .total {
+        height: 70px;
+        width: 80px;
+        display: flex;
+        flex-direction: column;
+
+        .text {
+            margin-bottom: 0;
+            font-size: 12px;
+            margin-top: 10px;
         }
 
-        
-
-
-        .total {
-            height: 70px;
-            width: 80px;
-            display: flex;
-            flex-direction: column;
-
-            .text {
-                margin-bottom: 0;
-                font-size: 12px;
-               margin-top: 10px;
-            }
-
-            .number {
-                font-size: 20px;
-            }
+        .number {
+            font-size: 20px;
         }
+    }
 }

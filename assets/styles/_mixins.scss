@@ -21,6 +21,7 @@
         @content;
     }
 }
+
 @mixin md-lt {
     @media (max-width: 992px) {
         @content;
@@ -32,6 +33,7 @@
         @content;
     }
 }
+
 @mixin lg-lt {
     @media (max-width: 1199px) {
         @content;

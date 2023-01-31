@@ -34,6 +34,7 @@ h1 {
     font-size: 28px;
     text-align: center;
 }
+
 h3 {
     margin-top: pxToVw(50px, 1512px);
     margin-bottom: pxToVw(50px, 1512px);
@@ -78,9 +79,9 @@ input,
     font-size: pxToVw(18px, 1512px) !important;
     padding-left: pxToVw(10px, 1512px) !important;
 
-    @include mixin.sm{
+    @include mixin.sm {
         font-size: 18px !important;
-  }
+    }
 
 }
 
@@ -97,12 +98,12 @@ input {
         padding-left: pxToVw(10px, 1512px) !important;
     }
 
-    @include mixin.sm{
+    @include mixin.sm {
         width: 314px !important;
         height: 50px !important;
-  }
+    }
 
-    
+
 }
 
 select {
@@ -154,7 +155,7 @@ input[type=checkbox] {
 
 nav {
     border-bottom: 3px solid var(--secondary-red);
- 
+
 }
 
 
@@ -166,6 +167,7 @@ textarea {
     border: pxToVw(2px, 1512px) solid var(--primary-blue) !important;
     border-radius: pxToVw(4px, 1512px) !important;
     outline-color: var(--secondary-red);
+
     &:focus::placeholder {
         color: var(--secondary-red);
     }

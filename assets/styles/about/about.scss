@@ -8,25 +8,25 @@
 
     .row-1 {
         display: flex;
-       
-        p{
+
+        p {
             width: pxToVw(600px, 1512px);
             font-size: pxToVw(20px, 1512px);
             text-align: justify;
         }
 
-          img {
-        height: pxToVw(330px, 1512px);
-        width: pxToVw(500px, 1512px);
-        margin-right: pxToVw(90px, 1512px);
-        margin-bottom: pxToVw(40px, 1512px);
-    }
+        img {
+            height: pxToVw(330px, 1512px);
+            width: pxToVw(500px, 1512px);
+            margin-right: pxToVw(90px, 1512px);
+            margin-bottom: pxToVw(40px, 1512px);
+        }
 
         .img-right {
             margin-left: pxToVw(50px, 1512px);
         }
     }
- 
 
-  
+
+
 }

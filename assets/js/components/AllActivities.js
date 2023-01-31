@@ -58,11 +58,7 @@ const AllActivities = () => {
 
   return (
     <>
-      {activities.length === 0 ? (
-        <h4></h4>
-      ) : (
-        <h3>Mes activités</h3>
-      )}
+      {activities.length === 0 ? <h4></h4> : <h3>Mes activités</h3>}
 
       <div className="cards-container">
         {loading ? (

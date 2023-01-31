@@ -1,100 +1,106 @@
 @import '../functions';
 
 
-    
+
+.account-cards-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: pxToVw(200px, 1920px);
+
+
+    .card {
+        height: pxToVw(414px, 1920px);
+        width: pxToVw(411px, 1920px);
+        border: 2.5px solid var(--primary-blue);
+        border-radius: pxToVw(6px, 1920px);
+
+        &:hover {
+            border: 2.5px solid var(--secondary-red);
+        }
+
+        .icon-container {
+            width: pxToVw(350px, 1920px);
+            height: pxToVw(280px, 1920px);
+            background-color: rgba($color: #26619C, $alpha: 0.1);
+            margin: auto;
+            margin-top: pxToVw(25px, 1920px);
+
+            img {
+                margin: auto;
+                display: flex;
+                width: pxToVw(255px, 1920px);
+                height: pxToVw(278px, 1920px);
+                transition: all .2s ease-in-out;
+
+                &:hover {
+                    filter: brightness(0) saturate(100%) invert(27%) sepia(42%) saturate(1782%) hue-rotate(289deg) brightness(96%) contrast(93%);
+                    transform: scale(1.1);
+                }
+
+            }
+
+            .img-participant {
+                height: pxToVw(310px, 1920px);
+            }
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: pxToVw(24px, 1920px);
+            width: pxToVw(200px, 1920px);
+            text-align: center;
+            margin: auto;
+            margin-top: pxToVw(20px, 1920px);
+            color: var(--black);
+        }
+    }
+}
+
+
+//tablet screen styling
+@media screen and (max-width: 768px) {
+
     .account-cards-container {
-        display: flex;
-       justify-content: space-evenly;
-        margin-top: pxToVw(200px, 1920px);
-       
-      
+        margin-top: pxToVw(400px, 1920px);
+
+
         .card {
-            height: pxToVw(414px, 1920px);
-            width: pxToVw(411px, 1920px);
+            height: 314px;
+            width: 311px;
             border: 2.5px solid var(--primary-blue);
             border-radius: pxToVw(6px, 1920px);
+
             &:hover {
                 border: 2.5px solid var(--secondary-red);
             }
-         
+
             .icon-container {
-                width: pxToVw(350px, 1920px);
-                height: pxToVw(280px, 1920px);
-                background-color: rgba($color: #26619C, $alpha: 0.1);
-                margin: auto;
-                margin-top: pxToVw(25px, 1920px);
+                width: 250px;
+                height: 380px;
+
+                margin-top: 25px;
+
                 img {
-                    margin:  auto;
-                    display: flex;
-                    width: pxToVw(255px, 1920px);
-                    height: pxToVw(278px, 1920px);
-                    transition: all .2s ease-in-out;
-                    &:hover {
-                        filter: brightness(0) saturate(100%) invert(27%) sepia(42%) saturate(1782%) hue-rotate(289deg) brightness(96%) contrast(93%);
-                        transform: scale(1.1);
-                    }
-                   
+                    width: 255px;
+                    height: 225px;
+
                 }
+
                 .img-participant {
-                    height: pxToVw(310px, 1920px);
+                    height: 240px;
                 }
             }
 
             .title {
-                font-weight: bold;
-                font-size: pxToVw(24px,1920px);
-                width: pxToVw(200px, 1920px);
-                text-align: center;
-               margin: auto;
-               margin-top: pxToVw(20px, 1920px);
-               color: var(--black);
+
+                font-size: 24px;
+                width: 200px;
+
+
             }
         }
     }
-    
-
-        //tablet screen styling
-        @media screen and (max-width: 768px) {
-  
-            .account-cards-container {
-                margin-top: pxToVw(400px, 1920px);
-            
-              
-                .card {
-                    height: 314px;
-                    width: 311px;
-                    border: 2.5px solid var(--primary-blue);
-                    border-radius: pxToVw(6px, 1920px);
-                    &:hover {
-                        border: 2.5px solid var(--secondary-red);
-                    }
-                 
-                    .icon-container {
-                        width: 250px;
-                        height: 380px;
-
-                        margin-top:25px;
-                        img {
-                            width: 255px;
-                            height: 225px;
-                           
-                        }
-                        .img-participant {
-                            height: 240px;
-                        }
-                    }
-        
-                    .title {
-                 
-                        font-size: 24px;
-                        width: 200px;
-          
-             
-                    }
-                }
-            }
 
 
 
-          }
-          
+}

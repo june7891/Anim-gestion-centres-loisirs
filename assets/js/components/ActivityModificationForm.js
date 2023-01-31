@@ -1,141 +1,151 @@
-
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
-import activityIcon from '../../images/activity-icon.svg';
-import EasyEdit, {Types} from 'react-easy-edit';
-import SecondaryNavBar from "../components/SecondaryNavBar.js"
+import axios from "axios";
+import activityIcon from "../../images/activity-icon.svg";
+import EasyEdit, { Types } from "react-easy-edit";
+import SecondaryNavBar from "../components/SecondaryNavBar.js";
 
 const ActivityModificationForm = () => {
-    const [activity, setActivity] = useState([]);
+  const [activity, setActivity] = useState([]);
 
+  let params = useParams();
+  const id = params.id;
 
-    let params = useParams();
-    const id = params.id;
-  
-    useEffect(() => {
-        const getActivity = async () => {
-          await axios.get(`/api/activities/${id}`)
-          .then (response => {
-            // console.log(response.data);
-            const data = response.data;
-            setActivity(data);
-           
-          })
-          };
-        getActivity();
-      }, [id]);
-  
+  useEffect(() => {
+    const getActivity = async () => {
+      await axios.get(`/api/activities/${id}`).then((response) => {
+        // console.log(response.data);
+        const data = response.data;
+        setActivity(data);
+      });
+    };
+    getActivity();
+  }, [id]);
 
-      Date.prototype.getFullMinutes = function () {
-        if (this.getMinutes() < 10) {
-            return '0' + this.getMinutes();
-        }
-        return this.getMinutes();
-     };
+  Date.prototype.getFullMinutes = function () {
+    if (this.getMinutes() < 10) {
+      return "0" + this.getMinutes();
+    }
+    return this.getMinutes();
+  };
 
-      const startedAt = new Date(activity.startedAt).getHours() + ':' + new Date(activity.startedAt).getFullMinutes();
-      const endedAt = new Date(activity.endedAt).getHours() + ':' + new Date(activity.endedAt).getFullMinutes();
-  
+  const startedAt =
+    new Date(activity.startedAt).getHours() +
+    ":" +
+    new Date(activity.startedAt).getFullMinutes();
+  const endedAt =
+    new Date(activity.endedAt).getHours() +
+    ":" +
+    new Date(activity.endedAt).getFullMinutes();
 
-      const cancel = () => {console.log("Cancelled")}
+  const cancel = () => {
+    console.log("Cancelled");
+  };
 
-      const updateCapacity = (value) => {
-        // console.log(Number(value))
-        axios.put(`/api/activities/${id}`, {
-          capacity: Number(value)
-        })
-        .then(function (response) {
-        console.log(response)
-        })
-        .catch(function (error) {
+  const updateCapacity = (value) => {
+    // console.log(Number(value))
+    axios
+      .put(`/api/activities/${id}`, {
+        capacity: Number(value),
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
-    })
-  }
-      const updatePrice = (value) => {
-        console.log(Number(value))
-        axios.put(`/api/activities/${id}`, {
-          price: Number(value)
-        })
-        .then(function (response) {
-        console.log(response)
-        })
-        .catch(function (error) {
+      });
+  };
+  const updatePrice = (value) => {
+    console.log(Number(value));
+    axios
+      .put(`/api/activities/${id}`, {
+        price: Number(value),
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
-    })
-  }
-      const updateName = (value) => {
-        // console.log(Number(value))
-        axios.put(`/api/activities/${id}`, {
-          name: value
-        })
-        .then(function (response) {
-        console.log(response)
-        })
-        .catch(function (error) {
+      });
+  };
+  const updateName = (value) => {
+    // console.log(Number(value))
+    axios
+      .put(`/api/activities/${id}`, {
+        name: value,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
-    })
-   }
-      const updateReference = (value) => {
-        // console.log(Number(value))
-        axios.put(`/api/activities/${id}`, {
-          reference: value
-        })
-        .then(function (response) {
-        console.log(response)
-        })
-        .catch(function (error) {
+      });
+  };
+  const updateReference = (value) => {
+    // console.log(Number(value))
+    axios
+      .put(`/api/activities/${id}`, {
+        reference: value,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
-    })
-   }
-      const updateStartDate = (value) => {
-        // console.log(Number(value))
-        axios.put(`/api/activities/${id}`, {
-          startDate: value
-        })
-        .then(function (response) {
-        console.log(response)
-        })
-        .catch(function (error) {
+      });
+  };
+  const updateStartDate = (value) => {
+    // console.log(Number(value))
+    axios
+      .put(`/api/activities/${id}`, {
+        startDate: value,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
-    })
-   }
-      const updateEndDate = (value) => {
-        // console.log(Number(value))
-        axios.put(`/api/activities/${id}`, {
-          endDate: value
-        })
-        .then(function (response) {
-        console.log(response)
-        })
-        .catch(function (error) {
+      });
+  };
+  const updateEndDate = (value) => {
+    // console.log(Number(value))
+    axios
+      .put(`/api/activities/${id}`, {
+        endDate: value,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
-    })
-   }
-      const updateStartHour = (value) => {
-        console.log(value)
-        axios.put(`/api/activities/${id}`, {
-          startedAt: value
-        })
-        .then(function (response) {
-        console.log(response)
-        })
-        .catch(function (error) {
+      });
+  };
+  const updateStartHour = (value) => {
+    console.log(value);
+    axios
+      .put(`/api/activities/${id}`, {
+        startedAt: value,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
-    })
-   }
-      const updateEndHour = (value) => {
-        // console.log(Number(value))
-        axios.put(`/api/activities/${id}`, {
-          endedAt: value
-        })
-        .then(function (response) {
-        console.log(response)
-        })
-        .catch(function (error) {
+      });
+  };
+  const updateEndHour = (value) => {
+    // console.log(Number(value))
+    axios
+      .put(`/api/activities/${id}`, {
+        endedAt: value,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
-    })
-   }
+      });
+  };
 
   return (
     <>
@@ -214,8 +224,6 @@ const ActivityModificationForm = () => {
                 </a>
               </div>
             </div>
-
-
 
             <div className="col-lg-8">
               <div className="card mb-4">
@@ -302,6 +310,6 @@ const ActivityModificationForm = () => {
       </section>
     </>
   );
-}
+};
 
-export default ActivityModificationForm
+export default ActivityModificationForm;

@@ -3,12 +3,15 @@
 .p-5 {
     padding: 5px;
 }
+
 .p-10 {
     padding: 10px;
 }
+
 .p-20 {
-    padding:  pxToVw(20px, 1512px);
+    padding: pxToVw(20px, 1512px);
 }
+
 .p-30 {
     padding: pxToVw(30px, 1512px);
 }
@@ -30,6 +33,7 @@
 .mb-10 {
     margin-bottom: 10px;
 }
+
 .mr-15 {
     margin-right: 15px;
 }
@@ -41,9 +45,11 @@
 .mb-20 {
     margin-bottom: pxToVw(20px, 1512px);
 }
+
 .m-30 {
     margin: pxToVw(30px, 1512px);
 }
+
 .mt-30 {
     margin-top: pxToVw(30px, 1512px);
 }

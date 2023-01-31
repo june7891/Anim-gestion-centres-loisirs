@@ -1,4 +1,3 @@
-
 @use 'base';
 @use 'mixins' as mixin;
 @use 'variables';
@@ -10,429 +9,459 @@
 
 
 
-    .top-page {
-        position: relative;
-        background: url(../images/header.svg);
-        height: pxToVw(434px, 1512px);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        @include mixin.xs{
-            height: 300px;
-      }
-        @include mixin.sm{
-            height: 300px;
-      }
+.top-page {
+  position: relative;
+  background: url(../images/header.svg);
+  height: pxToVw(434px, 1512px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 
-      
-
-        .nav-container {
-         
-              @include mixin.xs{
-                display: flex;
-                flex-direction: column;
-                text-align: center;
-          }
-              @include mixin.sm{
-                display: flex;
-                flex-direction: column;
-                text-align: center;
-          }
-
-        }
-        
-        img{
-            margin-top: pxToVw(40px, 1512px);
-            margin-left: pxToVw(50px, 1512px);
-            height: pxToVw(140px, 1512px);
-            width: pxToVw(442px, 1512px);
-            transition: ease-in-out 0.5s;
-            &:hover {
-                transform: scale(1.1);
-            }
-         
-            @include mixin.xs{
-                height: 100px;
-                width: 300px;
-          }
-            @include mixin.sm{
-                height: 100px;
-                width: 400px;
-          }
-      
-        }
-      
-
-        .links {
-            display: flex;
-            float: right;
-            margin-top: pxToVw(-35px, 1512px);
-            @include mixin.xs{
-                display: flex;
-                flex-direction: column;
-                text-align: center;
-                margin-top: pxToVw(10px, 1512px);
-                height: pxToVw(10px, 1512px);                
-          }
-            @include mixin.sm{
-                flex-direction: column;
-                text-align: center;
-                margin-top: 10px;
-                height: 10px;
-                
-          }
-         
-            li {
-                display: inline;
-                margin-right: pxToVw(80px, 1512px);
-                color: white;
-                font-size: pxToVw(18px, 1512px);
-                @include mixin.sm{
-                  font-size: 18px;
-            }
-                
-                a {
-                    text-decoration: none;
-                    color: var(--white);
-                    font-size: pxToVw(18px, 1512px);
-                    @include mixin.xs{
-                        font-size: 18px;
-                         text-decoration: underline;
-                  }
-                    @include mixin.sm{
-                        font-size: 18px;
-                         text-decoration: underline;
-                  }
-                    &:hover {
-                       text-decoration: underline;
-                    }
-                }
-            }
-        }
-   
-
-      
-        
-
-   
-        
-    }
-  .images-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: pxToVw(90px, 1512px);
-    margin-bottom: pxToVw(250px, 1512px);
-      @include mixin.xs{
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-      }
-
-      @include mixin.sm{
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-      }
-
-
-    .image {
-        text-align: center;
-        justify-content: center;
-        display: block;
-     
-
-        img {
-            height: pxToVw(170px, 1512px);
-            width: pxToVw(128px, 1512px);
-            // margin-left: pxToVw(80px, 1512px);
-            margin-bottom: pxToVw(40px, 1512px);
-            @include mixin.xs{
-                height: 240px;
-                width: 100px;
-              
-              }
-            @include mixin.sm{
-                height: 240px;
-                width: 160px;
-              
-              }
-        }
-
-    p{
-        width: pxToVw(300px, 1512px);
-        text-align: center;
-        font-size: pxToVw(20px, 1512px);
-        @include mixin.xs{
-            font-size: 24px;
-            width: 300px;
-            margin: auto;
-           
-          }
-        @include mixin.sm{
-            font-size: 30px;
-            width: 400px;
-            margin: auto;
-          }
-        }
-
-    }
-  
-
-     
+  @include mixin.xs {
+    height: 300px;
   }
 
-        .login-section {
-            height: pxToVw(400px, 1512px);
-            
-        @include mixin.xs{
-            height: pxToVw(602px, 1512px);
-        }
-        @include mixin.sm{
-            height: 400px;
-        }
-        }
-
-    .login-form {
-        position: absolute;
-        left: pxToVw(550px, 1512px);
-        top: pxToVw(430px, 1512px);
-        display: block;
-        margin: auto;
-       
-        border-radius: pxToVw(6px, 1512px);
-        background-color: rgba($color:#26619C, $alpha: 0.25);
-        border: 1px solid var(--primary-blue);
-
-        height: pxToVw(302px, 1512px);
-        width: pxToVw(412px, 1512px);
-        align-items: center;
-        text-align: center;
-
-        @include mixin.xs{
-            left: pxToVw(550px, 1512px);
-            top: pxToVw(630px, 1512px);
-            height: pxToVw(602px, 1512px);
-            width: pxToVw(812px, 1512px);
-
-      }
-        @include mixin.sm{
-            left: 50%;
-            top: 60%;
-            height: pxToVw(602px, 1512px);
-            width: pxToVw(812px, 1512px);
-            transform: translate(-50%, -50%);
-            padding-top: 50px;
-
-      }
-      
-        .form {
-            display: inline-block;
-            margin-top: pxToVw(60px, 1512px);
-            
-            .msg-loggedin {
-              font-size: pxToVw(10px, 1512px);
-            }
-
-            .msg-error {
-              height: pxToVw(20px, 1512px);
-              color: var(--secondary-red);
-              font-size: pxToVw(15px, 1512px);
-              padding-bottom: pxToVw(30px, 1512px);
-              padding-top: pxToVw(10px, 1512px);
-            }
-    
-        
-            input {
-                display: flex;
-            }
-            .forget-password {
-              margin-left: pxToVw(160px, 1512px);
-              margin-top: pxToVw(10px, 1512px);
-              @include mixin.sm{ 
-                margin-left: 160px;
-              }
-            }
-        }
-        
-    }
-
-
-    .signup-section {
-        height: pxToVw(400px, 1512px);
-        
-    @include mixin.xs{
-        height: pxToVw(602px, 1512px);
-    }
-    @include mixin.sm{
-      height: 400px;
-    }
+  @include mixin.sm {
+    height: 300px;
+  }
 
 
 
+  .nav-container {
 
- .signup-form {
-        position: absolute;
-        left: pxToVw(550px, 1512px);
-        top: pxToVw(530px, 1512px);
-        display: block;
-        margin: 0 auto;
-       
-        border-radius: pxToVw(6px, 1512px);
-        background-color: rgba($color:#26619C, $alpha: 0.25);
-        border: pxToVw(1px, 1512px) solid var(--primary-blue);
-
-        height: pxToVw(372px, 1512px);
-        width: pxToVw(412px, 1512px);
-        align-items: center;
-        text-align: center;
-
-        @include mixin.sm{
-          height: 372px;
-          width: 412px;
-          left: 50%;
-          top: 70%;
-          transform: translate(-50%, -50%);
-          
-        }
-        
-        .error-password {
-          width: pxToVw(350px, 1512px);
-          font-size: pxToVw(12px, 1512px);
-          margin-bottom: pxToVw(10px, 1512px);
-          top: 5%;
-          left: 8%;
-        }
-
-
-  
-        .form {
-            display: inline-block;
-            margin-top: pxToVw(40px, 1512px);
-            @include mixin.sm{
-              margin-top: 80px;
-            }
-
-            li{
-              
-              color: var(--secondary-red);
-              font-size: pxToVw(10px, 1512px);
-            }
-    
-            input {
-                display: flex;
-            }
-        }
-        
-    }
-
-    }
-   
-
-
-    footer{
-      position: relative;
-      bottom: 0;
-      width: 100vw;
-    }
-    .bottom-page {
-        background: url(../images/footer.svg);
-        // background-color: #26619C;
-        height: pxToVw(200px, 1512px);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-
-        @include mixin.xs{
-
-            height: 200px;
-          }
-        @include mixin.sm{
-            height: 200px;
-          }
-
-        ul{
-            display: flex;
-            justify-content: space-evenly;
-            padding-top: pxToVw(140px, 1512px);
-            @include mixin.xs{
-                padding-top: 100px;
-                display: block;
-                text-align: center;
-              }
-            @include mixin.sm{
-                padding-top: 100px;
-                display: block;
-                text-align: center;
-              }
-            
-            li{
-
-              color: white;
-              font-size: pxToVw(18px, 1512px);
-              @include mixin.xs{
-                font-size: 18px;
-                  }
-              @include mixin.sm{
-                font-size: 24px;
-                  }
-                
-                a{
-                  color: white;  
-                  text-decoration: none;
-                  font-size: pxToVw(18px, 1512px);
-                  @include mixin.xs{
-                    font-size: 18px;
-                    display: block;
-                  }
-                  @include mixin.sm{
-                    font-size: 24px;
-                      }
-               
-                
-                  &:hover {
-                    text-decoration: underline;
-                    
-                  }
-                }
-                
-            }
-            
-        }
-
-    }
-
-
-    #root {
-      min-height: 100vh;
-    }
-
-    #screen-height{
-      min-height: 100vh;
-
-      @include mixin.sm{
-       min-height: 50vh;
-      }
-  
-
-
-    }
-
-
-    // page not found styling
-
-    .navbar-notfound {
-      margin-right: pxToVw(20px, 1512px);
-      margin-left: pxToVw(150px, 1512px);
-    }
-
-    .error404 {
+    @include mixin.xs {
+      display: flex;
+      flex-direction: column;
       text-align: center;
-      img {
-        height: pxToVw(330px, 1512px);
-        width: pxToVw(500px, 1512px);
+    }
+
+    @include mixin.sm {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+  }
+
+  img {
+    margin-top: pxToVw(40px, 1512px);
+    margin-left: pxToVw(50px, 1512px);
+    height: pxToVw(140px, 1512px);
+    width: pxToVw(442px, 1512px);
+    transition: ease-in-out 0.5s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    @include mixin.xs {
+      height: 100px;
+      width: 300px;
+    }
+
+    @include mixin.sm {
+      height: 100px;
+      width: 400px;
+    }
+
+  }
+
+
+  .links {
+    display: flex;
+    float: right;
+    margin-top: pxToVw(-35px, 1512px);
+
+    @include mixin.xs {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      margin-top: pxToVw(10px, 1512px);
+      height: pxToVw(10px, 1512px);
+    }
+
+    @include mixin.sm {
+      flex-direction: column;
+      text-align: center;
+      margin-top: 10px;
+      height: 10px;
+
+    }
+
+    li {
+      display: inline;
+      margin-right: pxToVw(80px, 1512px);
+      color: white;
+      font-size: pxToVw(18px, 1512px);
+
+      @include mixin.sm {
+        font-size: 18px;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--white);
+        font-size: pxToVw(18px, 1512px);
+
+        @include mixin.xs {
+          font-size: 18px;
+          text-decoration: underline;
+        }
+
+        @include mixin.sm {
+          font-size: 18px;
+          text-decoration: underline;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+}
+
+.images-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: pxToVw(90px, 1512px);
+  margin-bottom: pxToVw(250px, 1512px);
+
+  @include mixin.xs {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  @include mixin.sm {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+
+  .image {
+    text-align: center;
+    justify-content: center;
+    display: block;
+
+
+    img {
+      height: pxToVw(170px, 1512px);
+      width: pxToVw(128px, 1512px);
+      // margin-left: pxToVw(80px, 1512px);
+      margin-bottom: pxToVw(40px, 1512px);
+
+      @include mixin.xs {
+        height: 240px;
+        width: 100px;
+
+      }
+
+      @include mixin.sm {
+        height: 240px;
+        width: 160px;
 
       }
     }
 
- 
+    p {
+      width: pxToVw(300px, 1512px);
+      text-align: center;
+      font-size: pxToVw(20px, 1512px);
+
+      @include mixin.xs {
+        font-size: 24px;
+        width: 300px;
+        margin: auto;
+
+      }
+
+      @include mixin.sm {
+        font-size: 30px;
+        width: 400px;
+        margin: auto;
+      }
+    }
+
+  }
+
+
+
+}
+
+.login-section {
+  height: pxToVw(400px, 1512px);
+
+  @include mixin.xs {
+    height: pxToVw(602px, 1512px);
+  }
+
+  @include mixin.sm {
+    height: 400px;
+  }
+}
+
+.login-form {
+  position: absolute;
+  left: pxToVw(550px, 1512px);
+  top: pxToVw(430px, 1512px);
+  display: block;
+  margin: auto;
+
+  border-radius: pxToVw(6px, 1512px);
+  background-color: rgba($color: #26619C, $alpha: 0.25);
+  border: 1px solid var(--primary-blue);
+
+  height: pxToVw(302px, 1512px);
+  width: pxToVw(412px, 1512px);
+  align-items: center;
+  text-align: center;
+
+  @include mixin.xs {
+    left: pxToVw(550px, 1512px);
+    top: pxToVw(630px, 1512px);
+    height: pxToVw(602px, 1512px);
+    width: pxToVw(812px, 1512px);
+
+  }
+
+  @include mixin.sm {
+    left: 50%;
+    top: 60%;
+    height: pxToVw(602px, 1512px);
+    width: pxToVw(812px, 1512px);
+    transform: translate(-50%, -50%);
+    padding-top: 50px;
+
+  }
+
+  .form {
+    display: inline-block;
+    margin-top: pxToVw(60px, 1512px);
+
+    .msg-loggedin {
+      font-size: pxToVw(10px, 1512px);
+    }
+
+    .msg-error {
+      height: pxToVw(20px, 1512px);
+      color: var(--secondary-red);
+      font-size: pxToVw(15px, 1512px);
+      padding-bottom: pxToVw(30px, 1512px);
+      padding-top: pxToVw(10px, 1512px);
+    }
+
+
+    input {
+      display: flex;
+    }
+
+    .forget-password {
+      margin-left: pxToVw(160px, 1512px);
+      margin-top: pxToVw(10px, 1512px);
+
+      @include mixin.sm {
+        margin-left: 160px;
+      }
+    }
+  }
+
+}
+
+
+.signup-section {
+  height: pxToVw(400px, 1512px);
+
+  @include mixin.xs {
+    height: pxToVw(602px, 1512px);
+  }
+
+  @include mixin.sm {
+    height: 400px;
+  }
+
+
+
+
+  .signup-form {
+    position: absolute;
+    left: pxToVw(550px, 1512px);
+    top: pxToVw(530px, 1512px);
+    display: block;
+    margin: 0 auto;
+
+    border-radius: pxToVw(6px, 1512px);
+    background-color: rgba($color: #26619C, $alpha: 0.25);
+    border: pxToVw(1px, 1512px) solid var(--primary-blue);
+
+    height: pxToVw(372px, 1512px);
+    width: pxToVw(412px, 1512px);
+    align-items: center;
+    text-align: center;
+
+    @include mixin.sm {
+      height: 372px;
+      width: 412px;
+      left: 50%;
+      top: 70%;
+      transform: translate(-50%, -50%);
+
+    }
+
+    .error-password {
+      width: pxToVw(350px, 1512px);
+      font-size: pxToVw(12px, 1512px);
+      margin-bottom: pxToVw(10px, 1512px);
+      top: 5%;
+      left: 8%;
+    }
+
+
+
+    .form {
+      display: inline-block;
+      margin-top: pxToVw(40px, 1512px);
+
+      @include mixin.sm {
+        margin-top: 80px;
+      }
+
+      li {
+
+        color: var(--secondary-red);
+        font-size: pxToVw(10px, 1512px);
+      }
+
+      input {
+        display: flex;
+      }
+    }
+
+  }
+
+}
+
+
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+}
+
+.bottom-page {
+  background: url(../images/footer.svg);
+  // background-color: #26619C;
+  height: pxToVw(200px, 1512px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @include mixin.xs {
+
+    height: 200px;
+  }
+
+  @include mixin.sm {
+    height: 200px;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: pxToVw(140px, 1512px);
+
+    @include mixin.xs {
+      padding-top: 100px;
+      display: block;
+      text-align: center;
+    }
+
+    @include mixin.sm {
+      padding-top: 100px;
+      display: block;
+      text-align: center;
+    }
+
+    li {
+
+      color: white;
+      font-size: pxToVw(18px, 1512px);
+
+      @include mixin.xs {
+        font-size: 18px;
+      }
+
+      @include mixin.sm {
+        font-size: 24px;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: pxToVw(18px, 1512px);
+
+        @include mixin.xs {
+          font-size: 18px;
+          display: block;
+        }
+
+        @include mixin.sm {
+          font-size: 24px;
+        }
+
+
+        &:hover {
+          text-decoration: underline;
+
+        }
+      }
+
+    }
+
+  }
+
+}
+
+
+#root {
+  min-height: 100vh;
+}
+
+#screen-height {
+  min-height: 100vh;
+
+  @include mixin.sm {
+    min-height: 50vh;
+  }
+
+
+
+}
+
+
+// page not found styling
+
+.navbar-notfound {
+  margin-right: pxToVw(20px, 1512px);
+  margin-left: pxToVw(150px, 1512px);
+}
+
+.error404 {
+  text-align: center;
+
+  img {
+    height: pxToVw(330px, 1512px);
+    width: pxToVw(500px, 1512px);
+
+  }
+}

@@ -1,8 +1,6 @@
-import React from 'react'
-import logo from '../../images/Logo_blue.svg';
-import { Link } from "react-router-dom";
-import imgError from '../../images/404.png';
-
+import React from "react";
+import logo from "../../images/Logo_blue.svg";
+import imgError from "../../images/404.png";
 
 const NotFound = () => {
   return (
@@ -24,12 +22,12 @@ const NotFound = () => {
         </div>
       </nav>
 
-      <div className='error404'>
+      <div className="error404">
         <h4>La page demandée n'existe pas!</h4>
         <img src={imgError} alt="error" />
       </div>
     </>
   );
-}
+};
 
-export default NotFound
+export default NotFound;

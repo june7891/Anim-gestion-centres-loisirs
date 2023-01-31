@@ -1,32 +1,28 @@
 @use "sass:math";
+
 //transforme 190px -> 190
 @function strip-unit($number) {
-	@if type-of($number) == 'number' and not unitless($number) {
-		@return 	math.div($number, $number * 0 + 1)
-
-		// @return $number / ($number * 0 + 1);
+	@if type-of($number)=='number' and not unitless($number) {
+		@return math.div($number, $number * 0 + 1) // @return $number / ($number * 0 + 1);
 	}
+
 	@return $number;
 }
 
 /* $swidthbase = width only */
 
 /*pour faire le calcul pour transformer les px en %*/
-@function pxToPourcent($size, $widthbase){
-	@return math.div(100% * strip-unit($size), strip-unit($widthbase))
-
-	//@return 100% * strip-unit($size) /strip-unit($widthbase);
+@function pxToPourcent($size, $widthbase) {
+	@return math.div(100% * strip-unit($size), strip-unit($widthbase)) //@return 100% * strip-unit($size) /strip-unit($widthbase);
 }
 
 
 /*pour faire le calcul pour transformer les px en %*/
-@function negativePxToPourcent($size, $widthbase){
-	@return math.div(-100% * strip-unit($size), strip-unit($widthbase))
-	//@return -100% * strip-unit($size) /strip-unit($widthbase);
+@function negativePxToPourcent($size, $widthbase) {
+	@return math.div(-100% * strip-unit($size), strip-unit($widthbase)) //@return -100% * strip-unit($size) /strip-unit($widthbase);
 }
 
 /*pour faire le calcul pour transformer les px en vw*/
-@function pxToVw($size, $widthbase){
-	@return math.div(100vw * strip-unit($size), strip-unit($widthbase))
-	//@return 100vw * strip-unit($size) /strip-unit($widthbase);
+@function pxToVw($size, $widthbase) {
+	@return math.div(100vw * strip-unit($size), strip-unit($widthbase)) //@return 100vw * strip-unit($size) /strip-unit($widthbase);
 }
