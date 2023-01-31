@@ -17,7 +17,7 @@ const ActivityModificationForm = () => {
         const getActivity = async () => {
           await axios.get(`/api/activities/${id}`)
           .then (response => {
-            console.log(response.data);
+            // console.log(response.data);
             const data = response.data;
             setActivity(data);
            
@@ -145,7 +145,7 @@ const ActivityModificationForm = () => {
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-4 text-center">
-              <div className="card mb-4">
+              <div className="card details-card mb-4">
                 <div className="card-body text-center">
                   <img src={activityIcon} alt="avatar" className="img-fluid" />
                   <h5 className="my-3">
@@ -204,7 +204,7 @@ const ActivityModificationForm = () => {
                 </div>
               </div>
 
-              <div className="profile-btn-container mb-4">
+              <div className="activity-btn-container mb-4 d-flex">
                 <a
                   className="modification-btn"
                   href={`/activity-details/${activity.id}`}

@@ -14,23 +14,10 @@ class MainController extends AbstractController
     public function index(SerializerInterface $serializer)
     {
 
-
         return $this->render('main/index.html.twig', [
             'user' => $serializer->serialize($this->getUser(), 'jsonld')
         ]);
     }
-
-
-    
-   
-    // #[Route('/home', name: 'home')]
-    // public function index(): Response
-    // {
-
-        
-    //     return $this->render('main/index.html.twig');
-    // }
-
 
 
 }

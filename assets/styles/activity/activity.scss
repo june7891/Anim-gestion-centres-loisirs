@@ -111,7 +111,7 @@
         .title {
             font-weight: bold;
             font-size: pxToVw(20px, 1920px);
-            width: pxToVw(200px, 1920px);
+            width: pxToVw(300px, 1920px);
             text-align: center;
             margin: auto;
             margin-top: pxToVw(20px, 1920px);
@@ -166,6 +166,10 @@
     }
 
 
+    // .activity-btn-container {
+    //     display: flex;
+    //     flex-direction: column;
+    // }
 
 
     //activity modification styling 
@@ -239,8 +243,8 @@
     
                 .title {
     
-                    font-size: 20px;
-                    width: 200px;
+                    font-size: 18px;
+                    width: 300px;
                 }
     
                 .btn-container {
@@ -279,7 +283,19 @@
             }
         }
 
+        .activity-btn-container {
+           flex-direction: row !important;
+           gap: 20px;
+           justify-content: center;
+            
+           .modification-btn {
+            padding: 10px 40px;
+            width: 320px;
+            height: 50px;
+           }
+        }
 
+        
 
 
         .total {

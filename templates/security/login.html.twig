@@ -28,8 +28,12 @@
             <input class="mb-20" type="password" name='password' placeholder='Mot de passe' required/>
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')}}" >
+
+            
       
             <button class='login-btn' type='submit' >Se connecter</button>
+            <br>
+            <div class='forget-password'><a href="/reset-password">Mot de passe oublié?</a></div>
             
 
     {#

@@ -38,7 +38,7 @@ const ParticipantDetails = () => {
       const loggedInUser = window.user;
       if(loggedInUser) {
         setUser(loggedInUser?.['roles']);
-        console.log(user[0]);
+        // console.log(user[0]);
       }
     })
 
@@ -49,10 +49,10 @@ const ParticipantDetails = () => {
     
       axios.get(`/api/participants/${id}`)
         .then (response => {
-          console.log(response.data);
+          // console.log(response.data);
           const data = response.data;
           setParticipant(data);
-          console.log(data.ParentOne);
+          // console.log(data.ParentOne);
           setParentOne(data.ParentOne);
           setParentTwo(data.ParentTwo);
           setActivities(data.activities);
@@ -95,7 +95,7 @@ const ParticipantDetails = () => {
             headers: { "Content-Type": "multipart/form-data" }
   })
     .then(function (response) {
-    console.log(response)
+    // console.log(response)
     window.location.reload();
   
     })
@@ -134,25 +134,21 @@ const ParticipantDetails = () => {
        
           </div>
         </div>
-
+{user[0] === "ROLE_USER" ? ("") : (
         <div className='profile-btn-container mb-4'>
-           {user[0] === "ROLE_USER" ? ("") : (<a className='modification-btn' href={`/participant-modification-form/${participant.id}`}>Modifier la fiche de renseignement</a>)} 
+           <a className='modification-btn' href={`/participant-modification-form/${participant.id}`}>Modifier la fiche de renseignement</a>
               
             <a className='modification-btn' onClick={handleShowEmail} >Contacter les parents</a>
-          </div>
+          </div>)} 
 
    
         
 
-      <Modal dialogClassName="email-modal"   show={showEmail} onHide={handleCloseEmail}>
+      <Modal dialogClassName="email-modal" show={showEmail} onHide={handleCloseEmail}>
         <Modal.Header closeButton>
           <Modal.Title> <h3>Contacter la famille</h3> </Modal.Title>
         </Modal.Header>
-        <Modal.Body> <EmailModal text={parentOne.email}/> </Modal.Body>
-        <Modal.Footer>
-      
-        
-        </Modal.Footer>
+        <Modal.Body> <EmailModal parentOne={parentOne.email} parentTwo={parentTwo.email}/> </Modal.Body>
       </Modal>
       
        
@@ -304,7 +300,7 @@ const ParticipantDetails = () => {
 
            
 
-
+            {user[0] === "ROLE_USER" ? ("") : (
             <div className='row-9'>
 
             <p className='details-title'>Joindre les pièces complémentaires</p>
@@ -329,7 +325,7 @@ const ParticipantDetails = () => {
     
                 <button className='login-btn' type="submit">Enregistrer</button>
             </form>
-          </div>
+          </div>)}
        
             
           </div>

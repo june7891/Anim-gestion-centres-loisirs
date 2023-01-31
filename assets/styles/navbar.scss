@@ -21,7 +21,7 @@ nav {
         margin-top: pxToVw(40px, 1920px);
         
         ul {
-            margin-left: pxToVw(580px, 1920px);
+            margin-left: pxToVw(480px, 1920px);
           li{
            display: inline;  
            color: var(--black);
@@ -51,7 +51,7 @@ nav {
             margin-left: 110px;
 
             li {
-                font-size: 14px;
+                font-size: 12px;
             }
         }
     }

@@ -116,7 +116,7 @@ const validationSchema = Yup.object({
 
         <div className="row mb-5">
           <div class="form-group col-md-3">
-          <label htmlFor="capacity">Capacité d'accueil</label>
+          <label htmlFor="capacity">Capacité</label>
             <input
               className="medium-input"
               type="number"
@@ -135,7 +135,6 @@ const validationSchema = Yup.object({
             type="number"
             name="price"
             id="price"
-            step="0.01"
             min='0'
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -147,7 +146,7 @@ const validationSchema = Yup.object({
       
         <div className="row mb-5">
         <div class="form-group col-md-3">
-        <label htmlFor="started_at">Date du début</label>
+        <label htmlFor="started_at">Heure du début</label>
           <input
             className="medium-input"
             type="time"

@@ -26,9 +26,11 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['placeholder' => 'email'],
                 'invalid_message' => "Email n'est pas valide"
             ])
-            ->add('enterprise',null, [
-                'attr' => ['placeholder' => 'nom de votre structure'],
-            ])
+
+            // ->add('enterprise',null, [
+            //     'attr' => ['placeholder' => 'nom de votre structure'],
+            // ])
+        
             
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,

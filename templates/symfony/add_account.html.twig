@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anim+ | Inscription{% endblock %}
+
+{% block body %}
+  {% include '_partials/_nav.html.twig' %}
+
+ 
+
+ <section class="signup-section" id="screen-height">
+        <h4>Ajouter un nouvel utilisateur</h4>
+    
+     <div class='signup-form'>
+
+    {{ form_start(addAccountForm) }}
+    <div class="form">
+   
+        {{ form_widget(addAccountForm.email, {'attr': {'class': 'mb-20'}}) }}
+        {{ form_errors(addAccountForm.email, {'attr': {'class': 'mb-20'}}) }}
+        {{ form_widget(addAccountForm.password.first, {'attr': {'class': 'mb-20'}}) }}
+        {{ form_errors(addAccountForm.password.first, {'attr': {'class': 'msg-error'}}) }}
+
+        {{ form_widget(addAccountForm.password.second, {'attr': {'class': 'mb-20'}}) }}
+        <button type="submit" class="login-btn">Enregistrer</button>
+    </div>
+    {{ form_end(addAccountForm) }}
+
+     </div>
+
+</section>
+
+
+ 
+{% endblock %}

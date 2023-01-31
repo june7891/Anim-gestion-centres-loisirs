@@ -23,7 +23,7 @@ const AllActivities = () => {
       setUser(loggedInUser?.["roles"]);
       // console.log(user[0]);
     }
-  });
+  }, []);
 
   useEffect(() => {
     const loggedInUser = window.user;
@@ -59,7 +59,7 @@ const AllActivities = () => {
   return (
     <>
       {activities.length === 0 ? (
-        <h4>Vous n'avez aucune activité enregistrée!</h4>
+        <h4></h4>
       ) : (
         <h3>Mes activités</h3>
       )}

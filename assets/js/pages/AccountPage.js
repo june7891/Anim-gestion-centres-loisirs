@@ -19,7 +19,7 @@ const Account_page = () => {
       setUser(loggedInUser);
     }
   })
-  console.log(user);
+
 
   return (
     <>

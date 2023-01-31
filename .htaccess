@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# D'abord on redirige tout sur le https
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*) https://animplus.tomajune.com/$1 [R,L]
+
+# Puis, toutes les urls en .css, .js, etc… sont servies directement
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+# Puis, les autres sont redirigées vers index.php
+RewriteRule ^(.*)$ index.php [QSA,L]

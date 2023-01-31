@@ -29,6 +29,11 @@ h4 {
     margin: 0;
 }
 
+h1 {
+    font-family: var(--font-family-titles);
+    font-size: 28px;
+    text-align: center;
+}
 h3 {
     margin-top: pxToVw(50px, 1512px);
     margin-bottom: pxToVw(50px, 1512px);
@@ -72,6 +77,11 @@ input,
     color: var(--primary-blue) !important;
     font-size: pxToVw(18px, 1512px) !important;
     padding-left: pxToVw(10px, 1512px) !important;
+
+    @include mixin.sm{
+        font-size: 18px !important;
+  }
+
 }
 
 input {
@@ -86,6 +96,13 @@ input {
         color: var(--secondary-red) !important;
         padding-left: pxToVw(10px, 1512px) !important;
     }
+
+    @include mixin.sm{
+        width: 314px !important;
+        height: 50px !important;
+  }
+
+    
 }
 
 select {

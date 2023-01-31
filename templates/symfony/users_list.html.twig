@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anim+ | A propos{% endblock %}
+
+{% block body %}
+
+  {% include '_partials/_nav.html.twig' %}
+
+  <section id="screen-height" class="about-section">
+       <h4>Mes utilisateurs</h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-md-3">Email</th>
+      <th class="col-md-3">Supprimer</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for user in users %}
+    <tr>
+
+      <td class="col-md-3">{{ user.email }}</td>
+   
+      <td class="col-md-3"> <a href="delete/users/{{user.id}}" onclick="return confirm('Etes-vous sûr?')"><img class="" src="{{ asset('images/remove-icon-red.svg') }}" alt="remove-icon"></a></td>
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+
+ 
+        <a class="login-btn" href="/add-account">Ajouter</a>
+
+
+
+       
+
+       
+  
+
+  
+  </section>
+
+
+
+
+
+  
+
+{% endblock %}

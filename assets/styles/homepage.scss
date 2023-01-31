@@ -16,8 +16,12 @@
         height: pxToVw(434px, 1512px);
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: center;
         @include mixin.xs{
-            height: pxToVw(634px, 1512px);
+            height: 300px;
+      }
+        @include mixin.sm{
+            height: 300px;
       }
 
       
@@ -25,6 +29,11 @@
         .nav-container {
          
               @include mixin.xs{
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+          }
+              @include mixin.sm{
                 display: flex;
                 flex-direction: column;
                 text-align: center;
@@ -43,9 +52,14 @@
             }
          
             @include mixin.xs{
-                height: pxToVw(280px, 1512px);
-                width: pxToVw(880px, 1512px);
+                height: 100px;
+                width: 300px;
           }
+            @include mixin.sm{
+                height: 100px;
+                width: 400px;
+          }
+      
         }
       
 
@@ -58,7 +72,13 @@
                 flex-direction: column;
                 text-align: center;
                 margin-top: pxToVw(10px, 1512px);
-                height: pxToVw(10px, 1512px);
+                height: pxToVw(10px, 1512px);                
+          }
+            @include mixin.sm{
+                flex-direction: column;
+                text-align: center;
+                margin-top: 10px;
+                height: 10px;
                 
           }
          
@@ -67,13 +87,20 @@
                 margin-right: pxToVw(80px, 1512px);
                 color: white;
                 font-size: pxToVw(18px, 1512px);
+                @include mixin.sm{
+                  font-size: 18px;
+            }
                 
                 a {
                     text-decoration: none;
                     color: var(--white);
                     font-size: pxToVw(18px, 1512px);
                     @include mixin.xs{
-                        font-size: pxToVw(36px, 1512px);
+                        font-size: 18px;
+                         text-decoration: underline;
+                  }
+                    @include mixin.sm{
+                        font-size: 18px;
                          text-decoration: underline;
                   }
                     &:hover {
@@ -102,6 +129,12 @@
         text-align: center;
       }
 
+      @include mixin.sm{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+
 
     .image {
         text-align: center;
@@ -115,22 +148,31 @@
             // margin-left: pxToVw(80px, 1512px);
             margin-bottom: pxToVw(40px, 1512px);
             @include mixin.xs{
-                height: pxToVw(340px, 1512px);
-                width: pxToVw(260px, 1512px);
-               
-                
+                height: 240px;
+                width: 100px;
+              
+              }
+            @include mixin.sm{
+                height: 240px;
+                width: 160px;
+              
               }
         }
 
     p{
         width: pxToVw(300px, 1512px);
-        text-align: justify;
+        text-align: center;
         font-size: pxToVw(20px, 1512px);
         @include mixin.xs{
-            font-size: pxToVw(50px, 1512px);
-            width: pxToVw(800px, 1512px);
-            margin-left: pxToVw(400px, 1512px);
+            font-size: 24px;
+            width: 300px;
+            margin: auto;
            
+          }
+        @include mixin.sm{
+            font-size: 30px;
+            width: 400px;
+            margin: auto;
           }
         }
 
@@ -145,6 +187,9 @@
             
         @include mixin.xs{
             height: pxToVw(602px, 1512px);
+        }
+        @include mixin.sm{
+            height: 400px;
         }
         }
 
@@ -171,6 +216,15 @@
             width: pxToVw(812px, 1512px);
 
       }
+        @include mixin.sm{
+            left: 50%;
+            top: 60%;
+            height: pxToVw(602px, 1512px);
+            width: pxToVw(812px, 1512px);
+            transform: translate(-50%, -50%);
+            padding-top: 50px;
+
+      }
       
         .form {
             display: inline-block;
@@ -191,7 +245,13 @@
         
             input {
                 display: flex;
-                
+            }
+            .forget-password {
+              margin-left: pxToVw(160px, 1512px);
+              margin-top: pxToVw(10px, 1512px);
+              @include mixin.sm{ 
+                margin-left: 160px;
+              }
             }
         }
         
@@ -204,6 +264,13 @@
     @include mixin.xs{
         height: pxToVw(602px, 1512px);
     }
+    @include mixin.sm{
+      height: 400px;
+    }
+
+
+
+
  .signup-form {
         position: absolute;
         left: pxToVw(550px, 1512px);
@@ -219,11 +286,33 @@
         width: pxToVw(412px, 1512px);
         align-items: center;
         text-align: center;
+
+        @include mixin.sm{
+          height: 372px;
+          width: 412px;
+          left: 50%;
+          top: 70%;
+          transform: translate(-50%, -50%);
+          
+        }
         
-      
+        .error-password {
+          width: pxToVw(350px, 1512px);
+          font-size: pxToVw(12px, 1512px);
+          margin-bottom: pxToVw(10px, 1512px);
+          top: 5%;
+          left: 8%;
+        }
+
+
+  
         .form {
             display: inline-block;
             margin-top: pxToVw(40px, 1512px);
+            @include mixin.sm{
+              margin-top: 80px;
+            }
+
             li{
               
               color: var(--secondary-red);
@@ -245,9 +334,6 @@
       position: relative;
       bottom: 0;
       width: 100vw;
-      // margin-top: 100%;
-      // margin-top: auto;
-      // margin-bottom: -10px; 
     }
     .bottom-page {
         background: url(../images/footer.svg);
@@ -255,9 +341,14 @@
         height: pxToVw(200px, 1512px);
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: center;
 
         @include mixin.xs{
-            height: pxToVw(400px, 1512px);
+
+            height: 200px;
+          }
+        @include mixin.sm{
+            height: 200px;
           }
 
         ul{
@@ -265,7 +356,12 @@
             justify-content: space-evenly;
             padding-top: pxToVw(140px, 1512px);
             @include mixin.xs{
-                padding-top: pxToVw(200px, 1512px);
+                padding-top: 100px;
+                display: block;
+                text-align: center;
+              }
+            @include mixin.sm{
+                padding-top: 100px;
                 display: block;
                 text-align: center;
               }
@@ -274,15 +370,25 @@
 
               color: white;
               font-size: pxToVw(18px, 1512px);
+              @include mixin.xs{
+                font-size: 18px;
+                  }
+              @include mixin.sm{
+                font-size: 24px;
+                  }
                 
                 a{
                   color: white;  
                   text-decoration: none;
                   font-size: pxToVw(18px, 1512px);
                   @include mixin.xs{
-                    font-size: pxToVw(36px, 1512px);
+                    font-size: 18px;
                     display: block;
                   }
+                  @include mixin.sm{
+                    font-size: 24px;
+                      }
+               
                 
                   &:hover {
                     text-decoration: underline;
@@ -303,6 +409,13 @@
 
     #screen-height{
       min-height: 100vh;
+
+      @include mixin.sm{
+       min-height: 50vh;
+      }
+  
+
+
     }
 
 
@@ -322,16 +435,4 @@
       }
     }
 
-
-        
-
-    @media screen and (max-width: 768px) {
-      nav .links ul {
-          margin-left: 220px;
-
-          li {
-              font-size: 12px;
-          }
-      }
-  }
  

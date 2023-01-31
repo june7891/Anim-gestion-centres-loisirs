@@ -22,7 +22,7 @@ class RegistrationController extends AbstractController
     UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
-        $enterprise = new Enterprise();
+        // $enterprise = new Enterprise();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -35,10 +35,12 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setRoles(array('ROLE_ADMIN'));
-            $enterprise = $form->get('enterprise')->getData();
-            $user->setEnterprise($enterprise);
+            // $enterprise = $form->get('enterprise')->getData();
+            // $user->setEnterprise($enterprise);
+            // $entityManager->persist($enterprise);
+
             $entityManager->persist($user);
-            $entityManager->persist($enterprise);
+           
             $entityManager->flush();
             // do anything else you need here, like send an email
 

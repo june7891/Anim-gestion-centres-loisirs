@@ -67,7 +67,7 @@ const ParticipantsPage = () => {
   
   const onSubmit = (values) => {
     values.enterprise = enterprise;
-    console.log(values.enterprise);
+    // console.log(values.enterprise);
 
     const refreshPage = () => {
       window.location.reload();
@@ -75,7 +75,7 @@ const ParticipantsPage = () => {
     axios
       .post("/api/participants", values)
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         handleClose();
         refreshPage();
       })
@@ -123,7 +123,7 @@ const validationSchema = Yup.object({
 
       const loggedInUser = window.user;
       const enterprise = loggedInUser?.['enterprise'];
-        console.log(enterprise);
+        // console.log(enterprise);
    axios.get(`/api/activities?enterprise=${enterprise}`)
       .then((response) => {
           // console.log(response.data);

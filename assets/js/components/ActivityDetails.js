@@ -11,6 +11,16 @@ const ActivityDetails = () => {
 
   const [activity, setActivity] = useState([]);
 
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const loggedInUser = window.user;
+    if (loggedInUser) {
+      setUser(loggedInUser?.["roles"]);
+      // console.log(user[0]);
+    }
+  }, []);
+
 
   let params = useParams();
   const id = params.id;
@@ -19,7 +29,7 @@ const ActivityDetails = () => {
       const getActivity = async () => {
         await axios.get(`/api/activities/${id}`)
         .then (response => {
-          console.log(response.data);
+          // console.log(response.data);
           const data = response.data;
           setActivity(data);
          
@@ -68,8 +78,10 @@ const ActivityDetails = () => {
           </div>
         </div>
         
-        <div className='profile-btn-container mb-4'>
-           <a className='modification-btn' href={`/activity-modification-form/${activity.id}`}>Modifier l'activité</a>
+        <div className='activity-btn-container mb-4 d-flex flex-column'>
+        {user[0] === "ROLE_USER" ? (
+                  ""
+                ) : (<a className='modification-btn mb-3' href={`/activity-modification-form/${activity.id}`}>Modifier l'activité</a>)}
            <a className='modification-btn' href={`/activity/list/${activity.id}`}>Liste des participants de l'activité</a>
       </div>
       </div>

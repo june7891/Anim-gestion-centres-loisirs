@@ -53,10 +53,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
 
- 
     /**
      * @ORM\ManyToOne(targetEntity=Enterprise::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     #[Groups(['read:User', 'write:User'])]
     private $enterprise;
@@ -146,5 +145,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->enterprise = $enterprise;
 
         return $this;
+    }
+
+
+    public function __toString()
+    {
+        return $this->email;
     }
 }

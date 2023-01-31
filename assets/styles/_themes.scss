@@ -1,4 +1,7 @@
+
+@use 'mixins' as mixin;
 @import 'functions';
+
 
 
 
@@ -16,6 +19,12 @@
     font-size: pxToVw(12px, 1512px);
     margin-left: pxToVw(200px, 1512px);
     
+    @include mixin.sm{
+      width: 115px;
+      height: 30px;
+      font-size: 12px;
+      margin-left: 210px;
+}
 
     &:hover {
       border: pxToVw(2px, 1512px) solid var(--primary-blue);
@@ -116,4 +125,30 @@
   margin-left: pxToVw(500px, 1512px);
   margin-top: pxToVw(200px, 1512px);
   height: pxToVw(100px, 1512px);
+}
+
+
+.notice-container {
+  margin-bottom: pxToVw(20px, 1512px);
+
+  .flash-notice {
+      border: 2px solid var(--primary-blue);
+      width: pxToVw(350px, 1512px);
+      height: pxToVw(50px, 1512px);
+      border-radius: pxToVw(4px, 1512px);
+      text-align: center;
+      padding-top: 10px;
+      color: var(--primary-blue);
+  }
+
+
+  .flash-error {
+      border: 2px solid var(--secondary-red);
+      width: pxToVw(300px, 1512px);
+      height: pxToVw(50px, 1512px);
+      border-radius: pxToVw(4px, 1512px);
+      text-align: center;
+      padding-top: 10px;
+      color: var(--secondary-red);
+  }
 }

@@ -8,9 +8,59 @@
 
   <section id="screen-height" class="about-section">
        <h4>Gérer mon compte</h4>
+
+  <div class="row">
+    <div class="col-md-6">
+       <p>Mettre à jour mes informations</p>
+      <div class="notice-container">
+	{% for message in app.flashes('error') %}
+		<div class="flash-error">
+			{{ message }}
+		</div>
+	{% endfor %}
+	{% for message in app.flashes('notice') %}
+		<div class="flash-notice">
+			{{ message }}
+		</div>
+	{% endfor %}
+</div>
+
+       <form class="d-flex flex-column mb-4" action="/add-enterprise" method="POST">
+
+ 
+       
+       {% if enterprise %}
+       <label class="mb-2" for="">Nom de la structure</label>
+       <input class="mb-3" type="text" name="enterprise" value={{enterprise}}>
+
+
+
+       {% else %}
+          <input class="mb-3" type="text" name="enterprise" placeholder="nom de la structure">
+       {% endif %}
+       <button class="login-btn">Modifier</button>
+       </form>
+
        <a href="/reset-password">Changer le mot de passe</a>
-       <a href="/list">Liste des inscrits</a>
-       <a href="/mailing-list">Mailing liste</a>
+  
+  </div>
+
+  <div class="col-md-6 d-flex flex-column">
+  
+       
+       <a href="/users-list">Mes utilisateurs</a>
+  
+  </div>
+  </div>
+
+
+  
+
+
+      
+
+       
+  
 
   
   </section>

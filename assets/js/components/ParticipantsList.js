@@ -31,14 +31,14 @@ const ParticipantsList = () => {
     const loggedInUser = window.user;
     if(loggedInUser) {
       setUser(loggedInUser?.['roles']);
-      console.log(user[0]);
+      // console.log(user[0]);
     }
   })
 
   useEffect(() => {
     const loggedInUser = window.user;
     const enterprise = loggedInUser?.['enterprise'];
-      console.log(enterprise);
+      // console.log(enterprise);
       setLoading(true);
   axios.get(`/api/participants?enterprise=${enterprise}`)
   .then((response) => {
@@ -63,7 +63,7 @@ const ParticipantsList = () => {
     // order filter
 
     const handleParticipantsFilter = (event) => {
-      console.log(event.target.value)
+      // console.log(event.target.value)
       const loggedInUser = window.user;
       const enterprise = loggedInUser?.['enterprise'];
     
@@ -139,7 +139,7 @@ const ParticipantsList = () => {
     const deleteParticipant = () => {
       axios.delete(`/api/participants/${participantId}`)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         hide();
         location.reload()
       });
@@ -179,6 +179,7 @@ const ParticipantsList = () => {
       {user[0] === "ROLE_USER" ? ("") : (<th className="col">Modifier</th>)}
     </tr>
   </thead>
+
   <tbody>
 
 { loading ? <img className='loading-icon' src={loadingIcon}/> : participants.filter(participant =>participant.lastname.toLowerCase().startsWith(filter)).map((participant, index) => (
